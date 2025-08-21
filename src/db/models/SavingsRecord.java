@@ -23,6 +23,15 @@ public class SavingsRecord {
         this.notes = notes;
     }
 
+    public SavingsRecord(String date, double change, String notes) {
+        this.id = -1;
+        this.userId = -1;
+        this.date = date;
+        this.change = change;
+        this.balance = -1;
+        this.notes = notes;
+    }
+
     public int getId() { return id; }
     public int getUserId() { return userId; }
     public String getDate() { return date; }
@@ -42,6 +51,5 @@ public class SavingsRecord {
         }
     }
     public void setChange(double change) {this.change = change;}
-    public void setBalance(double balance) {this.balance = balance;}
     public void setNotes(String notes) {this.notes = notes;}
 }
