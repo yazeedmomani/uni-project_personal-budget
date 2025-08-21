@@ -5,37 +5,37 @@ import db.Database;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-public class SavingsRecord {
+public class IncomeRecord {
     private final int id;
     private final int userId;
     private String date;
-    private double change;
-    private double balance;
+    private String source;
+    private double amount;
     private String notes;
 
-    public SavingsRecord(int id, int userId, String date, double change, double balance, String notes) {
+    public IncomeRecord(int id, int userId, String date, String source, double amount, String notes) {
         this.id = id;
         this.userId = userId;
         this.date = date;
-        this.change = change;
-        this.balance = balance;
+        this.source = source;
+        this.amount = amount;
         this.notes = notes;
     }
 
-    public SavingsRecord(String date, double change, String notes) {
+    public IncomeRecord(String date, String source, double amount, String notes) {
         this.id = -1;
         this.userId = -1;
         this.date = date;
-        this.change = change;
-        this.balance = -1;
+        this.source = source;
+        this.amount = amount;
         this.notes = notes;
     }
 
     public int getId() { return id; }
     public int getUserId() { return userId; }
     public String getDate() { return date; }
-    public double getChange() { return change; }
-    public double getBalance() { return balance; }
+    public String getSource() { return source; }
+    public double getAmount() { return amount; }
     public String getNotes() { return notes; }
 
     public void setDate(String date){
@@ -49,20 +49,18 @@ public class SavingsRecord {
             );
         }
     }
-    public void setChange(double change) {
-        this.balance = this.balance + (change - this.change);
-        this.change = change;
-    }
+    public void setSource(String source) {this.source = source;}
+    public void setAmount(double amount) {this.amount = amount;}
     public void setNotes(String notes) {this.notes = notes;}
 
     @Override
     public String toString(){
-        return "SavingsRecord{" +
+        return "IncomeRecord{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", date='" + date + '\'' +
-                ", change=" + change +
-                ", balance=" + balance +
+                ", source'=" + source + '\'' +
+                ", amount=" + amount +
                 ", notes='" + notes + '\'' +
                 '}';
     }
