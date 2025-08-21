@@ -28,12 +28,27 @@ public class Database {
                     return new User(
                             result.getInt("id"),
                             result.getString("name"),
-                            result.getString("username"), 
+                            result.getString("username"),
                             result.getString("password")
                     );
                 }
                 return null;
             }
+        }
+    }
+
+    public static void update_user(User user) throws Exception{
+        String sql = "UPDATE users SET name = ?, username = ?, password = ? WHERE id = ?";
+
+        try(Connection connection = Database.get_connection()){
+            PreparedStatement template = connection.prepareStatement(sql);
+
+            template.setString(1, user.getName());
+            template.setString(2, user.getUsername());
+            template.setString(3, user.getPassword());
+            template.setInt(4, user.getId());
+
+            template.executeUpdate();
         }
     }
 }
