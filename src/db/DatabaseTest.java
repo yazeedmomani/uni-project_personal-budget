@@ -1,5 +1,10 @@
 package db;
 
+/*
+This class is made to test the connection to the embedded database.
+Running this file will print on the console the status of the connection.
+ */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
