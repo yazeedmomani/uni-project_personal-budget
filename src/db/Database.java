@@ -11,16 +11,16 @@ import java.sql.ResultSet;
 public class Database {
     private static final String URL = "jdbc:sqlite:src/db/budget.db";
 
-    public static Connection get_connection() throws Exception{
+    public static Connection getConnection() throws Exception{
         return DriverManager.getConnection(URL);
     }
 
     // Users
-    public static User get_user(String username, String password) throws Exception{
+    public static User getUser(String username, String password) throws Exception{
         return UsersDAO.get(username, password);
     }
 
-    public static void update_user(User user) throws Exception{
+    public static void updateUser(User user) throws Exception{
         UsersDAO.update(user);
     }
 }

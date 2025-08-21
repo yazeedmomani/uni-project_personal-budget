@@ -2,9 +2,9 @@ package db.models;
 
 public class User {
     private final int id;
-    private final String name;
-    private final String username;
-    private final String password; // plaintext by your choice
+    private String name;
+    private String username;
+    private String password; // plaintext by your choice
 
     public User(int id, String name, String username, String password) {
         this.id = id;
@@ -17,4 +17,8 @@ public class User {
     public String getName() { return name; }
     public String getUsername() { return username; }
     public String getPassword() { return password; }
+    
+    public void setName(String name) {this.name = name;}
+    public void setUsername(String username) {this.username = username;}
+    public void setPassword(String password) {this.password = password;}
 }

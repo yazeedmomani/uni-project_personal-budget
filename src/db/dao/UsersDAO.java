@@ -11,7 +11,7 @@ public class UsersDAO {
     public static User get(String username, String password) throws Exception{
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
 
-        try(Connection connection = Database.get_connection()){
+        try(Connection connection = Database.getConnection()){
             PreparedStatement template = connection.prepareStatement(sql);
 
             template.setString(1, username);
@@ -34,7 +34,7 @@ public class UsersDAO {
     public static void update(User user) throws Exception{
         String sql = "UPDATE users SET name = ?, username = ?, password = ? WHERE id = ?";
 
-        try(Connection connection = Database.get_connection()){
+        try(Connection connection = Database.getConnection()){
             PreparedStatement template = connection.prepareStatement(sql);
 
             template.setString(1, user.getName());
