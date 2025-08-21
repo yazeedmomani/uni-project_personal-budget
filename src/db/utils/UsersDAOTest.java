@@ -1,8 +1,11 @@
 package db.utils;
 
 import db.dao.UsersDAO;
-import db.models.SavingsRecord;
 import db.models.User;
+
+/*
+Utility that tests UsersDAO by calling all its methods then restoring the data to its original state.
+ */
 
 public class UsersDAOTest {
     public static void main(String[] args) throws Exception {

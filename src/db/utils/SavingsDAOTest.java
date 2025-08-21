@@ -3,6 +3,10 @@ package db.utils;
 import db.dao.SavingsDAO;
 import db.models.SavingsRecord;
 
+/*
+Utility that tests SavingsDAO by calling all its methods then restoring the data to its original state.
+ */
+
 public class SavingsDAOTest {
     public static void main(String[] args) throws Exception {
         System.out.println("Running SavingsDAO test...");
