@@ -44,7 +44,7 @@ public class SavingsDAO {
 
             double balance = this.getLastBalance() + record.getChange();
 
-            template.setInt(1, record.getId());
+            template.setInt(1, userId);
             template.setString(2, record.getDate());
             template.setDouble(3, record.getChange());
             template.setDouble(4, balance);
@@ -99,7 +99,7 @@ public class SavingsDAO {
         }
     }
 
-    private double getLastBalance() throws Exception {
+    public double getLastBalance() throws Exception {
         String sql = "SELECT balance FROM savings_log WHERE user_id = ? ORDER BY id DESC LIMIT 1";
 
         try (Connection connection = Database.getConnection()) {

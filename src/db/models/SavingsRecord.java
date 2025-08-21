@@ -50,6 +50,21 @@ public class SavingsRecord {
             );
         }
     }
-    public void setChange(double change) {this.change = change;}
+    public void setChange(double change) {
+        this.balance = this.balance + (change - this.change);
+        this.change = change;
+    }
     public void setNotes(String notes) {this.notes = notes;}
+
+    @Override
+    public String toString(){
+        return "SavingsRecord{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", date='" + date + '\'' +
+                ", change=" + change +
+                ", balance=" + balance +
+                ", notes='" + notes + '\'' +
+                '}';
+    }
 }
