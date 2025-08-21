@@ -1,4 +1,4 @@
-package db;
+package db.utils;
 
 /*
 This class is made to test the connection to the embedded database.

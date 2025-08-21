@@ -1,4 +1,4 @@
-package db;
+package db.utils;
 
 /*
 This class is a utility made to execute schema and seed files.
