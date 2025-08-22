@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class App extends Application {
     public void start(Stage primaryStage){
-        Scene scene = new Scene(Login.init());
+        Scene scene = new Scene(Dashboard.init());
         scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
         primaryStage.setScene(scene);
