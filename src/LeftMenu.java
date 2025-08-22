@@ -1,4 +1,5 @@
 import javafx.scene.control.*;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 
 public class LeftMenu {
@@ -10,11 +11,35 @@ public class LeftMenu {
         savingsBtn = new Button("Savings");
 
         incomeBtn.getStyleClass().add("leftMenu_btn");
+        incomeBtn.setId("leftMenu_selected");
         savingsBtn.getStyleClass().add("leftMenu_btn");
 
         root = new VBox(incomeBtn, savingsBtn);
         root.getStyleClass().add("leftMenu");
 
+        incomeBtn.setOnAction(e -> {
+            selectIncome();
+        });
+
+        savingsBtn.setOnAction(e -> {
+            selectSavings();
+        });
+
         return root;
+    }
+
+    public static void selectIncome(){
+        clearSelection();
+        incomeBtn.setId("leftMenu_selected");
+    }
+
+    public static void selectSavings(){
+        clearSelection();
+        savingsBtn.setId("leftMenu_selected");
+    }
+
+    private static void clearSelection(){
+        savingsBtn.setId(null);
+        incomeBtn.setId(null);
     }
 }

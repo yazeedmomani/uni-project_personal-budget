@@ -39,13 +39,11 @@ public class TopMenu {
         root.setId("topMenu");
 
         editBtn.setOnAction(e -> {
-            root.getChildren().remove(editBtn);
-            root.getChildren().addFirst(viewBtn);
+            setViewButton();
         });
 
         viewBtn.setOnAction(e -> {
-            root.getChildren().remove(viewBtn);
-            root.getChildren().addFirst(editBtn);
+            setEditButton();
         });
 
         logoutBtn.setOnAction(e -> {
@@ -53,5 +51,15 @@ public class TopMenu {
         });
 
         return root;
+    }
+
+    public static void setEditButton(){
+        root.getChildren().remove(viewBtn);
+        root.getChildren().addFirst(editBtn);
+    }
+
+    public static void setViewButton(){
+        root.getChildren().remove(editBtn);
+        root.getChildren().addFirst(viewBtn);
     }
 }
