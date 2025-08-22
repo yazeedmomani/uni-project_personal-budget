@@ -43,9 +43,18 @@ public class Dashboard {
         viewBtn.setGraphic(viewIcon);
         viewBtn.getStyleClass().add("menu_btn");
 
-        menu = new HBox(viewBtn, editBtn, settingsBtn, logoutBtn);
+        menu = new HBox(editBtn, settingsBtn, logoutBtn);
         menu.setId("menu");
 
+        editBtn.setOnAction(e -> {
+            menu.getChildren().remove(editBtn);
+            menu.getChildren().addFirst(viewBtn);
+        });
+
+        viewBtn.setOnAction(e -> {
+            menu.getChildren().remove(viewBtn);
+            menu.getChildren().addFirst(editBtn);
+        });
 
         return menu;
     }
