@@ -50,7 +50,7 @@
     -fx-background-color: #000000;
 }
 
-#menu{
+#topMenu{
     -fx-background-color: #ffffff;
     -fx-padding: 12 22;
     -fx-alignment: center-right;
@@ -61,26 +61,26 @@
     -fx-font-family: "SF Pro Text", "Segoe UI", "Roboto", "Inter", sans-serif;
 }
 
-.menu_btn_icon{
+.topMenu_btn_icon{
     -fx-cursor: hand;
     -fx-fill: #5F6367;
 }
 
-.menu_btn{
+.topMenu_btn{
     -fx-background-color: #fff;
     -fx-padding: 12 12;
     -fx-background-radius: 30;
     -fx-cursor: hand;
 }
 
-.menu_btn:hover{
+.topMenu_btn:hover{
     -fx-background-color: #F6F6F6;
 }
 
-.menu_btn:pressed{
+.topMenu_btn:pressed{
     -fx-background-color: #DCDDE0;
 }
 
-#menu_selected{
+#topMenu_selected{
     -fx-background-color: #E3E3E3;
 }

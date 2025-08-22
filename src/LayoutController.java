@@ -1,7 +1,5 @@
 import javafx.scene.layout.BorderPane;
 
-import javax.swing.border.Border;
-
 public class LayoutController {
     private static final BorderPane root = new BorderPane();
 
@@ -14,8 +12,8 @@ public class LayoutController {
     }
 
     public static void viewDashboard(){
-        root.setTop(Menu.getRoot());
-        root.setLeft(null);
+        root.setTop(TopMenu.getRoot());
+        root.setLeft(LeftMenu.getRoot());
         root.setCenter(null);
     }
 }
