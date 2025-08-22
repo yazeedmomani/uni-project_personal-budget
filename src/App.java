@@ -6,11 +6,9 @@ import javafx.stage.Stage;
 
 public class App extends Application {
     public void start(Stage primaryStage){
-        Label l1 = new Label("Test");
-
-        FlowPane root = new FlowPane(l1);
-
-        Scene scene = new Scene(root);
+        Login.init();
+        Scene scene = new Scene(Login.getRoot());
+        scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
         primaryStage.setScene(scene);
         primaryStage.setMaximized(true);
