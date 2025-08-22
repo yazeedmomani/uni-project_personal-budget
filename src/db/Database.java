@@ -11,13 +11,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.format.DateTimeFormatter;
 
+/*
+This is the main interface for the database. Do not use other files.
+ */
+
 public class Database {
     private static final String URL = "jdbc:sqlite:src/db/budget.db";
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static User currentUser;
-
-    public static IncomeDAO incomeLog;
-    public static SavingsDAO savingsLog;
+    private static IncomeDAO incomeLog;
+    private static SavingsDAO savingsLog;
 
     public static Connection getConnection() throws Exception{
         return DriverManager.getConnection(URL);
@@ -46,6 +49,11 @@ public class Database {
     }
 
     public static User getCurrentUser() {return currentUser;}
+
+
+    // DAOs
+    public static IncomeDAO getIncomeLog() {return incomeLog;}
+    public static SavingsDAO getSavingsLog() {return savingsLog;}
 
 
     // Date Format
