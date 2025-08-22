@@ -10,7 +10,7 @@ public class Login {
     private static VBox centerBox;
     private static FlowPane root;
 
-    public static void init(){
+    public static FlowPane init(){
         usernameInput = new TextField();
         passwordInput = new PasswordField();
         button = new Button("Log in");
@@ -26,7 +26,7 @@ public class Login {
 
         root = new FlowPane(centerBox);
         root.setId("login_root");
-    }
 
-    public static FlowPane getRoot() {return root;}
+        return root;
+    }
 }
