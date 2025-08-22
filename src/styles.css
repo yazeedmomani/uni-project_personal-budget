@@ -52,59 +52,35 @@
 
 #menu{
     -fx-background-color: #ffffff;
-    -fx-padding: 19 24;
+    -fx-padding: 12 22;
     -fx-alignment: center-right;
-    -fx-spacing: 20;
+    -fx-spacing: 4;
     -fx-border-color: #e5e7eb transparent transparent transparent;
     -fx-border-width: 1 0 0 0;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 8, 0.15, 0, 1);
     -fx-font-family: "SF Pro Text", "Segoe UI", "Roboto", "Inter", sans-serif;
 }
 
-#menu_settingsIcon{
+.menu_btn_icon{
     -fx-cursor: hand;
     -fx-fill: #5F6367;
 }
 
-#menu_logoutIcon{
+.menu_btn{
+    -fx-background-color: #fff;
+    -fx-padding: 12 12;
+    -fx-background-radius: 30;
     -fx-cursor: hand;
-    -fx-fill: #5F6367;
 }
 
-#menu_editIcon{
-    -fx-cursor: hand;
-    -fx-fill: #5F6367;
+.menu_btn:hover{
+    -fx-background-color: #F6F6F6;
 }
 
-#menu_viewIcon{
-    -fx-cursor: hand;
-    -fx-fill: #5F6367;
+.menu_btn:pressed{
+    -fx-background-color: #DCDDE0;
 }
 
-#menu_settingsIcon:hover,
-#menu_editIcon:hover,
-#menu_viewIcon:hover{
-    -fx-fill: #111111;
-}
-
-#menu_logoutIcon:hover{
-    -fx-fill:#111111;
-}
-
-#menu_settingsIcon:pressed,
-#menu_editIcon:pressed,
-#menu_viewIcon:pressed{
-    -fx-translate-y: 1;
-}
-
-#menu_logoutIcon:pressed{
-    -fx-translate-y: 1;
-}
-
-#menu_settingsIcon,
-#menu_editIcon,
-#menu_viewIcon,
-#menu_logoutIcon{
-    -fx-min-height: 80;
-    -fx-min-width: 80;
+#menu_selected{
+    -fx-background-color: #E3E3E3;
 }
