@@ -1,21 +1,13 @@
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.SVGPath;
 
-public class Dashboard {
+public class Menu {
     private static SVGPath settingsIcon, logoutIcon, editIcon, viewIcon;
     private static Button settingsBtn, logoutBtn, editBtn, viewBtn;
-    private static HBox menu;
+    private static HBox root;
 
-    public static BorderPane init(){
-        HBox menu = createMenu();
-        BorderPane root = new BorderPane();
-        root.setTop(menu);
-        return root;
-    }
-
-    public static HBox createMenu(){
+    public static HBox getRoot(){
         settingsIcon = new SVGPath();
         logoutIcon = new SVGPath();
         editIcon = new SVGPath();
@@ -43,19 +35,23 @@ public class Dashboard {
         viewBtn.setGraphic(viewIcon);
         viewBtn.getStyleClass().add("menu_btn");
 
-        menu = new HBox(editBtn, settingsBtn, logoutBtn);
-        menu.setId("menu");
+        root = new HBox(editBtn, settingsBtn, logoutBtn);
+        root.setId("menu");
 
         editBtn.setOnAction(e -> {
-            menu.getChildren().remove(editBtn);
-            menu.getChildren().addFirst(viewBtn);
+            root.getChildren().remove(editBtn);
+            root.getChildren().addFirst(viewBtn);
         });
 
         viewBtn.setOnAction(e -> {
-            menu.getChildren().remove(viewBtn);
-            menu.getChildren().addFirst(editBtn);
+            root.getChildren().remove(viewBtn);
+            root.getChildren().addFirst(editBtn);
         });
 
-        return menu;
+        logoutBtn.setOnAction(e -> {
+            App.logout();
+        });
+
+        return root;
     }
 }
