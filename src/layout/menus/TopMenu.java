@@ -55,6 +55,10 @@ public class TopMenu {
             App.logout();
         });
 
+        settingsBtn.setOnAction(e -> {
+            LayoutController.setViewSettings(!LayoutController.getViewSettings());
+        });
+
         return root;
     }
 
@@ -70,5 +74,10 @@ public class TopMenu {
             root.getChildren().addFirst(viewBtn);
         }
 
+    }
+
+    public static void selectSettings(boolean select){
+        if(select) settingsBtn.setId("topMenu_selected");
+        if(!select) settingsBtn.setId("");
     }
 }

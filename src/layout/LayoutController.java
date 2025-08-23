@@ -11,6 +11,7 @@ public class LayoutController {
     private static final BorderPane root = new BorderPane();
     private static String currentView;
     private static String currentMode;
+    private static boolean viewSettings;
 
 
     public static void init(){
@@ -23,6 +24,7 @@ public class LayoutController {
         root.setTop(null);
         root.setLeft(null);
 
+        if(viewSettings) setViewSettings(false);
         setCurrentView(null);
         setCurrentMode(null);
         Router.route();
@@ -32,6 +34,7 @@ public class LayoutController {
         root.setTop(TopMenu.getRoot());
         root.setLeft(LeftMenu.getRoot());
 
+        setViewSettings(false);
         setCurrentView("income");
         setCurrentMode("view");
         Router.route();
@@ -39,9 +42,12 @@ public class LayoutController {
 
     public static String getCurrentMode(){return currentMode;}
     public static String getCurrentView(){return currentView;}
+    public static boolean getViewSettings(){return viewSettings;}
 
     public static void setCurrentMode(String currentMode){
         LayoutController.currentMode = currentMode;
+
+        if(viewSettings) setViewSettings(false);
 
         TopMenu.setButton(currentMode);
         Router.route();
@@ -50,7 +56,15 @@ public class LayoutController {
     public static void setCurrentView(String currentView){
         LayoutController.currentView = currentView;
 
+        if(viewSettings) setViewSettings(false);
+
         LeftMenu.selectView(currentView);
+        Router.route();
+    }
+
+    public static void setViewSettings(boolean bool){
+        viewSettings = bool;
+        TopMenu.selectSettings(bool);
         Router.route();
     }
 }
