@@ -11,6 +11,10 @@ import layout.views.income.*;
 
 public class LayoutController {
     private static final BorderPane root = new BorderPane();
+    private static String currentView;
+    private static String currentEditType;
+    private static String currentMode;
+
 
     public static void init(){
         lock();
@@ -22,6 +26,9 @@ public class LayoutController {
         App.setWindowTitle("Budget - Login");
         root.setTop(null);
         root.setLeft(null);
+        setCurrentView(null);
+        setCurrentEditType(null);
+
         root.setCenter(Login.getRoot());
     }
 
@@ -29,5 +36,26 @@ public class LayoutController {
         root.setTop(TopMenu.getRoot());
         root.setLeft(LeftMenu.getRoot());
         root.setCenter(IncomeDashboard.getRoot());
+    }
+
+    public static void setCurrentMode(String currentMode){
+        LayoutController.currentMode = currentMode;
+        //update topmenu
+        TopMenu.setButton(currentMode);
+        //update leftmenu toggle lower buttons
+        //update center (router)
+    }
+
+    public static void setCurrentView(String currentView){
+        LayoutController.currentView = currentView;
+        //update leftmenu
+        LeftMenu.selectView(currentView);
+        //update center (router)
+    }
+
+    public static void setCurrentEditType(String currentEdit){
+        LayoutController.currentEditType = currentEdit;
+        //update left menu
+        //update center
     }
 }

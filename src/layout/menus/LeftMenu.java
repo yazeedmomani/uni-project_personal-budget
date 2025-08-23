@@ -19,24 +19,20 @@ public class LeftMenu {
         root.getStyleClass().add("leftMenu");
 
         incomeBtn.setOnAction(e -> {
-            selectIncome();
+            //selectIncome();
         });
 
         savingsBtn.setOnAction(e -> {
-            selectSavings();
+            //selectSavings();
         });
 
         return root;
     }
 
-    public static void selectIncome(){
+    public static void selectView(String view){
         clearSelection();
-        incomeBtn.setId("leftMenu_selected");
-    }
-
-    public static void selectSavings(){
-        clearSelection();
-        savingsBtn.setId("leftMenu_selected");
+        if(view.equals("income")) incomeBtn.setId("leftMenu_selected");
+        if(view.equals("savings")) savingsBtn.setId("leftMenu_selected");
     }
 
     private static void clearSelection(){
