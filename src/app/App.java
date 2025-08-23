@@ -1,5 +1,6 @@
 package app;
 
+import db.models.User;
 import javafx.stage.Stage;
 import layout.LayoutController;
 
@@ -18,7 +19,7 @@ public class App {
         LayoutController.lock();
     }
 
-    public static void login(){
+    public static void login(User user){
         LayoutController.unlock();
     }
 

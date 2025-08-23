@@ -15,6 +15,13 @@
     -fx-max-width: 360;
 }
 
+.login_errorLabel{
+    -fx-alignment: CENTER_LEFT;
+    -fx-text-fill: red;
+    -fx-font-size: 12px;
+    -fx-wrap-text: true;
+}
+
 .login_input{
     -fx-background-color: #ffffff;
     -fx-border-color: #e5e7eb;
@@ -30,6 +37,20 @@
 .login_input:focused{
     -fx-border-color: #cbd0d6;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0.30, 0, 1);
+}
+
+.login_invalidInput{
+    -fx-border-color: #e63946;   /* bright red border */
+    -fx-border-width: 2px;
+    -fx-background-color: #fff5f5; /* subtle red background */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-text-fill: #e63946;       /* red text to match */
+}
+
+.login_invalidInput:focused{
+    -fx-border-color: #cc0000; /* darker red on focus */
+    -fx-effect: dropshadow(gaussian, rgba(230,57,70,0.4), 8, 0.3, 0, 1);
 }
 
 .login_button{

@@ -12,6 +12,7 @@ public class Login {
     private static Button submitBtn;
     private static TextField usernameInput;
     private static PasswordField passwordInput;
+    private static Label errorLbl;
     private static VBox centerBox;
     private static FlowPane root;
 
@@ -57,14 +58,54 @@ public class Login {
     private static void handleEvent(ActionEvent e){
         Object source = e.getSource();
 
-        if(source == submitBtn) {
-            try{
-                User user = Database.getUser(usernameInput.getText(), passwordInput.getText());
-                System.out.println(user);
+        if(source == submitBtn) handleSumbit();
+    }
+
+    private static void handleSumbit(){
+        try{
+            User user = Database.getUser(usernameInput.getText(), passwordInput.getText());
+
+            if(user == null){
+                handleInvalid();
+                return;
             }
-            catch(Exception exception){
-                System.out.println("Error: " + exception.getMessage());
-            }
+
+            App.login(user);
         }
+        catch(Exception exception){
+            System.out.println("Error: " + exception.getMessage());
+        }
+    }
+
+    private static void handleInvalid(){
+        String invalidClass = "login_invalidInput";
+        String username = usernameInput.getText();
+        String password = passwordInput.getText();
+
+        centerBox.getChildren().remove(errorLbl);
+        usernameInput.getStyleClass().remove(invalidClass);
+        passwordInput.getStyleClass().remove(invalidClass);
+
+        errorLbl = new Label();
+        errorLbl.getStyleClass().add("login_errorLabel");
+
+        if(username.equals("") && password.equals("")){
+            errorLbl.setText("Enter username and password");
+            usernameInput.getStyleClass().add(invalidClass);
+            passwordInput.getStyleClass().add(invalidClass);
+        }
+        else if (username.equals("")){
+            errorLbl.setText("Enter username");
+            usernameInput.getStyleClass().add(invalidClass);
+        }
+        else if (password.equals("")){
+            errorLbl.setText("Enter password");
+            passwordInput.getStyleClass().add(invalidClass);
+        }
+        else{
+            errorLbl.setText("Invalid username or password");
+        }
+
+        centerBox.getChildren().addFirst(errorLbl);
     }
 }
