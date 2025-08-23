@@ -1,6 +1,10 @@
+package layout.menus;
+
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.SVGPath;
+
+import app.App;
 
 public class TopMenu {
     private static SVGPath settingsIcon, logoutIcon, editIcon, viewIcon;

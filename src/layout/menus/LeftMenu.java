@@ -1,5 +1,6 @@
+package layout.menus;
+
 import javafx.scene.control.*;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 
 public class LeftMenu {
