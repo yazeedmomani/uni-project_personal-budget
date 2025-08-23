@@ -19,8 +19,8 @@ public class Database {
     private static final String URL = "jdbc:sqlite:src/db/budget.db";
     private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static User currentUser;
-    private static IncomeDAO incomeLog;
-    private static SavingsDAO savingsLog;
+    private static IncomeDAO incomeDAO;
+    private static SavingsDAO savingsDAO;
 
     public static Connection getConnection() throws Exception{
         return DriverManager.getConnection(URL);
@@ -39,21 +39,21 @@ public class Database {
     public static void setCurrentUser(User user){
         if(user == null){
             currentUser = user;
-            incomeLog = null;
-            savingsLog = null;
+            incomeDAO = null;
+            savingsDAO = null;
             return;
         }
         currentUser = user;
-        incomeLog = new IncomeDAO(user.getId());
-        savingsLog = new SavingsDAO(user.getId());
+        incomeDAO = new IncomeDAO(user.getId());
+        savingsDAO = new SavingsDAO(user.getId());
     }
 
     public static User getCurrentUser() {return currentUser;}
 
 
     // DAOs
-    public static IncomeDAO getIncomeLog() {return incomeLog;}
-    public static SavingsDAO getSavingsLog() {return savingsLog;}
+    public static IncomeDAO getIncomeDAO() {return incomeDAO;}
+    public static SavingsDAO getSavingsDAO() {return savingsDAO;}
 
 
     // Date Format
