@@ -1,11 +1,11 @@
-package layout.views.income;
+package layout.views.savings;
 
-import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.control.*;
 
-public class IncomeDelete {
+public class SavingsView {
     private static FlowPane root = new FlowPane();
-    private static Label temp = new Label("Income Delete");
+    private static Label temp = new Label("Savings Dashboard");
 
     public static FlowPane getRoot(){
         root.getChildren().add(temp);

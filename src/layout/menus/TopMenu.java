@@ -5,6 +5,7 @@ import javafx.scene.layout.*;
 import javafx.scene.shape.SVGPath;
 
 import app.App;
+import layout.LayoutController;
 
 public class TopMenu {
     private static SVGPath settingsIcon, logoutIcon, editIcon, viewIcon;
@@ -39,15 +40,15 @@ public class TopMenu {
         viewBtn.setGraphic(viewIcon);
         viewBtn.getStyleClass().add("topMenu_btn");
 
-        root = new HBox(editBtn, settingsBtn, logoutBtn);
+        root = new HBox(settingsBtn, logoutBtn);
         root.setId("topMenu");
 
         editBtn.setOnAction(e -> {
-            //setViewButton();
+            LayoutController.setCurrentMode("edit");
         });
 
         viewBtn.setOnAction(e -> {
-            //setEditButton();
+            LayoutController.setCurrentMode("view");
         });
 
         logoutBtn.setOnAction(e -> {
@@ -58,11 +59,13 @@ public class TopMenu {
     }
 
     public static void setButton(String mode){
-        if(mode.equals("edit")){
+        if(mode == null) return;
+
+        if(mode.equals("view")){
             root.getChildren().remove(viewBtn);
             root.getChildren().addFirst(editBtn);
         }
-        if(mode.equals("view")){
+        if(mode.equals("edit")){
             root.getChildren().remove(editBtn);
             root.getChildren().addFirst(viewBtn);
         }

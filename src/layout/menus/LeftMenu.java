@@ -2,6 +2,7 @@ package layout.menus;
 
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+import layout.LayoutController;
 
 public class LeftMenu {
     private static VBox root;
@@ -12,24 +13,25 @@ public class LeftMenu {
         savingsBtn = new Button("Savings");
 
         incomeBtn.getStyleClass().add("leftMenu_btn");
-        incomeBtn.setId("leftMenu_selected");
         savingsBtn.getStyleClass().add("leftMenu_btn");
 
         root = new VBox(incomeBtn, savingsBtn);
         root.getStyleClass().add("leftMenu");
 
         incomeBtn.setOnAction(e -> {
-            //selectIncome();
+            LayoutController.setCurrentView("income");
         });
 
         savingsBtn.setOnAction(e -> {
-            //selectSavings();
+            LayoutController.setCurrentView("savings");
         });
 
         return root;
     }
 
     public static void selectView(String view){
+        if(view == null) return;
+
         clearSelection();
         if(view.equals("income")) incomeBtn.setId("leftMenu_selected");
         if(view.equals("savings")) savingsBtn.setId("leftMenu_selected");
