@@ -39,7 +39,7 @@ public class TopMenu {
         editBtn = createIconButton("M20.719 7.031l-1.828 1.828-3.75-3.75 1.828-1.828q0.281-0.281 0.703-0.281t0.703 0.281l2.344 2.344q0.281 0.281 0.281 0.703t-0.281 0.703zM3 17.25l11.063-11.063 3.75 3.75-11.063 11.063h-3.75v-3.75z");
         viewBtn = createIconButton("M12 9q1.219 0 2.109 0.891t0.891 2.109-0.891 2.109-2.109 0.891-2.109-0.891-0.891-2.109 0.891-2.109 2.109-0.891zM12 17.016q2.063 0 3.539-1.477t1.477-3.539-1.477-3.539-3.539-1.477-3.539 1.477-1.477 3.539 1.477 3.539 3.539 1.477zM12 4.5q3.703 0 6.703 2.063t4.313 5.438q-1.313 3.375-4.313 5.438t-6.703 2.063-6.703-2.063-4.313-5.438q1.313-3.375 4.313-5.438t6.703-2.063z");
         space = createSpace();
-        welcomeLbl = createLabel("Welcome Yazeed");
+        welcomeLbl = createWelcomeLabel("Welcome Yazeed");
 
         root = new HBox(welcomeLbl, space, settingsBtn, logoutBtn);
         root.setId("topMenu");
@@ -47,7 +47,7 @@ public class TopMenu {
         return root;
     }
 
-    private static Label createLabel(String text){
+    private static Label createWelcomeLabel(String text){
         Label label = new Label(text);
         label.getStyleClass().add("topMenu_lbl");
         return label;
