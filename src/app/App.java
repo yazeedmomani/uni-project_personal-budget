@@ -17,13 +17,13 @@ public class App {
     }
 
     public static void logout(){
-        LayoutController.lock();
         Database.setCurrentUser(null);
+        LayoutController.lock();
     }
 
     public static void login(User user){
-        LayoutController.unlock();
         Database.setCurrentUser(user);
+        LayoutController.unlock();
     }
 
     public static void setWindowTitle(String title){
