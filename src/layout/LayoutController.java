@@ -20,35 +20,37 @@ public class LayoutController {
     public static BorderPane getMainRoot(){return root;}
 
     public static void lock(){
-        App.setWindowTitle("Budget - Login");
         root.setTop(null);
         root.setLeft(null);
+
         setCurrentView(null);
         setCurrentMode(null);
-
-        root.setCenter(Login.getRoot());
+        Router.route();
     }
 
     public static void unlock(){
         root.setTop(TopMenu.getRoot());
         root.setLeft(LeftMenu.getRoot());
+
         setCurrentView("income");
         setCurrentMode("view");
-
-        root.setCenter(null);
+        Router.route();
     }
+
+    public static String getCurrentMode(){return currentMode;}
+    public static String getCurrentView(){return currentView;}
 
     public static void setCurrentMode(String currentMode){
         LayoutController.currentMode = currentMode;
-        TopMenu.setButton(currentMode);
 
-        //update center (router)
+        TopMenu.setButton(currentMode);
+        Router.route();
     }
 
     public static void setCurrentView(String currentView){
         LayoutController.currentView = currentView;
-        LeftMenu.selectView(currentView);
 
-        //update center (router)
+        LeftMenu.selectView(currentView);
+        Router.route();
     }
 }

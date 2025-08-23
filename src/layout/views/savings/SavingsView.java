@@ -1,14 +1,15 @@
 package layout.views.savings;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.control.*;
 
 public class SavingsView {
-    private static FlowPane root = new FlowPane();
-    private static Label temp = new Label("Savings Dashboard");
+    private static FlowPane root;
+    private static Label temp;
 
     public static FlowPane getRoot(){
-        root.getChildren().add(temp);
+        temp = new Label("Savings View");
+        root = new FlowPane(temp);
         return root;
     }
 }

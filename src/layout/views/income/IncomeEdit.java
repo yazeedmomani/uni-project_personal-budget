@@ -4,11 +4,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 
 public class IncomeEdit {
-    private static FlowPane root = new FlowPane();
-    private static Label temp = new Label("Income Insert");
+    private static FlowPane root;
+    private static Label temp;
 
     public static FlowPane getRoot(){
-        root.getChildren().add(temp);
+        temp = new Label("Income Edit");
+        root = new FlowPane(temp);
         return root;
     }
 }
