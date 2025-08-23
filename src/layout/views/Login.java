@@ -1,5 +1,7 @@
 package layout.views;
 
+import db.Database;
+import db.models.User;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
@@ -7,7 +9,7 @@ import javafx.scene.control.*;
 import app.App;
 
 public class Login {
-    private static Button button;
+    private static Button submitBtn;
     private static TextField usernameInput;
     private static PasswordField passwordInput;
     private static VBox centerBox;
@@ -25,9 +27,9 @@ public class Login {
     private static void createCenterBox(){
         usernameInput = createInput("Username");
         passwordInput = createPasswordInput("Password");
-        button = createButton("Log in");
+        submitBtn = createButton("Log in");
 
-        centerBox = new VBox(usernameInput, passwordInput, button);
+        centerBox = new VBox(usernameInput, passwordInput, submitBtn);
         centerBox.getStyleClass().add("login_centerBox");
     }
 
@@ -55,6 +57,14 @@ public class Login {
     private static void handleEvent(ActionEvent e){
         Object source = e.getSource();
 
-        if(source == button) App.login();
+        if(source == submitBtn) {
+            try{
+                User user = Database.getUser(usernameInput.getText(), passwordInput.getText());
+                System.out.println(user);
+            }
+            catch(Exception exception){
+                System.out.println("Error: " + exception.getMessage());
+            }
+        }
     }
 }
