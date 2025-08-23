@@ -42,7 +42,7 @@ public class TopMenu {
         welcomeLbl = createWelcomeLabel("Welcome Yazeed");
 
         root = new HBox(welcomeLbl, space, settingsBtn, logoutBtn);
-        root.setId("topMenu");
+        root.getStyleClass().add("topMenu");
 
         return root;
     }

@@ -1,11 +1,21 @@
-#login_centerBox{
+/*------------------------------------------*/
+/*                 Login                    */
+/*------------------------------------------*/
+
+.login{
+    -fx-alignment: center;
+    -fx-background-color: #f6f6f7;
+    -fx-font-family: "SF Pro Text", "Segoe UI", "Roboto", "Inter", sans-serif;
+}
+
+.login_centerBox{
     -fx-spacing: 12;
     -fx-padding: 24;
     -fx-alignment: center;
     -fx-max-width: 360;
 }
 
-#login_passwordInput, #login_usernameInput{
+.login_input{
     -fx-background-color: #ffffff;
     -fx-border-color: #e5e7eb;
     -fx-border-style: solid;
@@ -17,18 +27,12 @@
     -fx-prompt-text-fill: rgba(0,0,0,0.45);
 }
 
-#login_passwordInput:focused, #login_usernameInput:focused{
+.login_input:focused{
     -fx-border-color: #cbd0d6;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0.30, 0, 1);
 }
 
-#login_root{
-    -fx-alignment: center;
-    -fx-background-color: #f6f6f7;
-    -fx-font-family: "SF Pro Text", "Segoe UI", "Roboto", "Inter", sans-serif;
-}
-
-#login_button{
+.login_button{
     -fx-background-color: linear-gradient(to bottom, #111111, #222222);
     -fx-text-fill: white;
     -fx-background-radius: 8;
@@ -41,16 +45,20 @@
     -fx-font-weight: bold;
 }
 
-#login_button:hover{
+.login_button:hover{
     -fx-background-color: linear-gradient(to bottom, #000000, #111111);
 }
 
-#login_button:pressed{
+.login_button:pressed{
     -fx-translate-y: 1;
     -fx-background-color: #000000;
 }
 
-#topMenu{
+/*------------------------------------------*/
+/*                TopMenu                   */
+/*------------------------------------------*/
+
+.topMenu{
     -fx-background-color: #ffffff;
     -fx-padding: 12 22;
     -fx-alignment: center-right;
@@ -90,6 +98,10 @@
     -fx-text-fill: #111111;
     -fx-font-weight: 600;
 }
+
+/*------------------------------------------*/
+/*               LeftMenu                   */
+/*------------------------------------------*/
 
 .leftMenu{
     -fx-background-color: #ffffff;
