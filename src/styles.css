@@ -174,3 +174,14 @@
     -fx-border-color: #e5e7eb transparent transparent transparent;
     -fx-border-width: 0 0 1 0;
 }
+
+.summaryLabel {
+    -fx-font-size: 18;
+    -fx-text-fill: #4d4d4d;
+}
+
+.summaryContent{
+    -fx-font-size: 36;
+    -fx-text-fill: #000;
+    -fx-font-weight: bold;
+}
