@@ -2,7 +2,8 @@ package layout.views;
 
 import db.Database;
 import db.models.User;
-import javafx.event.ActionEvent;
+import javafx.event.*;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
@@ -21,6 +22,7 @@ public class Login {
 
         root = new FlowPane(centerBox);
         root.getStyleClass().add("login");
+        root.setOnMouseClicked(Login::handleEvent);
 
         return root;
     }
@@ -38,6 +40,7 @@ public class Login {
         PasswordField input = new PasswordField();
         input.setPromptText(promptText);
         input.getStyleClass().add("login_input");
+        input.setOnKeyPressed(Login::handleEvent);
         return input;
     }
 
@@ -45,6 +48,7 @@ public class Login {
         TextField input = new TextField();
         input.setPromptText(promptText);
         input.getStyleClass().add("login_input");
+        input.setOnKeyPressed(Login::handleEvent);
         return input;
     }
 
@@ -55,9 +59,14 @@ public class Login {
         return button;
     }
 
-    private static void handleEvent(ActionEvent e){
+    private static void handleEvent(KeyEvent e){
+        if(e.getCode() == KeyCode.ENTER) handleSumbit();
+    }
+
+    private static void handleEvent(Event e){
         Object source = e.getSource();
 
+        if(source == root || source == centerBox) root.requestFocus();
         if(source == submitBtn) handleSumbit();
     }
 
