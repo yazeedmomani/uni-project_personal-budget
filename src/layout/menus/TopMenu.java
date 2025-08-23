@@ -11,6 +11,7 @@ public class TopMenu {
     private static SVGPath settingsIcon, logoutIcon, editIcon, viewIcon;
     private static Button settingsBtn, logoutBtn, editBtn, viewBtn;
     private static HBox root;
+    private static Label welcomeLbl;
 
     public static HBox getRoot(){
         settingsIcon = new SVGPath();
@@ -40,7 +41,12 @@ public class TopMenu {
         viewBtn.setGraphic(viewIcon);
         viewBtn.getStyleClass().add("topMenu_btn");
 
-        root = new HBox(settingsBtn, logoutBtn);
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        welcomeLbl = new Label("Welcome Yazeed");
+        welcomeLbl.getStyleClass().add("topMenu_lbl");
+
+        root = new HBox(welcomeLbl, spacer, settingsBtn, logoutBtn);
         root.setId("topMenu");
 
         editBtn.setOnAction(e -> {
@@ -67,11 +73,11 @@ public class TopMenu {
 
         if(mode.equals("view")){
             root.getChildren().remove(viewBtn);
-            root.getChildren().addFirst(editBtn);
+            root.getChildren().add(2, editBtn);
         }
         if(mode.equals("edit")){
             root.getChildren().remove(editBtn);
-            root.getChildren().addFirst(viewBtn);
+            root.getChildren().add(2, viewBtn);
         }
 
     }
