@@ -44,7 +44,7 @@ public class IncomeView {
         BarChart<String, Number> chart = new BarChart<>(xAxis, yAxis);
         chart.setLegendVisible(false);
         chart.setAnimated(true);
-        chart.setCategoryGap(20);
+        chart.setCategoryGap(70);
         chart.setBarGap(6);
 
 
