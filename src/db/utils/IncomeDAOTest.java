@@ -47,9 +47,9 @@ public class IncomeDAOTest {
         else
             System.out.println("Failed to delete.");
 
-        // 6) GET ALL
-        System.out.println("\n== getAll ==");
-        List<IncomeRecord> allRecords = dao.getAll();
+        // 6) GET ALL LIMIT 100
+        System.out.println("\n== getAll (Limit 50) ==");
+        List<IncomeRecord> allRecords = dao.getAll(50);
         for (IncomeRecord rec : allRecords) {
             System.out.println(rec);
         }

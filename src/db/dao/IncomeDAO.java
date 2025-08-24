@@ -39,12 +39,21 @@ public class IncomeDAO {
         }
     }
 
-    public List<IncomeRecord> getAll() {
+    public List<IncomeRecord> getAll() throws Exception {
+        return getAll(0);
+    }
+
+    public List<IncomeRecord> getAll(int limit) throws Exception{
         List<IncomeRecord> records = new ArrayList<>();
         String sql = "SELECT * FROM income_log WHERE user_id = ? ORDER BY id DESC";
+        if (limit > 0) sql += " LIMIT ?";
+
         try (Connection connection = Database.getConnection()) {
             PreparedStatement template = connection.prepareStatement(sql);
+
             template.setInt(1, userId);
+            if (limit > 0) template.setInt(2, limit);
+
             try (ResultSet result = template.executeQuery()) {
                 while (result.next()) {
                     IncomeRecord record = new IncomeRecord(
@@ -58,10 +67,8 @@ public class IncomeDAO {
                     records.add(record);
                 }
             }
-        } catch (Exception e) {
-            // Optionally, handle/log exception here or rethrow as unchecked
-            throw new RuntimeException(e);
         }
+
         return records;
     }
 
