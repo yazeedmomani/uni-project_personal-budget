@@ -66,7 +66,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-01-18', 'Delivery Job', 44, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-01-19', 'Shop', 44, 'Duis at velit eu est congue elementum.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-01-19', 'Freelance', 44, 'Pellentesque eget nunc.');
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-01-19', 'Shop', 59, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-01-19', 'Shop', 59, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Nulla dapibus dolor vel est.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-01-19', 'Shop', 72, 'Mauris sit amet eros.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-01-19', 'University', 43, 'Duis mattis egestas metus.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-01-20', 'Shop', 46, NULL);
@@ -263,7 +263,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-21', 'University', 15, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-03-22', 'Delivery Job', 51, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-22', 'Shop', 84, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-23', 'Shop', 65, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-23', 'Shop', 65, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Duis faucibus accumsan odio.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-23', 'University', 50, 'Fusce consequat.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-23', 'University', 22, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-03-23', 'Event Organizing', 57, NULL);
@@ -283,7 +283,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-28', 'University', 30, 'Duis bibendum.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-28', 'Shop', 39, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-28', 'Freelance', 95, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-28', 'Freelance', 17, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-28', 'Freelance', 17, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Mauris viverra diam vitae quam.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-03-28', 'Delivery Job', 89, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-03-28', 'Delivery Job', 87, 'In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-03-28', 'Shop', 83, NULL);
@@ -390,7 +390,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-04-27', 'Other', 44, 'Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-04-27', 'Side Hustles', 78, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-04-27', 'Freelance', 19, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-04-28', 'Delivery Job', 83, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-04-28', 'Delivery Job', 83, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Duis faucibus accumsan odio.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-04-28', 'Freelance', 65, 'Nullam molestie nibh in lectus.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-04-28', 'Shop', 60, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-04-29', 'University', 71, NULL);
@@ -400,7 +400,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-04-29', 'Other', 27, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-04-29', 'Event Organizing', 86, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-04-30', 'University', 70, 'Morbi porttitor lorem id ligula.');
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-05-01', 'University', 79, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-05-01', 'University', 79, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Mauris viverra diam vitae quam.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-05-01', 'University', 52, 'Donec quis orci eget orci vehicula condimentum.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-05-01', 'Freelance', 68, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-05-01', 'Shop', 100, 'Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.');
@@ -409,7 +409,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-05-03', 'Freelance', 54, 'Maecenas rhoncus aliquam lacus.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-05-04', 'Delivery Job', 77, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-05-05', 'Freelance', 88, 'Cras non velit nec nisi vulputate nonummy.');
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-05-05', 'Freelance', 98, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-05-05', 'Freelance', 98, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Nulla dapibus dolor vel est.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-05-05', 'Freelance', 72, 'Praesent blandit lacinia erat.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-05-06', 'University', 33, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-05-06', 'Event Organizing', 17, NULL);
@@ -544,7 +544,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-06-11', 'University', 91, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-06-11', 'Delivery Job', 79, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-06-11', 'Side Hustles', 73, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-06-11', 'University', 84, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-06-11', 'University', 84, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-06-11', 'Delivery Job', 50, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-06-13', 'University', 78, 'Morbi non lectus.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-06-14', 'Delivery Job', 97, NULL);
@@ -705,7 +705,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-07-23', 'Shop', 89, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-07-23', 'Shop', 38, 'Nam tristique tortor eu pede.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-07-23', 'Shop', 88, 'Aliquam erat volutpat.');
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-07-24', 'Event Organizing', 59, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-07-24', 'Event Organizing', 59, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Nulla dapibus dolor vel est.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-07-24', 'Side Hustles', 98, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-07-24', 'Event Organizing', 90, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-07-24', 'Freelance', 42, NULL);
@@ -747,7 +747,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-08-04', 'Event Organizing', 42, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-08-05', 'University', 65, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-08-05', 'Shop', 64, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-08-05', 'University', 38, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-08-05', 'University', 38, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Nulla dapibus dolor vel est.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-08-06', 'Event Organizing', 41, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-08-06', 'University', 27, 'Donec ut mauris eget massa tempor convallis.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-08-06', 'Shop', 17, NULL);
@@ -919,7 +919,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-09-25', 'Shop', 95, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-09-26', 'Delivery Job', 83, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-09-26', 'Event Organizing', 69, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-09-27', 'Delivery Job', 84, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-09-27', 'Delivery Job', 84, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Duis faucibus accumsan odio.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-09-27', 'Side Hustles', 77, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-09-27', 'Shop', 31, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-09-27', 'Event Organizing', 94, NULL);
@@ -1014,7 +1014,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-1
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-23', 'Shop', 86, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-24', 'University', 48, 'Nulla tellus.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-10-24', 'Delivery Job', 81, 'In est risus, auctor sed, tristique in, tempus sit amet, sem.');
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-10-24', 'Event Organizing', 69, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-10-24', 'Event Organizing', 69, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-10-25', 'Delivery Job', 72, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-25', 'Shop', 17, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-25', 'University', 55, NULL);
@@ -1035,9 +1035,9 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-1
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-29', 'Freelance', 97, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-10-29', 'Delivery Job', 50, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-29', 'University', 74, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-29', 'University', 70, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-29', 'University', 70, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-29', 'University', 69, 'Integer ac leo.');
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-10-30', 'Other', 62, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-10-30', 'Other', 62, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Nulla dapibus dolor vel est.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-10-30', 'Event Organizing', 26, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-31', 'Shop', 60, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-31', 'Freelance', 68, NULL);
@@ -1045,7 +1045,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-1
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-10-31', 'Side Hustles', 95, 'Pellentesque viverra pede ac diam.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-10-31', 'University', 51, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-01', 'Freelance', 18, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-11-01', 'Delivery Job', 87, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-11-01', 'Delivery Job', 87, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-01', 'University', 80, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-01', 'University', 29, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-11-01', 'Side Hustles', 17, 'Suspendisse potenti.');
@@ -1117,13 +1117,13 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-1
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-20', 'University', 93, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-11-20', 'Delivery Job', 43, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-20', 'Shop', 35, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-21', 'Shop', 34, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-21', 'Shop', 34, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Nulla dapibus dolor vel est.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-21', 'Shop', 94, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-21', 'Shop', 91, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-22', 'University', 24, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-22', 'Other', 30, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-11-22', 'Delivery Job', 96, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-11-23', 'Delivery Job', 25, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-11-23', 'Delivery Job', 25, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-23', 'University', 31, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-11-23', 'Side Hustles', 94, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-11-23', 'Freelance', 68, NULL);
@@ -1179,7 +1179,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-1
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-12-08', 'Shop', 55, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-12-09', 'Shop', 37, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-12-09', 'Delivery Job', 81, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-12-10', 'University', 53, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-12-10', 'University', 53, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Duis faucibus accumsan odio.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2024-12-10', 'University', 74, 'Sed vel enim sit amet nunc viverra dapibus.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-12-10', 'Delivery Job', 42, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2024-12-10', 'Delivery Job', 19, NULL);
@@ -1256,7 +1256,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-01', 'Event Organizing', 26, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-01', 'Shop', 54, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-01', 'University', 33, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-02', 'University', 55, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-02', 'University', 55, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Nulla dapibus dolor vel est.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-02', 'Delivery Job', 67, 'Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-02', 'Delivery Job', 83, 'Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-02', 'Delivery Job', 71, NULL);
@@ -1273,7 +1273,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-05', 'University', 35, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-05', 'Delivery Job', 53, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-05', 'Delivery Job', 97, 'Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.');
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-06', 'Delivery Job', 84, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-06', 'Delivery Job', 84, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Mauris viverra diam vitae quam.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-06', 'Event Organizing', 65, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-06', 'Event Organizing', 46, 'Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-06', 'Shop', 53, NULL);
@@ -1309,7 +1309,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-14', 'Other', 34, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-14', 'Delivery Job', 18, 'Phasellus in felis.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-14', 'University', 40, 'Nulla mollis molestie lorem.');
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-14', 'Event Organizing', 63, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-14', 'Event Organizing', 63, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Duis faucibus accumsan odio.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-14', 'University', 62, 'Etiam pretium iaculis justo.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-15', 'Event Organizing', 83, 'In eleifend quam a odio.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-15', 'Event Organizing', 31, NULL);
@@ -1343,7 +1343,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-22', 'Delivery Job', 39, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-22', 'University', 84, 'Proin interdum mauris non ligula pellentesque ultrices.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-22', 'Delivery Job', 30, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-23', 'University', 51, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-23', 'University', 51, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-23', 'Side Hustles', 69, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-23', 'Delivery Job', 73, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-23', 'Shop', 67, 'Donec ut dolor.');
@@ -1367,7 +1367,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-30', 'University', 89, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-01-31', 'Delivery Job', 42, 'Curabitur gravida nisi at nibh.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-01-31', 'Freelance', 85, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-02-01', 'University', 87, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-02-01', 'University', 87, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-02-01', 'Event Organizing', 29, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-02-01', 'Event Organizing', 23, 'Phasellus sit amet erat.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-02-01', 'Delivery Job', 25, NULL);
@@ -1548,7 +1548,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-04-10', 'Delivery Job', 50, 'Quisque porta volutpat erat.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-04-10', 'Event Organizing', 42, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-04-10', 'Freelance', 75, 'Quisque id justo sit amet sapien dignissim vestibulum.');
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-04-10', 'Freelance', 61, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-04-10', 'Freelance', 61, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-04-11', 'Side Hustles', 17, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-04-11', 'Delivery Job', 38, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-04-11', 'Other', 92, NULL);
@@ -1620,7 +1620,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-04-29', 'Delivery Job', 37, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-04-29', 'Freelance', 57, 'Vestibulum ac est lacinia nisi venenatis tristique.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-04-30', 'Event Organizing', 69, NULL);
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-04-30', 'Event Organizing', 73, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-04-30', 'Event Organizing', 73, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Duis faucibus accumsan odio.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-05-01', 'Delivery Job', 65, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-05-01', 'Other', 20, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-05-01', 'Freelance', 48, 'Etiam vel augue.');
@@ -1666,7 +1666,7 @@ INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-0
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-05-12', 'University', 100, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-05-12', 'Side Hustles', 49, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-05-12', 'Shop', 32, 'Nulla ut erat id mauris vulputate elementum.');
-INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-05-14', 'Event Organizing', 21, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est.');
+INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-05-14', 'Event Organizing', 21, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Nulla dapibus dolor vel est.');
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (1, '2025-05-14', 'Other', 23, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-05-14', 'University', 31, NULL);
 INSERT INTO income_log (user_id, date, source, amount, notes) VALUES (2, '2025-05-15', 'Shop', 58, NULL);
