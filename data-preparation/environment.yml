@@ -1,0 +1,10 @@
+name: /Users/user/Desktop/conda-project/env
+channels:
+  - defaults
+dependencies:
+  - matplotlib
+  - numpy
+  - pandas
+  - scikit-learn
+  - jupyter
+prefix: /Users/user/Desktop/conda-project/env

@@ -11,6 +11,12 @@ out/
 .settings
 .springBeans
 .sts4-cache
+
+### Data Preparation ###
+data-preparation/.ipynb_checkpoints/
+data-preparation/env/
+data-preparation/.env/
+
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
