@@ -3,6 +3,7 @@ package db.utils;
 import db.dao.IncomeDAO;
 import db.models.IncomeRecord;
 import java.time.LocalDate;
+import java.util.List;
 
 /*
 Utility that tests IncomeDAO by calling all its methods then restoring the data to its original state.
@@ -45,5 +46,12 @@ public class IncomeDAOTest {
             System.out.println("Deleted successfully.");
         else
             System.out.println("Failed to delete.");
+
+        // 6) GET ALL
+        System.out.println("\n== getAll ==");
+        List<IncomeRecord> allRecords = dao.getAll();
+        for (IncomeRecord rec : allRecords) {
+            System.out.println(rec);
+        }
     }
 }

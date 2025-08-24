@@ -5,6 +5,8 @@ import db.models.IncomeRecord;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.ArrayList;
 
 public class IncomeDAO {
     private final int userId;
@@ -35,6 +37,32 @@ public class IncomeDAO {
                 );
             }
         }
+    }
+
+    public List<IncomeRecord> getAll() {
+        List<IncomeRecord> records = new ArrayList<>();
+        String sql = "SELECT * FROM income_log WHERE user_id = ? ORDER BY id DESC";
+        try (Connection connection = Database.getConnection()) {
+            PreparedStatement template = connection.prepareStatement(sql);
+            template.setInt(1, userId);
+            try (ResultSet result = template.executeQuery()) {
+                while (result.next()) {
+                    IncomeRecord record = new IncomeRecord(
+                            result.getInt("id"),
+                            result.getInt("user_id"),
+                            LocalDate.parse(result.getString("date")),
+                            result.getString("source"),
+                            result.getDouble("amount"),
+                            result.getString("notes")
+                    );
+                    records.add(record);
+                }
+            }
+        } catch (Exception e) {
+            // Optionally, handle/log exception here or rethrow as unchecked
+            throw new RuntimeException(e);
+        }
+        return records;
     }
 
     public IncomeRecord create(IncomeRecord record) throws Exception {
