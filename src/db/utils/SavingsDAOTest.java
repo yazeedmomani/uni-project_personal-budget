@@ -50,7 +50,7 @@ public class SavingsDAOTest {
         else
             System.out.println("Failed to delete.");
 
-        // 6) GET ALL LIMIT 100
+        // 6) GET ALL LIMIT 50
         System.out.println("\n== getAll (Limit 50) ==");
         List<SavingsRecord> allRecords = dao.getAll(50);
         for (SavingsRecord rec : allRecords) {

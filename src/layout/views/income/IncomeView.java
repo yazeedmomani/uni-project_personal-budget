@@ -1,5 +1,7 @@
 package layout.views.income;
 
+import db.Database;
+import db.models.IncomeRecord;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
@@ -13,32 +15,25 @@ public class IncomeView {
     private static Label summaryLabel1, summaryLabel2;
     private static Label summaryContent1, summaryContent2;
     private static VBox dashboardCard1, dashboardCard2;
-
-    private record IncomeRecord(LocalDate date, String source, double amount, String notes) {}
+    private static List<IncomeRecord> data;
 
     private static BarChart<String, Number> buildIncomeBySourceChart() {
         // Mock data
-        List<IncomeRecord> data = List.of(
-                new IncomeRecord(LocalDate.now().minusMonths(1).withDayOfMonth(5), "Salary", 500.0, "Aug salary"),
-                new IncomeRecord(LocalDate.now().minusMonths(1).withDayOfMonth(20), "Freelance", 180.0, "Site fix"),
-                new IncomeRecord(LocalDate.now().minusMonths(2).withDayOfMonth(11), "Salary", 500.0, "Jul salary"),
-                new IncomeRecord(LocalDate.now().minusMonths(2).withDayOfMonth(17), "Gift", 50.0, "Birthday"),
-                new IncomeRecord(LocalDate.now().minusMonths(3).withDayOfMonth(9), "Freelance", 220.0, "Logo"),
-                new IncomeRecord(LocalDate.now().minusMonths(4).withDayOfMonth(3), "Salary", 500.0, "May salary"),
-                new IncomeRecord(LocalDate.now().minusMonths(5).withDayOfMonth(26), "Salary", 480.0, "Apr salary"),
-                new IncomeRecord(LocalDate.now().minusMonths(5).withDayOfMonth(8), "Other", 70.0, "Sold item"),
-                new IncomeRecord(LocalDate.now().minusMonths(6).withDayOfMonth(14), "Freelance", 150.0, "Bug fix"),
-                new IncomeRecord(LocalDate.now().minusMonths(0).withDayOfMonth(2), "Salary", 520.0, "Sep salary"),
-                new IncomeRecord(LocalDate.now().minusMonths(0).withDayOfMonth(7), "Freelance", 120.0, "Small job")
-        );
+        try{
+            data = Database.getIncomeDAO().getAll();
+        }
+        catch (Exception e){
+            System.out.println("IncomeView Error: " + e.getMessage());
+        }
+        if (data == null) data = Collections.emptyList();
 
         YearMonth start = YearMonth.from(LocalDate.now()).minusMonths(5); // inclusive start
         LocalDate startDate = start.atDay(1);
         LocalDate endDate = LocalDate.now(); // inclusive end today
 
         Map<String, Double> sums = data.stream()
-                .filter(r -> !r.date.isBefore(startDate) && !r.date.isAfter(endDate))
-                .collect(Collectors.groupingBy(IncomeRecord::source, Collectors.summingDouble(IncomeRecord::amount)));
+                .filter(r -> !r.getDate().isBefore(startDate) && !r.getDate().isAfter(endDate))
+                .collect(Collectors.groupingBy(IncomeRecord::getSource, Collectors.summingDouble(IncomeRecord::getAmount)));
 
         // Axes
         CategoryAxis xAxis = new CategoryAxis();
@@ -51,6 +46,7 @@ public class IncomeView {
         chart.setAnimated(true);
         chart.setCategoryGap(20);
         chart.setBarGap(6);
+
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         sums.forEach((source, total) -> series.getData().add(new XYChart.Data<>(source, total)));
