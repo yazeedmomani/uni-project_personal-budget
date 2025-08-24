@@ -1,8 +1,10 @@
 package db.utils;
 
 import db.dao.SavingsDAO;
+import db.models.IncomeRecord;
 import db.models.SavingsRecord;
 import java.time.LocalDate;
+import java.util.List;
 
 /*
 Utility that tests SavingsDAO by calling all its methods then restoring the data to its original state.
@@ -47,5 +49,12 @@ public class SavingsDAOTest {
             System.out.println("Deleted successfully.");
         else
             System.out.println("Failed to delete.");
+
+        // 6) GET ALL LIMIT 100
+        System.out.println("\n== getAll (Limit 50) ==");
+        List<SavingsRecord> allRecords = dao.getAll(50);
+        for (SavingsRecord rec : allRecords) {
+            System.out.println(rec);
+        }
     }
 }
