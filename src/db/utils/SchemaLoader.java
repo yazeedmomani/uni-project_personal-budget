@@ -20,6 +20,8 @@ public class SchemaLoader {
     public static void main(String[] args) {
         System.out.println("Running SchemaLoader...");
 
+        deleteCurrentDatabase();
+
         try (Connection connection = DriverManager.getConnection(DB_URL)) {
 
             runSqlFile(connection, Paths.get("src", "db", "seed", "01_schema.sql"));
@@ -31,6 +33,19 @@ public class SchemaLoader {
 
         } catch (Exception e) {
             System.out.println("Error while connecting to database or running sql files.");
+            e.printStackTrace();
+        }
+    }
+
+    private static void deleteCurrentDatabase() {
+        Path dbPath = Paths.get("src", "db", "budget.db");
+        try {
+            if (Files.exists(dbPath)) {
+                Files.delete(dbPath);
+                System.out.println("Deleted existing database file: " + dbPath);
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to delete database file: " + dbPath);
             e.printStackTrace();
         }
     }
