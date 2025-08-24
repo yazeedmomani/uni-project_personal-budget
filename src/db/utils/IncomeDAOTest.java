@@ -2,6 +2,7 @@ package db.utils;
 
 import db.dao.IncomeDAO;
 import db.models.IncomeRecord;
+import java.time.LocalDate;
 
 /*
 Utility that tests IncomeDAO by calling all its methods then restoring the data to its original state.
@@ -16,7 +17,7 @@ public class IncomeDAOTest {
 
         // 1) CREATE
         System.out.println("\n== create ==");
-        IncomeRecord record = new IncomeRecord("2024-02-10", "Test Source", 25.0, "test insert from console");
+        IncomeRecord record = new IncomeRecord(LocalDate.parse("2024-02-10"), "Test Source", 25.0, "test insert from console");
         record = dao.create(record);
         System.out.println("created: " + record);
 
@@ -27,7 +28,7 @@ public class IncomeDAOTest {
 
         // 3) UPDATE
         System.out.println("\n== update ==");
-        record.setDate("2025-04-13");
+        record.setDate(LocalDate.parse("2025-04-13"));
         record.setSource("Updated Source");
         record.setAmount(50.0);
         record.setNotes("updated note");

@@ -4,6 +4,7 @@ import db.Database;
 import db.models.IncomeRecord;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class IncomeDAO {
     private final int userId;
@@ -27,7 +28,7 @@ public class IncomeDAO {
                 return new IncomeRecord(
                         result.getInt("id"),
                         result.getInt("user_id"),
-                        result.getString("date"),
+                        LocalDate.parse(result.getString("date")),
                         result.getString("source"),
                         result.getDouble("amount"),
                         result.getString("notes")
@@ -43,7 +44,7 @@ public class IncomeDAO {
             PreparedStatement template = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             template.setInt(1, userId);
-            template.setString(2, record.getDate());
+            template.setString(2, record.getDate().toString());
             template.setString(3, record.getSource());
             template.setDouble(4, record.getAmount());
             if (record.getNotes() == null || record.getNotes().isBlank()) template.setNull(5, Types.VARCHAR);
@@ -68,7 +69,7 @@ public class IncomeDAO {
         try (Connection connection = Database.getConnection()) {
             PreparedStatement template = connection.prepareStatement(sql);
 
-            template.setString(1, record.getDate());
+            template.setString(1, record.getDate().toString());
             template.setString(2, record.getSource());
             template.setDouble(3, record.getAmount());
             if (record.getNotes() == null || record.getNotes().isBlank()) template.setNull(4, Types.VARCHAR);

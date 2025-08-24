@@ -4,6 +4,7 @@ import db.Database;
 import db.models.SavingsRecord;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class SavingsDAO {
     private final int userId;
@@ -27,7 +28,7 @@ public class SavingsDAO {
                 return new SavingsRecord(
                         result.getInt("id"),
                         result.getInt("user_id"),
-                        result.getString("date"),
+                        LocalDate.parse(result.getString("date")),
                         result.getDouble("change"),
                         result.getDouble("balance"),
                         result.getString("notes")
@@ -45,7 +46,7 @@ public class SavingsDAO {
             double balance = this.getLastBalance() + record.getChange();
 
             template.setInt(1, userId);
-            template.setString(2, record.getDate());
+            template.setString(2, record.getDate().toString());
             template.setDouble(3, record.getChange());
             template.setDouble(4, balance);
             if (record.getNotes() == null || record.getNotes().isBlank()) template.setNull(5, Types.VARCHAR);
@@ -72,7 +73,7 @@ public class SavingsDAO {
 
             double balance = this.getLastBalance() + record.getChange();
 
-            template.setString(1, record.getDate());
+            template.setString(1, record.getDate().toString());
             template.setDouble(2, record.getChange());
             template.setDouble(3, balance);
             if (record.getNotes() == null || record.getNotes().isBlank()) template.setNull(4, Types.VARCHAR);
