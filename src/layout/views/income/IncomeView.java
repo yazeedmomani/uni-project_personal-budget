@@ -3,13 +3,16 @@ package layout.views.income;
 import db.Database;
 import db.models.IncomeRecord;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.collections.*;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.scene.layout.*;
 import javafx.scene.chart.*;
 import java.time.*;
 import java.util.*;
 import java.util.stream.*;
 import java.time.format.DateTimeFormatter;
+import javafx.scene.control.ScrollPane;
 
 public class IncomeView {
     private static GridPane root;
@@ -17,6 +20,9 @@ public class IncomeView {
     private static Label summaryContent1, summaryContent2;
     private static VBox dashboardCard1, dashboardCard2;
     private static List<IncomeRecord> data;
+    private static Pagination pagination;
+    private static TableView<IncomeRecord> table;
+    private static final int ROWS_PER_PAGE = 10;
 
     private static BarChart<String, Number> buildIncomeBySourceChart() {
         // Mock data
@@ -54,7 +60,81 @@ public class IncomeView {
 
         chart.getData().add(series);
         chart.setMaxWidth(Double.MAX_VALUE);
+        chart.setPrefHeight(320);
         return chart;
+    }
+
+    private static TableView<IncomeRecord> buildTableSkeleton() {
+        TableView<IncomeRecord> tv = new TableView<>();
+        tv.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
+
+        TableColumn<IncomeRecord, String> dateCol = new TableColumn<>("Date");
+        dateCol.setCellValueFactory(cell -> {
+            LocalDate d = cell.getValue().getDate();
+            return new ReadOnlyStringWrapper(d != null ? d.toString() : "");
+        });
+
+        TableColumn<IncomeRecord, String> sourceCol = new TableColumn<>("Source");
+        sourceCol.setCellValueFactory(cell -> new ReadOnlyStringWrapper(
+                cell.getValue().getSource() != null ? cell.getValue().getSource() : ""
+        ));
+
+        TableColumn<IncomeRecord, String> amountCol = new TableColumn<>("Amount (JOD)");
+        amountCol.setCellValueFactory(cell -> new ReadOnlyStringWrapper(
+                String.format("% .2f", cell.getValue().getAmount())
+        ));
+
+        TableColumn<IncomeRecord, String> notesCol = new TableColumn<>("Notes");
+        notesCol.setCellValueFactory(cell -> new ReadOnlyStringWrapper(
+                cell.getValue().getNotes() != null ? cell.getValue().getNotes() : ""
+        ));
+
+        tv.getColumns().setAll(dateCol, sourceCol, amountCol, notesCol);
+        tv.setMaxWidth(Double.MAX_VALUE);
+        tv.setPrefHeight(360);
+        return tv;
+    }
+
+    private static VBox buildPaginatedIncomeTable() {
+        // Ensure data is loaded
+        if (data == null) {
+            try {
+                data = Database.getIncomeDAO().getAll();
+            } catch (Exception e) {
+                System.out.println("IncomeView Error: " + e.getMessage());
+            }
+            if (data == null) data = Collections.emptyList();
+        }
+
+        table = buildTableSkeleton();
+        table.setMinHeight(360);
+        table.setPrefHeight(Region.USE_COMPUTED_SIZE);
+
+        int pageCount = Math.max(1, (int) Math.ceil(data.size() / (double) ROWS_PER_PAGE));
+        pagination = new Pagination(pageCount, 0);
+        pagination.setPrefHeight(420);
+        VBox.setVgrow(pagination, Priority.ALWAYS);
+        pagination.setMaxWidth(Double.MAX_VALUE);
+
+        pagination.setPageFactory(pageIndex -> {
+            int fromIndex = pageIndex * ROWS_PER_PAGE;
+            int toIndex = Math.min(fromIndex + ROWS_PER_PAGE, data.size());
+            if (fromIndex > toIndex) {
+                fromIndex = 0;
+                toIndex = Math.min(ROWS_PER_PAGE, data.size());
+            }
+            ObservableList<IncomeRecord> page = FXCollections.observableArrayList(
+                    data.subList(fromIndex, toIndex)
+            );
+            table.setItems(page);
+            return table;
+        });
+
+        VBox container = new VBox(pagination);
+        VBox.setVgrow(container, Priority.ALWAYS);
+        container.getStyleClass().add("dashboardCard");
+        container.setMaxWidth(Double.MAX_VALUE);
+        return container;
     }
 
     private static LineChart<String, Number> buildIncomePerMonthLineChart() {
@@ -121,10 +201,11 @@ public class IncomeView {
 
         lineChart.getData().addAll(totalsSeries, medianSeries);
         lineChart.setMaxWidth(Double.MAX_VALUE);
+        lineChart.setPrefHeight(320);
         return lineChart;
     }
 
-    public static GridPane getRoot(){
+    public static ScrollPane getRoot(){
         summaryLabel1 = new Label("Income This Month");
         summaryLabel1.getStyleClass().add("summaryLabel");
         summaryContent1 = new Label("JOD 240.00");
@@ -166,15 +247,28 @@ public class IncomeView {
         c2.setFillWidth(true);
         root.getColumnConstraints().setAll(c1, c2);
 
+        RowConstraints r0 = new RowConstraints();
+        RowConstraints r1 = new RowConstraints();
+        RowConstraints r2 = new RowConstraints();
+        r2.setVgrow(Priority.ALWAYS);
+        root.getRowConstraints().setAll(r0, r1, r2);
+
         // Ensure cards expand horizontally
         dashboardCard1.setMaxWidth(Double.MAX_VALUE);
         dashboardCard2.setMaxWidth(Double.MAX_VALUE);
+
+        VBox tableCard = buildPaginatedIncomeTable();
+        tableCard.setMinHeight(360);
+        tableCard.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         // Each card in its own column
         root.add(dashboardCard1, 0, 0);
         root.add(dashboardCard2, 1, 0);
         root.add(barChartCard, 0, 1);
         root.add(lineChartCard, 1, 1);
+        // Place the table under the two charts, spanning both columns
+        root.add(tableCard, 0, 2, 2, 1);
+        GridPane.setHgrow(tableCard, Priority.ALWAYS);
         root.getStyleClass().add("incomeView");
         root.setVgap(24);
         root.setHgap(24);
@@ -184,6 +278,10 @@ public class IncomeView {
         GridPane.setHgrow(barChartCard, Priority.ALWAYS);
         GridPane.setHgrow(lineChartCard, Priority.ALWAYS);
 
-        return root;
+        ScrollPane scrollPane = new ScrollPane(root);
+        scrollPane.setFitToWidth(true);
+        // Let content exceed viewport height so charts keep their preferred height
+        scrollPane.setFitToHeight(false);
+        return scrollPane;
     }
 }
