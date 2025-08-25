@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import javafx.scene.control.ScrollPane;
 import layout.components.Dashboard;
 import layout.components.DashboardCard;
+import layout.components.income.IncomeBarChart;
 
 public class IncomeView {
     private static Dashboard dashboard;
@@ -201,6 +202,8 @@ public class IncomeView {
     }
 
     public static ScrollPane getRoot(){
+        initializeData();
+
         summary1 = createSummaryCard();
         summary2 = createSummaryCard();
         barChart = createBarChart();
@@ -236,9 +239,7 @@ public class IncomeView {
         Label title = new Label("Income by Source (Last 6 Months)");
         title.getStyleClass().add("summaryLabel");
 
-        BarChart<String, Number> chart = buildIncomeBySourceChart();
-
-        return new DashboardCard(title, chart);
+        return new DashboardCard(title, IncomeBarChart.init(data));
     }
 
     private static DashboardCard createSummaryCard(){
@@ -248,5 +249,15 @@ public class IncomeView {
         value.getStyleClass().add("summaryContent");
 
         return new DashboardCard(label, value);
+    }
+
+    private static void initializeData(){
+        try{
+            data = Database.getIncomeDAO().getAll();
+        }
+        catch (Exception e){
+            System.out.println("IncomeView Error: " + e.getMessage());
+        }
+        if (data == null) data = Collections.emptyList();
     }
 }
