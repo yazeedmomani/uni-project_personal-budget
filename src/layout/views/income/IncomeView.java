@@ -16,7 +16,7 @@ import javafx.scene.control.ScrollPane;
 
 public class IncomeView {
     private static GridPane root;
-    private static VBox summaryCard1, summaryCard2;
+    private static VBox summaryCard1, summaryCard2, barChart;
     private static List<IncomeRecord> data;
     private static Pagination pagination;
     private static TableView<IncomeRecord> table;
@@ -206,13 +206,8 @@ public class IncomeView {
     public static ScrollPane getRoot(){
         summaryCard1 = createSummaryCard();
         summaryCard2 = createSummaryCard();
+        barChart = createBarChart();
 
-        Label barTitle = new Label("Income by Source (Last 6 Months)");
-        barTitle.getStyleClass().add("summaryLabel");
-        BarChart<String, Number> incomeChart = buildIncomeBySourceChart();
-        VBox barChartCard = new VBox(barTitle, incomeChart);
-        barChartCard.getStyleClass().add("dashboardCard");
-        barChartCard.setMaxWidth(Double.MAX_VALUE);
 
         Label lineTitle = new Label("Total Income per Month (Last 6 Months)");
         lineTitle.getStyleClass().add("summaryLabel");
@@ -246,7 +241,7 @@ public class IncomeView {
         // Each card in its own column
         root.add(summaryCard1, 0, 0);
         root.add(summaryCard2, 1, 0);
-        root.add(barChartCard, 0, 1);
+        root.add(barChart, 0, 1);
         root.add(lineChartCard, 1, 1);
         // Place the table under the two charts, spanning both columns
         root.add(tableCard, 0, 2, 2, 1);
@@ -257,7 +252,7 @@ public class IncomeView {
 
         GridPane.setHgrow(summaryCard1, Priority.ALWAYS);
         GridPane.setHgrow(summaryCard2, Priority.ALWAYS);
-        GridPane.setHgrow(barChartCard, Priority.ALWAYS);
+        GridPane.setHgrow(barChart, Priority.ALWAYS);
         GridPane.setHgrow(lineChartCard, Priority.ALWAYS);
 
         ScrollPane scrollPane = new ScrollPane(root);
@@ -265,6 +260,18 @@ public class IncomeView {
         // Let content exceed viewport height so charts keep their preferred height
         scrollPane.setFitToHeight(false);
         return scrollPane;
+    }
+
+    private static VBox createBarChart(){
+        Label barTitle = new Label("Income by Source (Last 6 Months)");
+        barTitle.getStyleClass().add("summaryLabel");
+
+        BarChart<String, Number> barChart = buildIncomeBySourceChart();
+
+        VBox root = new VBox(barTitle, barChart);
+        root.getStyleClass().add("dashboardCard");
+        root.setMaxWidth(Double.MAX_VALUE);
+        return root;
     }
 
     private static VBox createSummaryCard(){
