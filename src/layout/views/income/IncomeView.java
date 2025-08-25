@@ -45,21 +45,24 @@ public class IncomeView {
     }
 
     private static DashboardCard createTable(){
-        return new DashboardCard(IncomeTable.init(data));
+        DashboardCard card = new DashboardCard(IncomeTable.init(data));
+        card.setTitle("Income Details");
+
+        return card;
     }
 
     private static DashboardCard createLineChart(){
-        Label title = new Label("Total Income per Month (Last 6 Months)");
-        title.getStyleClass().add("summaryLabel");
+        DashboardCard card =  new DashboardCard(IncomeLineChart.init(data));
+        card.setTitle("Total Income per Month (Last 6 Months)");
 
-        return new DashboardCard(title, IncomeLineChart.init(data));
+        return card;
     }
 
     private static DashboardCard createBarChart(){
-        Label title = new Label("Income by Source (Last 6 Months)");
-        title.getStyleClass().add("summaryLabel");
+        DashboardCard card = new DashboardCard(IncomeBarChart.init(data));
+        card.setTitle("Income by Source (Last 6 Months)");
 
-        return new DashboardCard(title, IncomeBarChart.init(data));
+        return card;
     }
 
     private static DashboardCard createSummaryCard(){
