@@ -31,7 +31,7 @@ public class IncomeView {
         return dashboard.getRoot();
     }
 
-    private static Dashboard initializeDashboard(){
+    private static void initializeDashboard(){
         summary1 = createSummaryCard();
         summary2 = createSummaryCard();
         barChart = new DashboardCard("Income by Source (Last 6 Months)", IncomeBarChart.init(data));
