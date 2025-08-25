@@ -1,12 +1,12 @@
 package layout.components.income;
 
-
 import db.Database;
 import db.models.IncomeRecord;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.application.Platform;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -38,18 +38,48 @@ public class IncomeBarChart {
         xAxis.setLabel("Source");
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Total (JOD)");
+        // Set axis label colors
+        xAxis.setStyle("-fx-text-fill: #4d4d4d;");
+        yAxis.setStyle("-fx-text-fill: #4d4d4d;");
 
         chart = new BarChart<>(xAxis, yAxis);
-        chart.setLegendVisible(false);
+        // Keep legend enabled by default
         chart.setAnimated(true);
         chart.setCategoryGap(70);
         chart.setBarGap(6);
+        chart.setAlternativeRowFillVisible(false);
+        chart.setAlternativeColumnFillVisible(false);
 
 
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         sums.forEach((source, total) -> series.getData().add(new XYChart.Data<>(source, total)));
 
         chart.getData().add(series);
+        series.setName("Source");
+        Platform.runLater(() -> {
+            chart.applyCss();
+            chart.layout();
+            // Match legend symbol color to bars
+            chart.lookupAll(".chart-legend-item-symbol").forEach(node ->
+                    node.setStyle("-fx-background-color: #388E3C; -fx-background-radius: 0; -fx-padding: 6px;"));
+
+            // Transparent plot background (inside area behind bars)
+            javafx.scene.Node plot = chart.lookup(".chart-plot-background");
+            if (plot != null) {
+                ((javafx.scene.layout.Region) plot).setStyle("-fx-background-color: transparent;");
+            }
+
+            // Color bars and add value labels (ensure bar nodes exist)
+            for (XYChart.Data<String, Number> d : series.getData()) {
+                if (d.getNode() != null) {
+                    d.getNode().setStyle("-fx-bar-fill: #388E3C;");
+                    javafx.scene.control.Label label = new javafx.scene.control.Label(String.valueOf(d.getYValue()));
+                    label.setStyle("-fx-text-fill: #fff; -fx-font-size: 11px;");
+                    javafx.scene.layout.StackPane.setAlignment(label, javafx.geometry.Pos.TOP_CENTER);
+                    ((javafx.scene.layout.StackPane) d.getNode()).getChildren().add(label);
+                }
+            }
+        });
         chart.setMaxWidth(Double.MAX_VALUE);
         chart.setPrefHeight(320);
 
