@@ -13,6 +13,7 @@ import java.util.*;
 import java.util.stream.*;
 import java.time.format.DateTimeFormatter;
 import javafx.scene.control.ScrollPane;
+import layout.components.Dashboard;
 
 public class IncomeView {
     private static VBox summaryCard1, summaryCard2, barChart, lineChart, table;
@@ -198,65 +199,21 @@ public class IncomeView {
     }
 
     public static ScrollPane getRoot(){
-        ScrollPane root = createDashboard();
-        return root;
-    }
-
-    private static ScrollPane createDashboard(){
-        GridPane grid = createGrid();
-
-        ScrollPane root = new ScrollPane(grid);
-        root.setFitToWidth(true);
-        root.setFitToHeight(false);
-
-        return root;
-    }
-
-    private static GridPane createGrid(){
         summaryCard1 = createSummaryCard();
         summaryCard2 = createSummaryCard();
         barChart = createBarChart();
         lineChart = createLineChart();
         table = createTable();
 
-        GridPane root = new GridPane();
+        Dashboard dashboard = new Dashboard();
 
-        // Add columns
-        ColumnConstraints c1 = new ColumnConstraints();
-        c1.setPercentWidth(50);
-        c1.setHgrow(Priority.ALWAYS);
-        c1.setFillWidth(true);
-        ColumnConstraints c2 = new ColumnConstraints();
-        c2.setPercentWidth(50);
-        c2.setHgrow(Priority.ALWAYS);
-        c2.setFillWidth(true);
-        root.getColumnConstraints().setAll(c1, c2);
+        dashboard.add(summaryCard1, 0, 0);
+        dashboard.add(summaryCard2, 1, 0);
+        dashboard.add(barChart, 0, 1);
+        dashboard.add(lineChart, 1, 1);
+        dashboard.add(table, 0, 2, 2, 1);
 
-        // Add rows
-        RowConstraints r0 = new RowConstraints();
-        RowConstraints r1 = new RowConstraints();
-        RowConstraints r2 = new RowConstraints();
-        r2.setVgrow(Priority.ALWAYS);
-        root.getRowConstraints().setAll(r0, r1, r2);
-
-        // Add components
-        root.add(summaryCard1, 0, 0);
-        root.add(summaryCard2, 1, 0);
-        root.add(barChart, 0, 1);
-        root.add(lineChart, 1, 1);
-        root.add(table, 0, 2, 2, 1);
-
-        root.getStyleClass().add("incomeView");
-        root.setVgap(24);
-        root.setHgap(24);
-
-        GridPane.setHgrow(summaryCard1, Priority.ALWAYS);
-        GridPane.setHgrow(summaryCard2, Priority.ALWAYS);
-        GridPane.setHgrow(barChart, Priority.ALWAYS);
-        GridPane.setHgrow(lineChart, Priority.ALWAYS);
-        GridPane.setHgrow(table, Priority.ALWAYS);
-
-        return root;
+        return dashboard.getRoot();
     }
 
     private static VBox createTable(){
