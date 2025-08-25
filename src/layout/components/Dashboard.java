@@ -34,30 +34,37 @@ public class Dashboard {
     }
 
     private void initializeGrid(){
-        ColumnConstraints column1 = new ColumnConstraints();
-        ColumnConstraints column2 = new ColumnConstraints();
-        RowConstraints row1 = new RowConstraints();
-        RowConstraints row2 = new RowConstraints();
-        RowConstraints row3 = new RowConstraints();
-
-        column1.setPercentWidth(50);
-        column1.setHgrow(Priority.ALWAYS);
-        column1.setFillWidth(true);
-
-        column2.setPercentWidth(50);
-        column2.setHgrow(Priority.ALWAYS);
-        column2.setFillWidth(true);
-
-        row3.setVgrow(Priority.ALWAYS);
+        ColumnConstraints column1 = createColumn();
+        ColumnConstraints column2 = createColumn();
+        RowConstraints row1 = createRow();
+        RowConstraints row2 = createRow();
+        RowConstraints row3 = createRow();
 
         grid = new GridPane();
 
         grid.getColumnConstraints().setAll(column1, column2);
         grid.getRowConstraints().setAll(row1, row2, row3);
 
-        grid.getStyleClass().add("incomeView");
+        grid.getStyleClass().add("dashboard");
         grid.setVgap(24);
         grid.setHgap(24);
+    }
+
+    private ColumnConstraints createColumn(){
+        ColumnConstraints column = new ColumnConstraints();
+
+        column.setPercentWidth(50);
+        column.setHgrow(Priority.ALWAYS);
+        column.setFillWidth(true);
+
+        return column;
+    }
+
+    private RowConstraints createRow(){
+        RowConstraints row = new RowConstraints();
+        row.setVgrow(Priority.ALWAYS);
+
+        return row;
     }
 }
 
