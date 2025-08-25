@@ -15,7 +15,6 @@ import java.time.format.DateTimeFormatter;
 import javafx.scene.control.ScrollPane;
 
 public class IncomeView {
-    private static GridPane root;
     private static VBox summaryCard1, summaryCard2, barChart, lineChart, table;
     private static List<IncomeRecord> data;
 
@@ -199,17 +198,30 @@ public class IncomeView {
     }
 
     public static ScrollPane getRoot(){
+        ScrollPane root = createDashboard();
+        return root;
+    }
+
+    private static ScrollPane createDashboard(){
+        GridPane grid = createGrid();
+
+        ScrollPane root = new ScrollPane(grid);
+        root.setFitToWidth(true);
+        root.setFitToHeight(false);
+
+        return root;
+    }
+
+    private static GridPane createGrid(){
         summaryCard1 = createSummaryCard();
         summaryCard2 = createSummaryCard();
         barChart = createBarChart();
         lineChart = createLineChart();
         table = createTable();
 
+        GridPane root = new GridPane();
 
-
-
-        root = new GridPane();
-        // Add two columns, 50% width each, fill width
+        // Add columns
         ColumnConstraints c1 = new ColumnConstraints();
         c1.setPercentWidth(50);
         c1.setHgrow(Priority.ALWAYS);
@@ -220,19 +232,20 @@ public class IncomeView {
         c2.setFillWidth(true);
         root.getColumnConstraints().setAll(c1, c2);
 
+        // Add rows
         RowConstraints r0 = new RowConstraints();
         RowConstraints r1 = new RowConstraints();
         RowConstraints r2 = new RowConstraints();
         r2.setVgrow(Priority.ALWAYS);
         root.getRowConstraints().setAll(r0, r1, r2);
 
-        // Each card in its own column
+        // Add components
         root.add(summaryCard1, 0, 0);
         root.add(summaryCard2, 1, 0);
         root.add(barChart, 0, 1);
         root.add(lineChart, 1, 1);
-        // Place the table under the two charts, spanning both columns
         root.add(table, 0, 2, 2, 1);
+
         root.getStyleClass().add("incomeView");
         root.setVgap(24);
         root.setHgap(24);
@@ -243,11 +256,7 @@ public class IncomeView {
         GridPane.setHgrow(lineChart, Priority.ALWAYS);
         GridPane.setHgrow(table, Priority.ALWAYS);
 
-        ScrollPane scrollPane = new ScrollPane(root);
-        scrollPane.setFitToWidth(true);
-        // Let content exceed viewport height so charts keep their preferred height
-        scrollPane.setFitToHeight(false);
-        return scrollPane;
+        return root;
     }
 
     private static VBox createTable(){
