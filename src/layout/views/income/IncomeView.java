@@ -18,7 +18,6 @@ public class IncomeView {
     private static GridPane root;
     private static VBox summaryCard1, summaryCard2, barChart, lineChart, table;
     private static List<IncomeRecord> data;
-    private static final int ROWS_PER_PAGE = 10;
 
     private static BarChart<String, Number> buildIncomeBySourceChart() {
         // Mock data
@@ -87,11 +86,13 @@ public class IncomeView {
 
         tv.getColumns().setAll(dateCol, sourceCol, amountCol, notesCol);
         tv.setMaxWidth(Double.MAX_VALUE);
-        tv.setPrefHeight(360);
+        tv.setPrefHeight(388);
         return tv;
     }
 
     private static Pagination buildPaginatedIncomeTable() {
+        final int ROWS_PER_PAGE = 15;
+
         // Ensure data is loaded
         if (data == null) {
             try {
@@ -103,7 +104,7 @@ public class IncomeView {
         }
 
         TableView<IncomeRecord> table = buildTableSkeleton();
-        table.setMinHeight(360);
+        table.setMinHeight(388);
         table.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         int pageCount = Math.max(1, (int) Math.ceil(data.size() / (double) ROWS_PER_PAGE));
@@ -255,7 +256,7 @@ public class IncomeView {
         VBox root = new VBox(table);
         root.getStyleClass().add("dashboardCard");
         root.setMaxWidth(Double.MAX_VALUE);
-        root.setMinHeight(360);
+        root.setMinHeight(388);
         root.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         VBox.setVgrow(root, Priority.ALWAYS);
