@@ -16,9 +16,7 @@ import javafx.scene.control.ScrollPane;
 
 public class IncomeView {
     private static GridPane root;
-    private static Label summaryLabel1, summaryLabel2;
-    private static Label summaryContent1, summaryContent2;
-    private static VBox dashboardCard1, dashboardCard2;
+    private static VBox summaryCard1, summaryCard2;
     private static List<IncomeRecord> data;
     private static Pagination pagination;
     private static TableView<IncomeRecord> table;
@@ -206,20 +204,8 @@ public class IncomeView {
     }
 
     public static ScrollPane getRoot(){
-        summaryLabel1 = new Label("Income This Month");
-        summaryLabel1.getStyleClass().add("summaryLabel");
-        summaryContent1 = new Label("JOD 240.00");
-        summaryContent1.getStyleClass().add("summaryContent");
-
-        summaryLabel2 = new Label("Income Last Month");
-        summaryLabel2.getStyleClass().add("summaryLabel");
-        summaryContent2 = new Label("JOD 256.00");
-        summaryContent2.getStyleClass().add("summaryContent");
-
-        dashboardCard1 = new VBox(summaryLabel1, summaryContent1);
-        dashboardCard1.getStyleClass().add("dashboardCard");
-        dashboardCard2 = new VBox(summaryLabel2, summaryContent2);
-        dashboardCard2.getStyleClass().add("dashboardCard");
+        summaryCard1 = createSummaryCard();
+        summaryCard2 = createSummaryCard();
 
         Label barTitle = new Label("Income by Source (Last 6 Months)");
         barTitle.getStyleClass().add("summaryLabel");
@@ -253,17 +239,13 @@ public class IncomeView {
         r2.setVgrow(Priority.ALWAYS);
         root.getRowConstraints().setAll(r0, r1, r2);
 
-        // Ensure cards expand horizontally
-        dashboardCard1.setMaxWidth(Double.MAX_VALUE);
-        dashboardCard2.setMaxWidth(Double.MAX_VALUE);
-
         VBox tableCard = buildPaginatedIncomeTable();
         tableCard.setMinHeight(360);
         tableCard.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         // Each card in its own column
-        root.add(dashboardCard1, 0, 0);
-        root.add(dashboardCard2, 1, 0);
+        root.add(summaryCard1, 0, 0);
+        root.add(summaryCard2, 1, 0);
         root.add(barChartCard, 0, 1);
         root.add(lineChartCard, 1, 1);
         // Place the table under the two charts, spanning both columns
@@ -273,8 +255,8 @@ public class IncomeView {
         root.setVgap(24);
         root.setHgap(24);
 
-        GridPane.setHgrow(dashboardCard1, Priority.ALWAYS);
-        GridPane.setHgrow(dashboardCard2, Priority.ALWAYS);
+        GridPane.setHgrow(summaryCard1, Priority.ALWAYS);
+        GridPane.setHgrow(summaryCard2, Priority.ALWAYS);
         GridPane.setHgrow(barChartCard, Priority.ALWAYS);
         GridPane.setHgrow(lineChartCard, Priority.ALWAYS);
 
@@ -283,5 +265,16 @@ public class IncomeView {
         // Let content exceed viewport height so charts keep their preferred height
         scrollPane.setFitToHeight(false);
         return scrollPane;
+    }
+
+    private static VBox createSummaryCard(){
+        Label label = new Label("Income This Month");
+        label.getStyleClass().add("summaryLabel");
+        Label value = new Label("JOD 240.00");
+        value.getStyleClass().add("summaryContent");
+        VBox root = new VBox(label, value);
+        root.getStyleClass().add("dashboardCard");
+        root.setMaxWidth(Double.MAX_VALUE);
+        return root;
     }
 }
