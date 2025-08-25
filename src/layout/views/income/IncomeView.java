@@ -63,12 +63,13 @@ public class IncomeView {
     }
 
     private static DashboardCard createSummaryCard(){
-        Label label = new Label("Income This Month");
-        label.getStyleClass().add("summaryLabel");
         Label value = new Label("JOD 240.00");
         value.getStyleClass().add("summaryContent");
 
-        return new DashboardCard(label, value);
+        DashboardCard card =  new DashboardCard(value);
+        card.setTitle("Income This Month");
+
+        return card;
     }
 
     private static void initializeData(){

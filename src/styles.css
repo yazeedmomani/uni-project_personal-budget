@@ -157,7 +157,7 @@
 }
 
 /*------------------------------------------*/
-/*               IncomeView                 */
+/*                Dashboard                 */
 /*------------------------------------------*/
 
 .dashboard{
@@ -175,7 +175,7 @@
     -fx-border-width: 0 0 1 0;
 }
 
-.summaryLabel {
+.dashboardCard_title {
     -fx-font-size: 18;
     -fx-text-fill: #4d4d4d;
 }
