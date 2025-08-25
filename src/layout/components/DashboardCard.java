@@ -13,18 +13,28 @@ public class DashboardCard {
     public VBox getRoot(){return root;}
 
     public void setTitle(String title){this.title.setText(title);}
+    public DashboardCard(String title, Node node){
+        initializeTitle();
+        setTitle(title);
+        root = new VBox(node);
+        initializeRootSettings();
+    }
 
     public DashboardCard(Node... nodes){
+        initializeTitle();
+        root = new VBox(nodes);
+        initializeRootSettings();
+    }
+
+    private void initializeTitle(){
         title = new Label();
         title.getStyleClass().add("dashboardCard_title");
+    }
 
-        root = new VBox(nodes);
+    private void initializeRootSettings(){
         root.getChildren().addFirst(title);
-
         root.getStyleClass().add("dashboardCard");
         root.setMaxWidth(Double.MAX_VALUE);
         GridPane.setHgrow(root, Priority.ALWAYS);
-
-
     }
 }

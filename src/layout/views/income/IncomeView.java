@@ -26,12 +26,17 @@ public class IncomeView {
 
     public static ScrollPane getRoot(){
         initializeData();
+        initializeDashboard();
 
+        return dashboard.getRoot();
+    }
+
+    private static Dashboard initializeDashboard(){
         summary1 = createSummaryCard();
         summary2 = createSummaryCard();
-        barChart = createBarChart();
-        lineChart = createLineChart();
-        table = createTable();
+        barChart = new DashboardCard("Income by Source (Last 6 Months)", IncomeBarChart.init(data));
+        lineChart = new DashboardCard("Total Income per Month (Last 6 Months)", IncomeLineChart.init(data));
+        table = new DashboardCard("Income Details", IncomeTable.init(data));
 
         dashboard = new Dashboard();
 
@@ -40,29 +45,6 @@ public class IncomeView {
         dashboard.add(barChart, 0, 1);
         dashboard.add(lineChart, 1, 1);
         dashboard.add(table, 0, 2, 2, 1);
-
-        return dashboard.getRoot();
-    }
-
-    private static DashboardCard createTable(){
-        DashboardCard card = new DashboardCard(IncomeTable.init(data));
-        card.setTitle("Income Details");
-
-        return card;
-    }
-
-    private static DashboardCard createLineChart(){
-        DashboardCard card =  new DashboardCard(IncomeLineChart.init(data));
-        card.setTitle("Total Income per Month (Last 6 Months)");
-
-        return card;
-    }
-
-    private static DashboardCard createBarChart(){
-        DashboardCard card = new DashboardCard(IncomeBarChart.init(data));
-        card.setTitle("Income by Source (Last 6 Months)");
-
-        return card;
     }
 
     private static DashboardCard createSummaryCard(){
