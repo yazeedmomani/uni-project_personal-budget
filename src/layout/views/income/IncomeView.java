@@ -16,7 +16,7 @@ import javafx.scene.control.ScrollPane;
 
 public class IncomeView {
     private static GridPane root;
-    private static VBox summaryCard1, summaryCard2, barChart;
+    private static VBox summaryCard1, summaryCard2, barChart, lineChart;
     private static List<IncomeRecord> data;
     private static Pagination pagination;
     private static TableView<IncomeRecord> table;
@@ -207,14 +207,10 @@ public class IncomeView {
         summaryCard1 = createSummaryCard();
         summaryCard2 = createSummaryCard();
         barChart = createBarChart();
+        lineChart = createLineChart();
 
 
-        Label lineTitle = new Label("Total Income per Month (Last 6 Months)");
-        lineTitle.getStyleClass().add("summaryLabel");
-        LineChart<String, Number> incomePerMonthChart = buildIncomePerMonthLineChart();
-        VBox lineChartCard = new VBox(lineTitle, incomePerMonthChart);
-        lineChartCard.getStyleClass().add("dashboardCard");
-        lineChartCard.setMaxWidth(Double.MAX_VALUE);
+
 
         root = new GridPane();
         // Add two columns, 50% width each, fill width
@@ -242,7 +238,7 @@ public class IncomeView {
         root.add(summaryCard1, 0, 0);
         root.add(summaryCard2, 1, 0);
         root.add(barChart, 0, 1);
-        root.add(lineChartCard, 1, 1);
+        root.add(lineChart, 1, 1);
         // Place the table under the two charts, spanning both columns
         root.add(tableCard, 0, 2, 2, 1);
         GridPane.setHgrow(tableCard, Priority.ALWAYS);
@@ -253,7 +249,7 @@ public class IncomeView {
         GridPane.setHgrow(summaryCard1, Priority.ALWAYS);
         GridPane.setHgrow(summaryCard2, Priority.ALWAYS);
         GridPane.setHgrow(barChart, Priority.ALWAYS);
-        GridPane.setHgrow(lineChartCard, Priority.ALWAYS);
+        GridPane.setHgrow(lineChart, Priority.ALWAYS);
 
         ScrollPane scrollPane = new ScrollPane(root);
         scrollPane.setFitToWidth(true);
@@ -262,13 +258,23 @@ public class IncomeView {
         return scrollPane;
     }
 
+    private static VBox createLineChart(){
+        Label title = new Label("Total Income per Month (Last 6 Months)");
+        title.getStyleClass().add("summaryLabel");
+        LineChart<String, Number> chart = buildIncomePerMonthLineChart();
+        VBox root = new VBox(title, chart);
+        root.getStyleClass().add("dashboardCard");
+        root.setMaxWidth(Double.MAX_VALUE);
+        return root;
+    }
+
     private static VBox createBarChart(){
-        Label barTitle = new Label("Income by Source (Last 6 Months)");
-        barTitle.getStyleClass().add("summaryLabel");
+        Label title = new Label("Income by Source (Last 6 Months)");
+        title.getStyleClass().add("summaryLabel");
 
-        BarChart<String, Number> barChart = buildIncomeBySourceChart();
+        BarChart<String, Number> chart = buildIncomeBySourceChart();
 
-        VBox root = new VBox(barTitle, barChart);
+        VBox root = new VBox(title, chart);
         root.getStyleClass().add("dashboardCard");
         root.setMaxWidth(Double.MAX_VALUE);
         return root;
