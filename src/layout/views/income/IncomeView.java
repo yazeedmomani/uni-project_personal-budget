@@ -16,10 +16,8 @@ import javafx.scene.control.ScrollPane;
 
 public class IncomeView {
     private static GridPane root;
-    private static VBox summaryCard1, summaryCard2, barChart, lineChart;
+    private static VBox summaryCard1, summaryCard2, barChart, lineChart, table;
     private static List<IncomeRecord> data;
-    private static Pagination pagination;
-    private static TableView<IncomeRecord> table;
     private static final int ROWS_PER_PAGE = 10;
 
     private static BarChart<String, Number> buildIncomeBySourceChart() {
@@ -93,7 +91,7 @@ public class IncomeView {
         return tv;
     }
 
-    private static VBox buildPaginatedIncomeTable() {
+    private static Pagination buildPaginatedIncomeTable() {
         // Ensure data is loaded
         if (data == null) {
             try {
@@ -104,12 +102,12 @@ public class IncomeView {
             if (data == null) data = Collections.emptyList();
         }
 
-        table = buildTableSkeleton();
+        TableView<IncomeRecord> table = buildTableSkeleton();
         table.setMinHeight(360);
         table.setPrefHeight(Region.USE_COMPUTED_SIZE);
 
         int pageCount = Math.max(1, (int) Math.ceil(data.size() / (double) ROWS_PER_PAGE));
-        pagination = new Pagination(pageCount, 0);
+        Pagination pagination = new Pagination(pageCount, 0);
         pagination.setPrefHeight(420);
         VBox.setVgrow(pagination, Priority.ALWAYS);
         pagination.setMaxWidth(Double.MAX_VALUE);
@@ -128,11 +126,7 @@ public class IncomeView {
             return table;
         });
 
-        VBox container = new VBox(pagination);
-        VBox.setVgrow(container, Priority.ALWAYS);
-        container.getStyleClass().add("dashboardCard");
-        container.setMaxWidth(Double.MAX_VALUE);
-        return container;
+        return pagination;
     }
 
     private static LineChart<String, Number> buildIncomePerMonthLineChart() {
@@ -208,6 +202,7 @@ public class IncomeView {
         summaryCard2 = createSummaryCard();
         barChart = createBarChart();
         lineChart = createLineChart();
+        table = createTable();
 
 
 
@@ -230,18 +225,13 @@ public class IncomeView {
         r2.setVgrow(Priority.ALWAYS);
         root.getRowConstraints().setAll(r0, r1, r2);
 
-        VBox tableCard = buildPaginatedIncomeTable();
-        tableCard.setMinHeight(360);
-        tableCard.setPrefHeight(Region.USE_COMPUTED_SIZE);
-
         // Each card in its own column
         root.add(summaryCard1, 0, 0);
         root.add(summaryCard2, 1, 0);
         root.add(barChart, 0, 1);
         root.add(lineChart, 1, 1);
         // Place the table under the two charts, spanning both columns
-        root.add(tableCard, 0, 2, 2, 1);
-        GridPane.setHgrow(tableCard, Priority.ALWAYS);
+        root.add(table, 0, 2, 2, 1);
         root.getStyleClass().add("incomeView");
         root.setVgap(24);
         root.setHgap(24);
@@ -250,12 +240,27 @@ public class IncomeView {
         GridPane.setHgrow(summaryCard2, Priority.ALWAYS);
         GridPane.setHgrow(barChart, Priority.ALWAYS);
         GridPane.setHgrow(lineChart, Priority.ALWAYS);
+        GridPane.setHgrow(table, Priority.ALWAYS);
 
         ScrollPane scrollPane = new ScrollPane(root);
         scrollPane.setFitToWidth(true);
         // Let content exceed viewport height so charts keep their preferred height
         scrollPane.setFitToHeight(false);
         return scrollPane;
+    }
+
+    private static VBox createTable(){
+        Pagination table = buildPaginatedIncomeTable();
+
+        VBox root = new VBox(table);
+        root.getStyleClass().add("dashboardCard");
+        root.setMaxWidth(Double.MAX_VALUE);
+        root.setMinHeight(360);
+        root.setPrefHeight(Region.USE_COMPUTED_SIZE);
+
+        VBox.setVgrow(root, Priority.ALWAYS);
+
+        return root;
     }
 
     private static VBox createLineChart(){
