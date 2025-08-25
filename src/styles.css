@@ -181,7 +181,11 @@
     -fx-padding: 0 0 12 0;
 }
 
-.summaryContent{
+/*------------------------------------------*/
+/*                 Summary                  */
+/*------------------------------------------*/
+
+.summary{
     -fx-font-size: 36;
     -fx-text-fill: #000;
     -fx-font-weight: 600;

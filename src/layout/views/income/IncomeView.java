@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import javafx.scene.control.ScrollPane;
 import layout.components.Dashboard;
 import layout.components.DashboardCard;
+import layout.components.Summary;
 import layout.components.income.IncomeBarChart;
 import layout.components.income.IncomeLineChart;
 import layout.components.income.IncomeTable;
@@ -32,8 +33,8 @@ public class IncomeView {
     }
 
     private static void initializeDashboard(){
-        summary1 = createSummaryCard();
-        summary2 = createSummaryCard();
+        summary1 = new DashboardCard("Income This Month", new Summary("JOD 24,000").getNode());
+        summary2 = new DashboardCard("Income Last Month", new Summary("JOD 12,000").getNode());
         barChart = new DashboardCard("Income by Source (Last 6 Months)", IncomeBarChart.init(data));
         lineChart = new DashboardCard("Total Income per Month (Last 6 Months)", IncomeLineChart.init(data));
         table = new DashboardCard("Income Details", IncomeTable.init(data));
@@ -45,16 +46,6 @@ public class IncomeView {
         dashboard.add(barChart, 0, 1);
         dashboard.add(lineChart, 1, 1);
         dashboard.add(table, 0, 2, 2, 1);
-    }
-
-    private static DashboardCard createSummaryCard(){
-        Label value = new Label("JOD 240.00");
-        value.getStyleClass().add("summaryContent");
-
-        DashboardCard card =  new DashboardCard(value);
-        card.setTitle("Income This Month");
-
-        return card;
     }
 
     private static void initializeData(){
