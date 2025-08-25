@@ -33,8 +33,8 @@ public class IncomeTable {
 
         int pageCount = Math.max(1, (int) Math.ceil(data.size() / (double) ROWS_PER_PAGE));
         Pagination pagination = new Pagination(pageCount, 0);
-        pagination.getStyleClass().add("income-pagination");
-        pagination.setId("income-pagination");
+        pagination.getStyleClass().add("pagination");
+        pagination.setId("pagination");
         pagination.setPrefHeight(420);
         VBox.setVgrow(pagination, Priority.ALWAYS);
         pagination.setMaxWidth(Double.MAX_VALUE);
@@ -58,8 +58,8 @@ public class IncomeTable {
 
     private static TableView<IncomeRecord> buildTableSkeleton() {
         TableView<IncomeRecord> tv = new TableView<>();
-        tv.getStyleClass().add("income-table");
-        tv.setId("income-table");
+        tv.getStyleClass().add("table");
+        tv.setId("table");
         tv.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
 
         TableColumn<IncomeRecord, String> idCol = new TableColumn<>("ID");

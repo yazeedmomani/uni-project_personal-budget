@@ -191,8 +191,12 @@
     -fx-font-weight: 600;
 }
 
+/*------------------------------------------*/
+/*                  Table                   */
+/*------------------------------------------*/
+
 /* Whole table header background */
-#income-table .column-header-background {
+#table .column-header-background {
   /* example */
   -fx-background-color: white;
   -fx-padding: 0.5em 0.75em;
@@ -200,7 +204,7 @@
 }
 
 /* Header text (all columns) */
-#income-table .column-header .label {
+#table .column-header .label {
   -fx-background-color: #E3E3E3;
   -fx-font-weight: bold;
   -fx-text-fill: #4d4d4d;
@@ -208,11 +212,11 @@
 }
 
 /* Per-column tweaks */
-#income-table .column-header.col-id .label   { }
-#income-table .column-header.col-date .label {  }
-#income-table .column-header.col-amount .label {  }
+#table .column-header.col-id .label   { }
+#table .column-header.col-date .label {  }
+#table .column-header.col-amount .label {  }
 
-#income-table.table-view {
+#table.table-view {
   -fx-background-color: white;
   -fx-background-insets: 0;
   -fx-background-radius: 8;
@@ -220,23 +224,23 @@
   -fx-border-radius: 8;
 }
 
-#income-table .table-row-cell:filled:selected {
+#table .table-row-cell:filled:selected {
   -fx-background-color: #E3E3E3; /* light green selection */
   -fx-text-fill: #4d4d4d;
 }
 
-#income-table .table-cell {
+#table .table-cell {
   -fx-padding: 0.4em 0.6em;
   -fx-background-radius: 8;
 }
 
-#income-pagination.pagination {
+#pagination.pagination {
     -fx-padding: -12 0 0 0;
 }
 
 /* Page indicators */
-#income-pagination .pagination-control .number-button,
-#income-pagination .pagination-control .bullet-button {
+#pagination .pagination-control .number-button,
+#pagination .pagination-control .bullet-button {
   -fx-background-radius: 30;
   -fx-background-color: transparent;
   -fx-text-fill: #4d4d4d;
@@ -244,35 +248,35 @@
   -fx-cursor: hand;
 }
 
-#income-pagination .pagination-control .number-button:hover,
-#income-pagination .pagination-control .bullet-button:hover {
+#pagination .pagination-control .number-button:hover,
+#pagination .pagination-control .bullet-button:hover {
   -fx-background-color: #F6F6F6;
 }
 
-#income-pagination .pagination-control .number-button:pressed,
-#income-pagination .pagination-control .bullet-button:pressed {
+#pagination .pagination-control .number-button:pressed,
+#pagination .pagination-control .bullet-button:pressed {
   -fx-background-color: #DCDDE0;
 }
 
 /* Selected page */
-#income-pagination .pagination-control .number-button:selected,
-#income-pagination .pagination-control .bullet-button:selected {
+#pagination .pagination-control .number-button:selected,
+#pagination .pagination-control .bullet-button:selected {
   -fx-background-color: #E3E3E3;
 }
 
 /* Prev/Next arrows */
-#income-pagination .pagination-control .left-arrow-button,
-#income-pagination .pagination-control .right-arrow-button {
+#pagination .pagination-control .left-arrow-button,
+#pagination .pagination-control .right-arrow-button {
   -fx-background-color: transparent;
   -fx-fill: #4d4d4d;
   -fx-background-radius: 30;
   -fx-cursor: hand;
 }
-#income-pagination .pagination-control .left-arrow-button:hover,
-#income-pagination .pagination-control .right-arrow-button:hover {
+#pagination .pagination-control .left-arrow-button:hover,
+#pagination .pagination-control .right-arrow-button:hover {
   -fx-background-color: #F6F6F6;
 }
-#income-pagination .pagination-control .left-arrow-button:pressed,
-#income-pagination .pagination-control .right-arrow-button:pressed {
+#pagination .pagination-control .left-arrow-button:pressed,
+#pagination .pagination-control .right-arrow-button:pressed {
   -fx-background-color: #DCDDE0;
 }
