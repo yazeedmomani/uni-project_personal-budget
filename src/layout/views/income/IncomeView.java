@@ -14,9 +14,11 @@ import java.util.stream.*;
 import java.time.format.DateTimeFormatter;
 import javafx.scene.control.ScrollPane;
 import layout.components.Dashboard;
+import layout.components.DashboardCard;
 
 public class IncomeView {
-    private static VBox summaryCard1, summaryCard2, barChart, lineChart, table;
+    private static Dashboard dashboard;
+    private static DashboardCard summary1, summary2, barChart, lineChart, table;
     private static List<IncomeRecord> data;
 
     private static BarChart<String, Number> buildIncomeBySourceChart() {
@@ -199,16 +201,16 @@ public class IncomeView {
     }
 
     public static ScrollPane getRoot(){
-        summaryCard1 = createSummaryCard();
-        summaryCard2 = createSummaryCard();
+        summary1 = createSummaryCard();
+        summary2 = createSummaryCard();
         barChart = createBarChart();
         lineChart = createLineChart();
         table = createTable();
 
-        Dashboard dashboard = new Dashboard();
+        dashboard = new Dashboard();
 
-        dashboard.add(summaryCard1, 0, 0);
-        dashboard.add(summaryCard2, 1, 0);
+        dashboard.add(summary1, 0, 0);
+        dashboard.add(summary2, 1, 0);
         dashboard.add(barChart, 0, 1);
         dashboard.add(lineChart, 1, 1);
         dashboard.add(table, 0, 2, 2, 1);
@@ -216,50 +218,35 @@ public class IncomeView {
         return dashboard.getRoot();
     }
 
-    private static VBox createTable(){
+    private static DashboardCard createTable(){
         Pagination table = buildPaginatedIncomeTable();
 
-        VBox root = new VBox(table);
-        root.getStyleClass().add("dashboardCard");
-        root.setMaxWidth(Double.MAX_VALUE);
-        root.setMinHeight(388);
-        root.setPrefHeight(Region.USE_COMPUTED_SIZE);
-
-        VBox.setVgrow(root, Priority.ALWAYS);
-
-        return root;
+        return new DashboardCard(table);
     }
 
-    private static VBox createLineChart(){
+    private static DashboardCard createLineChart(){
         Label title = new Label("Total Income per Month (Last 6 Months)");
         title.getStyleClass().add("summaryLabel");
         LineChart<String, Number> chart = buildIncomePerMonthLineChart();
-        VBox root = new VBox(title, chart);
-        root.getStyleClass().add("dashboardCard");
-        root.setMaxWidth(Double.MAX_VALUE);
-        return root;
+
+        return new DashboardCard(title, chart);
     }
 
-    private static VBox createBarChart(){
+    private static DashboardCard createBarChart(){
         Label title = new Label("Income by Source (Last 6 Months)");
         title.getStyleClass().add("summaryLabel");
 
         BarChart<String, Number> chart = buildIncomeBySourceChart();
 
-        VBox root = new VBox(title, chart);
-        root.getStyleClass().add("dashboardCard");
-        root.setMaxWidth(Double.MAX_VALUE);
-        return root;
+        return new DashboardCard(title, chart);
     }
 
-    private static VBox createSummaryCard(){
+    private static DashboardCard createSummaryCard(){
         Label label = new Label("Income This Month");
         label.getStyleClass().add("summaryLabel");
         Label value = new Label("JOD 240.00");
         value.getStyleClass().add("summaryContent");
-        VBox root = new VBox(label, value);
-        root.getStyleClass().add("dashboardCard");
-        root.setMaxWidth(Double.MAX_VALUE);
-        return root;
+
+        return new DashboardCard(label, value);
     }
 }

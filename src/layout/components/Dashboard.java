@@ -12,14 +12,12 @@ public class Dashboard {
         return root;
     }
 
-    public void add(Node component, int column, int row){
-        grid.add(component, column, row);
-        GridPane.setHgrow(component, Priority.ALWAYS);
+    public void add(DashboardCard card, int column, int row){
+        grid.add(card.getRoot(), column, row);
     }
 
-    public void add(Node component, int column, int row, int columnSpan, int rowSpan){
-        grid.add(component, column, row, columnSpan, rowSpan);
-        GridPane.setHgrow(component, Priority.ALWAYS);
+    public void add(DashboardCard card, int column, int row, int columnSpan, int rowSpan){
+        grid.add(card.getRoot(), column, row, columnSpan, rowSpan);
     }
 
     public Dashboard(){
