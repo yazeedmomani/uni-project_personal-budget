@@ -55,6 +55,7 @@ public class IncomeEdit {
         reset();
         form.hideHeader();
         updateButton.setText("Insert Record");
+        updateButton.setOnAction(IncomeEdit::handleInsertButton);
         deleteButton.setText("Cancel");
         deleteButton.setOnAction(IncomeEdit::handleCancelButton);
         form.showFooter();
@@ -68,6 +69,38 @@ public class IncomeEdit {
         deleteButton.setText("Delete Record");
         deleteButton.setOnAction(null);
         form.showHeader();
+    }
+
+    private static void handleInsertButton(ActionEvent e){
+        if(isInvalid()) return;
+
+        LocalDate date = LocalDate.parse(dateField.getText().trim(), Database.getDateFormat());
+        String source = sourceField.getText().trim();
+        double amount = Double.parseDouble(amountField.getText().trim());
+        String notes = notesField.getText().trim();
+
+        IncomeRecord record = new IncomeRecord(date, source, amount, notes);
+
+        try{
+            Database.getIncomeDAO().create(record);
+
+            reset();
+            form.hideFooter();
+            updateButton.setText("Update Record");
+            updateButton.setOnAction(null);
+            deleteButton.setText("Delete Record");
+            deleteButton.setOnAction(null);
+            form.showHeader();
+
+            Label successLabel = form.getSuccessLabel();
+            successLabel.setText("Record inserted successfully");
+            form.showSuccessLabel();
+        }
+        catch (Exception exp){
+            Label errorLabel = form.getErrorLabel();
+            errorLabel.setText("Failed to insert record");
+            form.showErrorLabel();
+        }
     }
 
     private static void handleReadButton(ActionEvent e){
