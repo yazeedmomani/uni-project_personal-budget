@@ -280,3 +280,29 @@
 #pagination .pagination-control .right-arrow-button:pressed {
   -fx-background-color: #DCDDE0;
 }
+
+/*------------------------------------------*/
+/*                  Form                    */
+/*------------------------------------------*/
+
+.form{}
+
+.form_header{
+    -fx-padding: 10 10 10 10;
+}
+
+.form_body{
+    -fx-padding: 20 10 20 10;
+}
+
+.form_footer{
+    -fx-padding: 10 10 10 10;
+}
+
+.form_field{}
+
+.form_label{}
+
+.form_input{}
+
+.form_button{}
