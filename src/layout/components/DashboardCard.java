@@ -14,6 +14,8 @@ public class DashboardCard {
 
     public void setTitle(String title){this.title.setText(title);}
 
+    public void setTItleStyle(String style){this.title.setStyle(style);}
+
     public DashboardCard(String title, Node node){
         initializeTitle();
         setTitle(title);
