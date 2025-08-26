@@ -78,8 +78,10 @@ public class IncomeEdit {
                 Label errorLabel = form.getErrorLabel();
                 errorLabel.setText("Record does not exist");
                 form.showErrorLabel();
+                form.hideFooter();
                 return;
             }
+            deleteButton.setOnAction(deleteEvent -> handleDeleteButton(deleteEvent, record));
             form.showFooter();
             dateField.setText(record.getDate().toString());
             sourceField.setText(record.getSource());
@@ -88,7 +90,25 @@ public class IncomeEdit {
         }
         catch (Exception exp){
             Label errorLabel = form.getErrorLabel();
-            errorLabel.setText("Failed to retrieve record.");
+            errorLabel.setText("Failed to retrieve record");
+            form.showErrorLabel();
+        }
+    }
+
+    private static void handleDeleteButton(ActionEvent e, IncomeRecord record){
+        resetFormMessages();
+
+        try{
+            Database.getIncomeDAO().delete(record);
+            form.hideFooter();
+            reset();
+            Label successLabel = form.getSuccessLabel();
+            successLabel.setText("Record deleted successfully");
+            form.showSuccessLabel();
+        }
+        catch (Exception exp){
+            Label errorLabel = form.getErrorLabel();
+            errorLabel.setText("Failed to delete record");
             form.showErrorLabel();
         }
     }
@@ -135,6 +155,10 @@ public class IncomeEdit {
         amountField.clear();
         notesField.clear();
 
+        resetFormMessages();
+    }
+
+    private static void resetFormMessages(){
         form.hideSuccessLabel();
         form.hideErrorLabel();
         idField.getStyleClass().remove(form.getInvalidClass());
