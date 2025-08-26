@@ -61,10 +61,10 @@ public class Settings {
     }
 
     private static boolean isInvalid(){
-        String name = nameField.getText();
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        String passwordConfirm = passwordConfirmField.getText();
+        String name = nameField.getText().trim();
+        String username = usernameField.getText().trim();
+        String password = passwordField.getText().trim();
+        String passwordConfirm = passwordConfirmField.getText().trim();
 
         clearFormMessages();
 
