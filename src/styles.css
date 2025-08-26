@@ -333,6 +333,7 @@
     -fx-control-inner-background: #ffffff;
     -fx-background-insets: 0;
     -fx-background-radius: 10;
+    -fx-padding: 6 9 6 9;
 }
 
 .text-area.form_input .scroll-pane,
@@ -341,10 +342,22 @@
     -fx-background-color: transparent;
 }
 
+
 .text-area.form_input .content {
     -fx-background-color: transparent;
     -fx-background-insets: 0;
     -fx-background-radius: 10;
+    -fx-padding: 0;
+}
+
+.text-area.form_input .text {
+    -fx-padding: 0;
+    -fx-text-alignment: left;
+}
+
+.text-area.form_input .prompt-text {
+    -fx-padding: 0;
+    -fx-text-alignment: left;
 }
 
 .text-area.form_input:focused .content {
