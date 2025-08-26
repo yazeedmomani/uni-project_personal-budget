@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import layout.components.Dashboard;
 import layout.components.DashboardCard;
 import layout.components.Form;
+import layout.menus.TopMenu;
 
 public class Settings {
     private static Dashboard dashbaord;
@@ -15,9 +16,10 @@ public class Settings {
     private static Form form;
     private static TextField nameField, usernameField;
     private static PasswordField passwordField, passwordConfirmField;
-    private static User user = Database.getCurrentUser();
+    private static User user;
 
     public static ScrollPane getRoot(){
+        user = Database.getCurrentUser();
         initializeForm();
         initializeFields();
         form.getUpdateButton().setOnAction(Settings::handleSave);
@@ -44,9 +46,17 @@ public class Settings {
 
         try{
             Database.updateUser(updatedUser);
+            Database.setCurrentUser(updatedUser);
+            TopMenu.reloadWelcomeLabel();
+            Label successLabel = form.getSuccessLabel();
+            successLabel.setText("Changes saved successfully");
+            form.showSuccessLabel();
         }
         catch (Exception exp){
             System.out.println("Settings Error: " + exp.getMessage());
+            Label errorLabel = form.getErrorLabel();
+            errorLabel.setText("Couldn't save changes");
+            form.showErrorLabel();
         }
     }
 
@@ -56,7 +66,7 @@ public class Settings {
         String password = passwordField.getText();
         String passwordConfirm = passwordConfirmField.getText();
 
-        clearInvalid();
+        clearFormMessages();
 
         boolean nameAndUsernameAreEmpty = name.equals("") && username.equals("");
         boolean nameIsEmpty = name.equals("");
@@ -105,7 +115,8 @@ public class Settings {
         return true;
     }
 
-    private static void clearInvalid(){
+    private static void clearFormMessages(){
+        form.hideSuccessLabel();
         form.hideErrorLabel();
         nameField.getStyleClass().remove(form.getInvalidClass());
         usernameField.getStyleClass().remove(form.getInvalidClass());

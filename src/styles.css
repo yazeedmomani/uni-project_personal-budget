@@ -417,6 +417,13 @@
     -fx-effect: none;
 }
 
+.form_successLabel{
+    -fx-alignment: CENTER_LEFT;
+    -fx-text-fill: green;
+    -fx-font-size: 14px;
+    -fx-wrap-text: true;
+}
+
 .form_errorLabel{
     -fx-alignment: CENTER_LEFT;
     -fx-text-fill: red;

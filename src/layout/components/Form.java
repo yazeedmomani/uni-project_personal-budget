@@ -10,7 +10,7 @@ public class Form {
     private VBox body;
     private Button createButton, updateButton, readButton, deleteButton;
     private TextField idInput;
-    private Label errorLabel;
+    private Label errorLabel, successLabel;
     private final String INVALID_INPUT_CLASS = "form_invalidInput";
 
     public Button getCreateButton() {return createButton;}
@@ -25,6 +25,11 @@ public class Form {
 
     public void showErrorLabel() {body.getChildren().addFirst(errorLabel);}
     public void hideErrorLabel() {body.getChildren().remove(errorLabel);}
+
+    public Label getSuccessLabel() {return successLabel;}
+
+    public void showSuccessLabel() {body.getChildren().addFirst(successLabel);}
+    public void hideSuccessLabel() {body.getChildren().remove(successLabel);}
 
     public PasswordField addPasswordField(String title, String placeholder){
         PasswordField input = FormComponents.createPasswordInput(placeholder);
@@ -51,16 +56,18 @@ public class Form {
     }
 
     public Form(){
-        initializeErrorLabel();
+        initializeLabels();
         initializeHeader();
         initializeBody();
         initializeFooter();
         initializeRoot();
     }
 
-    private void initializeErrorLabel(){
+    private void initializeLabels(){
         errorLabel = new Label();
         errorLabel.getStyleClass().add("form_errorLabel");
+        successLabel = new Label();
+        successLabel.getStyleClass().add("form_successLabel");
     }
 
     private void initializeRoot(){
