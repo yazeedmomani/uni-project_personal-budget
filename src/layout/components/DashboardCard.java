@@ -13,6 +13,7 @@ public class DashboardCard {
     public VBox getRoot(){return root;}
 
     public void setTitle(String title){this.title.setText(title);}
+
     public DashboardCard(String title, Node node){
         initializeTitle();
         setTitle(title);
@@ -35,6 +36,7 @@ public class DashboardCard {
         root.getChildren().addFirst(title);
         root.getStyleClass().add("dashboardCard");
         root.setMaxWidth(Double.MAX_VALUE);
+        root.setMaxHeight(Double.MAX_VALUE);
         GridPane.setHgrow(root, Priority.ALWAYS);
     }
 }

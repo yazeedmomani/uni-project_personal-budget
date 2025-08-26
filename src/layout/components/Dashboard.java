@@ -7,6 +7,8 @@ import javafx.scene.layout.*;
 public class Dashboard {
     private ScrollPane root;
     private GridPane grid;
+    private ColumnConstraints column1, column2;
+    private RowConstraints row1, row2, row3;
 
     public ScrollPane getRoot(){
         return root;
@@ -18,6 +20,10 @@ public class Dashboard {
 
     public void add(DashboardCard card, int column, int row, int columnSpan, int rowSpan){
         grid.add(card.getRoot(), column, row, columnSpan, rowSpan);
+    }
+
+    public void initializeFormSettings(){
+        root.setFitToHeight(true);
     }
 
     public Dashboard(){
@@ -32,11 +38,11 @@ public class Dashboard {
     }
 
     private void initializeGrid(){
-        ColumnConstraints column1 = createColumn();
-        ColumnConstraints column2 = createColumn();
-        RowConstraints row1 = createRow();
-        RowConstraints row2 = createRow();
-        RowConstraints row3 = createRow();
+        column1 = createColumn();
+        column2 = createColumn();
+        row1 = createRow();
+        row2 = createRow();
+        row3 = createRow();
 
         grid = new GridPane();
 
