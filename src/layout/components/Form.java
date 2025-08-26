@@ -11,6 +11,13 @@ public class Form {
     private Button createButton, updateButton, readButton, deleteButton;
     private TextField idInput;
 
+    public Button getCreateButton() {return createButton;}
+    public Button getReadButton() {return readButton;}
+    public Button getUpdateButton() {return updateButton;}
+    public Button getDeleteButton() {return deleteButton;}
+
+    public BorderPane getRoot() {return root;}
+
     public TextArea addAreaField(String title, String placeholder){
         TextArea input = createAreaInput(placeholder);
         addField(title, input);
@@ -23,7 +30,7 @@ public class Form {
         return input;
     }
 
-    public BorderPane getRoot() {return root;}
+    public void removeHeader(){root.setTop(null);}
 
     public Form(){
         initializeHeader();
