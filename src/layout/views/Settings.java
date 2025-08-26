@@ -127,6 +127,7 @@ public class Settings {
     private static void initializeForm(){
         form = new Form();
         form.initializeForSettings();
+        form.showFooter();
 
         nameField = form.addField("Name", "Name");
         usernameField = form.addField("Username", "Username");

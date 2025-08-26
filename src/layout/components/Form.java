@@ -13,6 +13,8 @@ public class Form {
     private Label errorLabel, successLabel;
     private final String INVALID_INPUT_CLASS = "form_invalidInput";
 
+    public TextField getIdInput() {return idInput;}
+
     public Button getCreateButton() {return createButton;}
     public Button getReadButton() {return readButton;}
     public Button getUpdateButton() {return updateButton;}
@@ -30,6 +32,9 @@ public class Form {
 
     public void showSuccessLabel() {body.getChildren().addFirst(successLabel);}
     public void hideSuccessLabel() {body.getChildren().remove(successLabel);}
+
+    public void hideFooter(){root.setBottom(null);}
+    public void showFooter(){root.setBottom(footer);}
 
     public PasswordField addPasswordField(String title, String placeholder){
         PasswordField input = FormComponents.createPasswordInput(placeholder);
@@ -75,7 +80,6 @@ public class Form {
 
         root.setTop(header);
         root.setCenter(body);
-        root.setBottom(footer);
 
         root.setMaxHeight(Double.MAX_VALUE);
         root.getStyleClass().add("form");
