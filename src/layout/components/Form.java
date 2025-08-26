@@ -19,19 +19,19 @@ public class Form {
     public BorderPane getRoot() {return root;}
 
     public PasswordField addPasswordField(String title, String placeholder){
-        PasswordField input = createPasswordInput(placeholder);
+        PasswordField input = FormComponents.createPasswordInput(placeholder);
         addField(title, input);
         return input;
     }
 
     public TextArea addAreaField(String title, String placeholder){
-        TextArea input = createAreaInput(placeholder);
+        TextArea input = FormComponents.createAreaInput(placeholder);
         addField(title, input);
         return input;
     }
 
     public TextField addField(String title, String placeholder){
-        TextField input = createInput(placeholder);
+        TextField input = FormComponents.createInput(placeholder);
         addField(title, input);
         return input;
     }
@@ -63,9 +63,9 @@ public class Form {
     }
 
     private void initializeHeader(){
-        idInput = createInput("ID");
-        readButton = createButton("Retrieve Record");
-        createButton = createButton("New Record");
+        idInput = FormComponents.createInput("ID");
+        readButton = FormComponents.createButton("Retrieve Record");
+        createButton = FormComponents.createButton("New Record");
 
         HBox group = new HBox(idInput, readButton);
         group.setSpacing(12);
@@ -86,8 +86,8 @@ public class Form {
     }
 
     private void initializeFooter(){
-        updateButton = createButton("Update Record");
-        deleteButton = createButton("Delete Record");
+        updateButton = FormComponents.createButton("Update Record");
+        deleteButton = FormComponents.createButton("Delete Record");
         deleteButton.setId("form_deleteButton");
 
         footer = new HBox(updateButton, deleteButton);
@@ -96,49 +96,8 @@ public class Form {
     }
 
     private void addField(String title, Node input){
-        Label label = createLabel(title);
-        VBox field = createField(label, input);
+        Label label = FormComponents.createLabel(title);
+        VBox field = FormComponents.createField(label, input);
         body.getChildren().add(field);
-    }
-
-    private VBox createField(Label label, Node input){
-        VBox field = new VBox(label, input);
-        field.setSpacing(8);
-        field.getStyleClass().add("form_field");
-        return field;
-    }
-
-    private Label createLabel(String text){
-        Label label = new Label(text);
-        label.getStyleClass().add("form_label");
-        return label;
-    }
-
-    private PasswordField createPasswordInput(String promptText){
-        PasswordField input = new PasswordField();
-        input.setPromptText(promptText);
-        input.getStyleClass().add("form_input");
-        return input;
-    }
-
-    private TextArea createAreaInput(String promptText){
-        TextArea input = new TextArea();
-        input.setPromptText(promptText);
-        input.setPrefRowCount(5);
-        input.getStyleClass().add("form_input");
-        return input;
-    }
-
-    private TextField createInput(String promptText){
-        TextField input = new TextField();
-        input.setPromptText(promptText);
-        input.getStyleClass().add("form_input");
-        return input;
-    }
-
-    private Button createButton(String text){
-        Button button = new Button(text);
-        button.getStyleClass().add("form_button");
-        return button;
     }
 }

@@ -25,7 +25,7 @@ public class Settings {
         card = new DashboardCard(form.getRoot());
         card.setTitle("Settings");
         card.setTItleStyle("-fx-padding: 0 10 12 10");
-        
+
         dashbaord = new Dashboard();
         dashbaord.initializeFormSettings();
         dashbaord.add(card, 0, 0, 2, 3);
