@@ -15,6 +15,9 @@ import layout.components.income.IncomeBarChart;
 
 import java.util.Collections;
 import java.util.List;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class IncomeEdit {
     private static Dashboard dashbaord;
@@ -82,6 +85,7 @@ public class IncomeEdit {
                 return;
             }
             deleteButton.setOnAction(deleteEvent -> handleDeleteButton(deleteEvent, record));
+            updateButton.setOnAction(updateEvent -> handleUpdateButton(updateEvent, record));
             form.showFooter();
             dateField.setText(record.getDate().toString());
             sourceField.setText(record.getSource());
@@ -113,9 +117,66 @@ public class IncomeEdit {
         }
     }
 
+    private static void handleUpdateButton(ActionEvent e, IncomeRecord record){
+        if(isInvalid()) return;
+    }
+
+    private static boolean isInvalid(){
+        String date = dateField.getText().trim();
+        String source = sourceField.getText().trim();
+        String amount = amountField.getText().trim();
+
+        resetFormMessages();
+
+        boolean dateIsEmpty = date.equals("");
+        boolean dateWrongFormat;
+        try {
+            LocalDate.parse(date, Database.getDateFormat());
+            dateWrongFormat = false;
+        } catch (DateTimeParseException e) {
+            dateWrongFormat = true;
+        }
+        boolean sourceIsEmpty = source.equals("");
+        boolean amountIsEmpty = amount.equals("");
+        boolean amountNotNumber;
+        try {
+            Double.parseDouble(amount);
+            amountNotNumber = false;
+        } catch (NumberFormatException e) {
+            amountNotNumber = true;
+        }
+        boolean amountIsNegative = Double.parseDouble(amount) < 0;
+
+        Label errorLabel = form.getErrorLabel();
+
+        if(dateIsEmpty || sourceIsEmpty || amountIsEmpty){
+            errorLabel.setText("Please fill in the required fields");
+            if(dateIsEmpty) dateField.getStyleClass().add(form.getInvalidClass());
+            if(sourceIsEmpty) sourceField.getStyleClass().add(form.getInvalidClass());
+            if(amountIsEmpty) amountField.getStyleClass().add(form.getInvalidClass());
+        }
+        else if(dateWrongFormat){
+            errorLabel.setText("Invalid date format. Use YYYY-MM-DD");
+            dateField.getStyleClass().add(form.getInvalidClass());
+        }
+        else if(amountNotNumber){
+            errorLabel.setText("Invalid amount. Use numbers only");
+            amountField.getStyleClass().add(form.getInvalidClass());
+        }
+        else if(amountIsNegative){
+            errorLabel.setText("Amount must be zero or greater");
+            amountField.getStyleClass().add(form.getInvalidClass());
+        }
+        else{
+            return false;
+        }
+
+        form.showErrorLabel();
+        return true;
+    }
+
     private static boolean isInvalidId(){
         String id = idField.getText().trim();
-        System.out.println(id);
 
         clearFields();
         form.hideSuccessLabel();
