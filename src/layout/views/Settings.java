@@ -2,6 +2,7 @@ package layout.views;
 
 import db.Database;
 import db.models.User;
+import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import layout.components.Dashboard;
@@ -28,6 +29,38 @@ public class Settings {
         dashbaord.initializeFormSettings();
         dashbaord.add(card, 0, 0, 2, 3);
         return dashbaord.getRoot();
+    }
+
+    private static void handleSave(ActionEvent e){
+        String name = nameField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String passwordConfirm = passwordConfirmField.getText();
+
+        boolean nameOrUsernameIsEmpty = name.equals("") || username.equals("");
+        boolean passwordsAreEmpty = password.equals("") && passwordConfirm.equals("");
+        boolean onlyPasswordFilled = !password.equals("") && passwordConfirm.equals("");
+        boolean onlyPasswordConfirmFilled = password.equals("") && !passwordConfirm.equals("");
+        boolean passwordsNotEqual = !password.equals(passwordConfirm);
+
+        if(nameOrUsernameIsEmpty){
+            // TODO
+        }
+        else if(passwordsAreEmpty){
+            // TODO
+        }
+        else if(onlyPasswordFilled){
+            // TODO
+        }
+        else if(onlyPasswordConfirmFilled){
+            // TODO
+        }
+        else if(passwordsNotEqual) {
+            // TODO
+        }
+        else{
+            // TODO
+        }
     }
 
     private static void initializeForm(){
