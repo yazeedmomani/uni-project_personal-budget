@@ -102,16 +102,19 @@ public class IncomeLineChart {
                 });
             }
             if (medianSeries.getNode() != null) {
-                medianSeries.getNode().setStyle("-fx-stroke: #8CBB8C; -fx-stroke-dash-array: 5 5; -fx-stroke-width: 2px;");
+                medianSeries.getNode().setStyle("-fx-stroke: #C8E6C9; -fx-stroke-dash-array: 5 5; -fx-stroke-width: 2px;");
                 medianSeries.getData().forEach(d -> {
-                    if (d.getNode() != null) d.getNode().setStyle("-fx-background-color: #8CBB8C, white;");
+                    if (d.getNode() != null) {
+                        d.getNode().setVisible(false);
+                        d.getNode().setManaged(false);
+                    }
                 });
             }
             // Legend symbol colors mapped to series order
             int idx = 0;
             for (javafx.scene.Node node : lineChart.lookupAll(".chart-legend-item-symbol")) {
                 if (idx == 0) node.setStyle("-fx-background-color: #388E3C; -fx-padding: 6px; -fx-background-radius: 30;");
-                if (idx == 1) node.setStyle("-fx-background-color: #8CBB8C; -fx-padding: 6px; -fx-background-radius: 30;");
+                if (idx == 1) node.setStyle("-fx-background-color: #C8E6C9; -fx-padding: 6px; -fx-background-radius: 30;");
                 idx++;
             }
             // Transparent legend background
