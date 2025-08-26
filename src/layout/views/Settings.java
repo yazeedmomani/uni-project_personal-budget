@@ -1,5 +1,7 @@
 package layout.views;
 
+import db.Database;
+import db.models.User;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import layout.components.Dashboard;
@@ -12,15 +14,11 @@ public class Settings {
     private static Form form;
     private static TextField nameField, usernameField;
     private static PasswordField passwordField, passwordConfirmField;
+    private static User user = Database.getCurrentUser();
 
     public static ScrollPane getRoot(){
-        form = new Form();
-        form.initializeForSettings();
-
-        nameField = form.addField("Name", "Name");
-        usernameField = form.addField("Username", "Username");
-        passwordField = form.addPasswordField("Password", "Password");
-        passwordConfirmField = form.addPasswordField("Confirm Password", "Password");
+        initializeForm();
+        initializeFields();
 
         card = new DashboardCard(form.getRoot());
         card.setTitle("Settings");
@@ -30,5 +28,20 @@ public class Settings {
         dashbaord.initializeFormSettings();
         dashbaord.add(card, 0, 0, 2, 3);
         return dashbaord.getRoot();
+    }
+
+    private static void initializeForm(){
+        form = new Form();
+        form.initializeForSettings();
+
+        nameField = form.addField("Name", "Name");
+        usernameField = form.addField("Username", "Username");
+        passwordField = form.addPasswordField("Password", "Password");
+        passwordConfirmField = form.addPasswordField("Confirm Password", "Password");
+    }
+
+    private static void initializeFields(){
+        nameField.setText(user.getName());
+        usernameField.setText(user.getUsername());
     }
 }
