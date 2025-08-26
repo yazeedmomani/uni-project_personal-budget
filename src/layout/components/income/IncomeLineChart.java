@@ -64,6 +64,7 @@ public class IncomeLineChart {
         LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setLegendVisible(true);
         lineChart.setCreateSymbols(true); // show points
+        lineChart.setAnimated(true);
 
         // Series for monthly totals
         XYChart.Series<String, Number> totalsSeries = new XYChart.Series<>();

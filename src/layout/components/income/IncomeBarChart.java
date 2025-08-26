@@ -93,6 +93,7 @@ public class IncomeBarChart {
         });
         chart.setMaxWidth(Double.MAX_VALUE);
         chart.setPrefHeight(320);
+        chart.setAnimated(true);
 
         return chart;
     }
