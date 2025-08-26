@@ -19,14 +19,16 @@ public class IncomeEdit {
     private static Dashboard dashbaord;
     private static DashboardCard card;
     private static Form form;
+    private static TextField dateField, sourceField, amountField;
+    private static TextArea notesField;
 
     public static ScrollPane getRoot(){
         form = new Form();
 
-        form.addField("Date", "YYYY-MM-DD");
-        form.addField("Source", "Income Source");
-        form.addField("Amount", "0.00");
-        form.addAreaField("Notes", "Notes (optional)");
+        dateField = form.addField("Date", "YYYY-MM-DD");
+        sourceField = form.addField("Source", "Income Source");
+        amountField = form.addField("Amount", "0.00");
+        notesField = form.addAreaField("Notes", "Notes (optional)");
 
         card = new DashboardCard(form.getRoot());
         dashbaord = new Dashboard();

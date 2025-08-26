@@ -18,6 +18,12 @@ public class Form {
 
     public BorderPane getRoot() {return root;}
 
+    public PasswordField addPasswordField(String title, String placeholder){
+        PasswordField input = createPasswordInput(placeholder);
+        addField(title, input);
+        return input;
+    }
+
     public TextArea addAreaField(String title, String placeholder){
         TextArea input = createAreaInput(placeholder);
         addField(title, input);
@@ -30,7 +36,11 @@ public class Form {
         return input;
     }
 
-    public void removeHeader(){root.setTop(null);}
+    public void initializeForSettings(){
+        root.setTop(null);
+        footer.getChildren().remove(deleteButton);
+        updateButton.setText("Save");
+    }
 
     public Form(){
         initializeHeader();
@@ -102,6 +112,13 @@ public class Form {
         Label label = new Label(text);
         label.getStyleClass().add("form_label");
         return label;
+    }
+
+    private PasswordField createPasswordInput(String promptText){
+        PasswordField input = new PasswordField();
+        input.setPromptText(promptText);
+        input.getStyleClass().add("form_input");
+        return input;
     }
 
     private TextArea createAreaInput(String promptText){

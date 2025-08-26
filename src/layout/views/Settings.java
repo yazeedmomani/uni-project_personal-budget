@@ -1,15 +1,31 @@
 package layout.views;
 
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
+import layout.components.Dashboard;
+import layout.components.DashboardCard;
+import layout.components.Form;
 
 public class Settings {
-    private static FlowPane root;
-    private static Label temp;
+    private static Dashboard dashbaord;
+    private static DashboardCard card;
+    private static Form form;
+    private static TextField nameField, usernameField;
+    private static PasswordField passwordField, passwordConfirmField;
 
-    public static FlowPane getRoot(){
-        temp = new Label("Settings");
-        root = new FlowPane(temp);
-        return root;
+    public static ScrollPane getRoot(){
+        form = new Form();
+        form.initializeForSettings();
+
+        nameField = form.addField("Name", "Name");
+        usernameField = form.addField("Username", "Username");
+        passwordField = form.addPasswordField("Password", "Password");
+        passwordConfirmField = form.addPasswordField("Confirm Password", "Password");
+
+        card = new DashboardCard(form.getRoot());
+        dashbaord = new Dashboard();
+        dashbaord.initializeFormSettings();
+        dashbaord.add(card, 0, 0, 2, 3);
+        return dashbaord.getRoot();
     }
 }
