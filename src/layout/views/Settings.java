@@ -36,11 +36,18 @@ public class Settings {
         String name = nameField.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
-        String passwordConfirm = passwordConfirmField.getText();
 
         if(isInvalid()) return;
+        if(password.equals("")) {password = user.getPassword();}
 
+        User updatedUser = new User(user.getId(), name, username, password);
 
+        try{
+            Database.updateUser(updatedUser);
+        }
+        catch (Exception exp){
+            System.out.println("Settings Error: " + exp.getMessage());
+        }
     }
 
     private static boolean isInvalid(){
