@@ -288,11 +288,11 @@
 .form{}
 
 .form_header{
-    -fx-padding: 10 10 10 10;
+    -fx-padding: 0 10;
 }
 
 .form_body{
-    -fx-padding: 20 10 20 10;
+    -fx-padding: 48 10 0 10;
 }
 
 .form_footer{
@@ -301,8 +301,123 @@
 
 .form_field{}
 
-.form_label{}
+.form_label{
+    -fx-font-size: 16;
+    -fx-text-fill: #4d4d4d;
+}
 
-.form_input{}
+.form_input{
+    -fx-font-size: 16;
+    -fx-text-fill: #4d4d4d;
+}
 
-.form_button{}
+.form_input{
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e5e7eb;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 8 10 8 10;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: rgba(0,0,0,0.45);
+}
+
+.form_input:focused{
+    -fx-border-color: #cbd0d6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 6, 0.15, 0, 1);
+}
+
+/* --- TextArea fixes (remove inner box) --- */
+.text-area.form_input {
+    -fx-control-inner-background: #ffffff;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+}
+
+.text-area.form_input .scroll-pane,
+.text-area.form_input .scroll-pane .viewport,
+.text-area.form_input .scroll-pane .content {
+    -fx-background-color: transparent;
+}
+
+.text-area.form_input .content {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10;
+}
+
+.text-area.form_input:focused .content {
+    -fx-background-color: transparent;
+}
+
+.form_button{
+    -fx-background-color: linear-gradient(#f7f7f8, #ececef);
+    -fx-text-fill: #222;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-background-insets: 0;
+    -fx-border-color: #d7d9de;
+    -fx-border-width: 1px;
+    -fx-padding: 8 12 8 12;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 4, 0.2, 0, 1);
+    -fx-min-width: 100;
+}
+
+.form_button:hover{
+    -fx-background-color: #e6e8ec;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-background-insets: 0;
+}
+
+.form_button:pressed{
+    -fx-translate-y: 1;
+    -fx-background-color: #d5d8de;
+    -fx-effect: none;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-background-insets: 0;
+}
+
+#form_deleteButton{
+    -fx-background-color: linear-gradient(#ef4444, #dc2626);
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-background-insets: 0;
+    -fx-border-color: #f2b8b8;
+    -fx-border-width: 1px;
+}
+
+#form_deleteButton:hover{
+    -fx-background-color: #b91c1c;
+    -fx-text-fill: #ffffff;
+}
+
+#form_deleteButton:pressed{
+    -fx-background-color: #991b1b;
+    -fx-text-fill: #ffffff;
+    -fx-translate-y: 1;
+    -fx-effect: none;
+}
+
+/*------------------------------------------*/
+/*                 Bug Fix                  */
+/*------------------------------------------*/
+.root{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.scroll-pane:focused,
+.border-pane:focused,
+.stack-pane:focused,
+.anchor-pane:focused,
+.pane:focused,
+.region:focused{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}

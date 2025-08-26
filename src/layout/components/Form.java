@@ -51,7 +51,7 @@ public class Form {
         createButton = createButton("New Record");
 
         HBox group = new HBox(idInput, readButton);
-        group.setSpacing(8);
+        group.setSpacing(12);
 
         Region space = new Region();
         HBox.setHgrow(space, Priority.ALWAYS);
@@ -64,13 +64,15 @@ public class Form {
 
     private void initializeBody(){
         body = new VBox();
-        body.setSpacing(12);
+        body.setSpacing(24);
         body.getStyleClass().add("form_body");
     }
 
     private void initializeFooter(){
         updateButton = createButton("Update Record");
         deleteButton = createButton("Delete Record");
+        deleteButton.setId("form_deleteButton");
+
         footer = new HBox(updateButton, deleteButton);
         footer.setSpacing(10);
         footer.getStyleClass().add("form_footer");
@@ -84,7 +86,7 @@ public class Form {
 
     private VBox createField(Label label, Node input){
         VBox field = new VBox(label, input);
-        field.setSpacing(4);
+        field.setSpacing(8);
         field.getStyleClass().add("form_field");
         return field;
     }

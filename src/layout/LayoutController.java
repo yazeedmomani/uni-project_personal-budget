@@ -36,7 +36,7 @@ public class LayoutController {
 
         setViewSettings(false);
         setCurrentView("income");
-        setCurrentMode("view");
+        setCurrentMode("edit"); // TODO change to view
         Router.route();
     }
 
