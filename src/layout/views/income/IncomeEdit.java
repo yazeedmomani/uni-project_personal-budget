@@ -119,6 +119,31 @@ public class IncomeEdit {
 
     private static void handleUpdateButton(ActionEvent e, IncomeRecord record){
         if(isInvalid()) return;
+
+        LocalDate date = LocalDate.parse(dateField.getText().trim(), Database.getDateFormat());
+        String source = sourceField.getText().trim();
+        double amount = Double.parseDouble(amountField.getText().trim());
+        String notes = notesField.getText().trim();
+
+        record.setDate(date);
+        record.setSource(source);
+        record.setAmount(amount);
+        record.setNotes(notes);
+
+        try{
+            Database.getIncomeDAO().update(record);
+
+            form.hideFooter();
+            reset();
+            Label successLabel = form.getSuccessLabel();
+            successLabel.setText("Record updated successfully");
+            form.showSuccessLabel();
+        }
+        catch (Exception exp){
+            Label errorLabel = form.getErrorLabel();
+            errorLabel.setText("Failed to update record");
+            form.showErrorLabel();
+        }
     }
 
     private static boolean isInvalid(){
