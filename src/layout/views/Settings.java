@@ -38,6 +38,19 @@ public class Settings {
         String password = passwordField.getText();
         String passwordConfirm = passwordConfirmField.getText();
 
+        if(isInvalid()) return;
+
+
+    }
+
+    private static boolean isInvalid(){
+        String name = nameField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String passwordConfirm = passwordConfirmField.getText();
+
+        clearInvalid();
+
         boolean nameAndUsernameAreEmpty = name.equals("") && username.equals("");
         boolean nameIsEmpty = name.equals("");
         boolean usernameIsEmpty = username.equals("");
@@ -54,23 +67,43 @@ public class Settings {
             usernameField.getStyleClass().add(form.getInvalidClass());
         }
         else if (nameIsEmpty){
-
+            errorLabel.setText("Enter name");
+            form.showErrorLabel();
+            nameField.getStyleClass().add(form.getInvalidClass());
         }
         else if (usernameIsEmpty){
-
+            errorLabel.setText("Enter username");
+            form.showErrorLabel();
+            usernameField.getStyleClass().add(form.getInvalidClass());
         }
         else if(onlyPasswordFilled){
-            // TODO
+            errorLabel.setText("Confirm password");
+            form.showErrorLabel();
+            passwordConfirmField.getStyleClass().add(form.getInvalidClass());
         }
         else if(onlyPasswordConfirmFilled){
-            // TODO
+            errorLabel.setText("Enter password");
+            form.showErrorLabel();
+            passwordField.getStyleClass().add(form.getInvalidClass());
         }
         else if(passwordsNotEqual) {
-            // TODO
+            errorLabel.setText("Passwords do not match");
+            form.showErrorLabel();
+            passwordField.getStyleClass().add(form.getInvalidClass());
+            passwordConfirmField.getStyleClass().add(form.getInvalidClass());
         }
         else{
-            // TODO
+            return false;
         }
+        return true;
+    }
+
+    private static void clearInvalid(){
+        form.hideErrorLabel();
+        nameField.getStyleClass().remove(form.getInvalidClass());
+        usernameField.getStyleClass().remove(form.getInvalidClass());
+        passwordField.getStyleClass().remove(form.getInvalidClass());
+        passwordConfirmField.getStyleClass().remove(form.getInvalidClass());
     }
 
     private static void initializeForm(){

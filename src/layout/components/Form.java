@@ -24,6 +24,7 @@ public class Form {
     public String getInvalidClass() {return INVALID_INPUT_CLASS;}
 
     public void showErrorLabel() {body.getChildren().addFirst(errorLabel);}
+    public void hideErrorLabel() {body.getChildren().remove(errorLabel);}
 
     public PasswordField addPasswordField(String title, String placeholder){
         PasswordField input = FormComponents.createPasswordInput(placeholder);

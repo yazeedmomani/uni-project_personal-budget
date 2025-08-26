@@ -420,7 +420,7 @@
 .form_errorLabel{
     -fx-alignment: CENTER_LEFT;
     -fx-text-fill: red;
-    -fx-font-size: 12px;
+    -fx-font-size: 14px;
     -fx-wrap-text: true;
 }
 
