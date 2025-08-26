@@ -20,6 +20,7 @@ public class Settings {
     public static ScrollPane getRoot(){
         initializeForm();
         initializeFields();
+        form.getUpdateButton().setOnAction(Settings::handleSave);
 
         card = new DashboardCard(form.getRoot());
         card.setTitle("Settings");
@@ -37,17 +38,26 @@ public class Settings {
         String password = passwordField.getText();
         String passwordConfirm = passwordConfirmField.getText();
 
-        boolean nameOrUsernameIsEmpty = name.equals("") || username.equals("");
-        boolean passwordsAreEmpty = password.equals("") && passwordConfirm.equals("");
+        boolean nameAndUsernameAreEmpty = name.equals("") && username.equals("");
+        boolean nameIsEmpty = name.equals("");
+        boolean usernameIsEmpty = username.equals("");
         boolean onlyPasswordFilled = !password.equals("") && passwordConfirm.equals("");
         boolean onlyPasswordConfirmFilled = password.equals("") && !passwordConfirm.equals("");
         boolean passwordsNotEqual = !password.equals(passwordConfirm);
 
-        if(nameOrUsernameIsEmpty){
-            // TODO
+        Label errorLabel = form.getErrorLabel();
+
+        if(nameAndUsernameAreEmpty){
+            errorLabel.setText("Enter name and username");
+            form.showErrorLabel();
+            nameField.getStyleClass().add(form.getInvalidClass());
+            usernameField.getStyleClass().add(form.getInvalidClass());
         }
-        else if(passwordsAreEmpty){
-            // TODO
+        else if (nameIsEmpty){
+
+        }
+        else if (usernameIsEmpty){
+
         }
         else if(onlyPasswordFilled){
             // TODO

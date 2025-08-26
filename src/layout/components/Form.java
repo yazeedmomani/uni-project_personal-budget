@@ -10,6 +10,8 @@ public class Form {
     private VBox body;
     private Button createButton, updateButton, readButton, deleteButton;
     private TextField idInput;
+    private Label errorLabel;
+    private final String INVALID_INPUT_CLASS = "form_invalidInput";
 
     public Button getCreateButton() {return createButton;}
     public Button getReadButton() {return readButton;}
@@ -17,6 +19,11 @@ public class Form {
     public Button getDeleteButton() {return deleteButton;}
 
     public BorderPane getRoot() {return root;}
+
+    public Label getErrorLabel() {return errorLabel;}
+    public String getInvalidClass() {return INVALID_INPUT_CLASS;}
+
+    public void showErrorLabel() {body.getChildren().addFirst(errorLabel);}
 
     public PasswordField addPasswordField(String title, String placeholder){
         PasswordField input = FormComponents.createPasswordInput(placeholder);
@@ -43,10 +50,16 @@ public class Form {
     }
 
     public Form(){
+        initializeErrorLabel();
         initializeHeader();
         initializeBody();
         initializeFooter();
         initializeRoot();
+    }
+
+    private void initializeErrorLabel(){
+        errorLabel = new Label();
+        errorLabel.getStyleClass().add("form_errorLabel");
     }
 
     private void initializeRoot(){
