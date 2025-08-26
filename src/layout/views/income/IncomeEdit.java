@@ -39,12 +39,32 @@ public class IncomeEdit {
         deleteButton = form.getDeleteButton();
 
         readButton.setOnAction(IncomeEdit::handleReadButton);
+        createButton.setOnAction(IncomeEdit::handleCreateButton);
 
         card = new DashboardCard(form.getRoot());
         dashbaord = new Dashboard();
         dashbaord.initializeFormSettings();
         dashbaord.add(card, 0, 0, 2, 3);
         return dashbaord.getRoot();
+    }
+
+    private static void handleCreateButton(ActionEvent e){
+        reset();
+        form.hideHeader();
+        updateButton.setText("Insert Record");
+        deleteButton.setText("Cancel");
+        deleteButton.setOnAction(IncomeEdit::handleCancelButton);
+        form.showFooter();
+    }
+
+    private static void handleCancelButton(ActionEvent e){
+        reset();
+        form.hideFooter();
+        updateButton.setText("Update Record");
+        updateButton.setOnAction(null);
+        deleteButton.setText("Delete Record");
+        deleteButton.setOnAction(null);
+        form.showHeader();
     }
 
     private static void handleReadButton(ActionEvent e){
@@ -106,6 +126,22 @@ public class IncomeEdit {
         form.showErrorLabel();
         idField.getStyleClass().add(form.getInvalidClass());
         return true;
+    }
+
+    private static void reset(){
+        idField.clear();
+        dateField.clear();
+        sourceField.clear();
+        amountField.clear();
+        notesField.clear();
+
+        form.hideSuccessLabel();
+        form.hideErrorLabel();
+        idField.getStyleClass().remove(form.getInvalidClass());
+        dateField.getStyleClass().remove(form.getInvalidClass());
+        sourceField.getStyleClass().remove(form.getInvalidClass());
+        amountField.getStyleClass().remove(form.getInvalidClass());
+        notesField.getStyleClass().remove(form.getInvalidClass());
     }
 
     private static void clearFields(){

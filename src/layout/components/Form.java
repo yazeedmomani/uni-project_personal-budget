@@ -34,7 +34,9 @@ public class Form {
     public void hideSuccessLabel() {body.getChildren().remove(successLabel);}
 
     public void hideFooter(){root.setBottom(null);}
+    public void hideHeader(){root.setTop(null);}
     public void showFooter(){root.setBottom(footer);}
+    public void showHeader(){root.setTop(header);}
 
     public PasswordField addPasswordField(String title, String placeholder){
         PasswordField input = FormComponents.createPasswordInput(placeholder);
