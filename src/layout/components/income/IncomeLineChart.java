@@ -6,6 +6,7 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.application.Platform;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
@@ -57,6 +58,9 @@ public class IncomeLineChart {
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Total (JOD)");
 
+        xAxis.setStyle("-fx-text-fill: #4d4d4d;");
+        yAxis.setStyle("-fx-text-fill: #4d4d4d;");
+
         LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setLegendVisible(true);
         lineChart.setCreateSymbols(true); // show points
@@ -78,6 +82,43 @@ public class IncomeLineChart {
         }
 
         lineChart.getData().addAll(totalsSeries, medianSeries);
+        // Style lines, legend, background on next pulse
+        Platform.runLater(() -> {
+            lineChart.applyCss();
+            lineChart.layout();
+
+            // Transparent plot background (inside area behind bars)
+            javafx.scene.Node plot = lineChart.lookup(".chart-plot-background");
+            if (plot != null) {
+                ((javafx.scene.layout.Region) plot).setStyle("-fx-background-color: transparent;");
+            }
+
+            // Style the series lines and data points
+            if (totalsSeries.getNode() != null) {
+                totalsSeries.getNode().setStyle("-fx-stroke: #388E3C; -fx-stroke-width: 2px;");
+                totalsSeries.getData().forEach(d -> {
+                    if (d.getNode() != null) d.getNode().setStyle("-fx-background-color: #388E3C, white;");
+                });
+            }
+            if (medianSeries.getNode() != null) {
+                medianSeries.getNode().setStyle("-fx-stroke: #8CBB8C; -fx-stroke-dash-array: 5 5; -fx-stroke-width: 2px;");
+                medianSeries.getData().forEach(d -> {
+                    if (d.getNode() != null) d.getNode().setStyle("-fx-background-color: #8CBB8C, white;");
+                });
+            }
+            // Legend symbol colors mapped to series order
+            int idx = 0;
+            for (javafx.scene.Node node : lineChart.lookupAll(".chart-legend-item-symbol")) {
+                if (idx == 0) node.setStyle("-fx-background-color: #388E3C; -fx-padding: 6px; -fx-background-radius: 30;");
+                if (idx == 1) node.setStyle("-fx-background-color: #8CBB8C; -fx-padding: 6px; -fx-background-radius: 30;");
+                idx++;
+            }
+            // Transparent legend background
+            javafx.scene.Node legend = lineChart.lookup(".chart-legend");
+            if (legend != null) {
+                ((javafx.scene.layout.Region) legend).setStyle("-fx-background-color: transparent;");
+            }
+        });
         lineChart.setMaxWidth(Double.MAX_VALUE);
         lineChart.setPrefHeight(320);
         return lineChart;

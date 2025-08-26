@@ -79,6 +79,17 @@ public class IncomeBarChart {
                     ((javafx.scene.layout.StackPane) d.getNode()).getChildren().add(label);
                 }
             }
+
+            // Legend symbol colors mapped to series order
+            for (javafx.scene.Node node : chart.lookupAll(".chart-legend-item-symbol")) {
+                node.setStyle("-fx-background-color: #388E3C; -fx-padding: 6px; -fx-background-radius: 30;");
+            }
+
+            // Transparent legend background
+            javafx.scene.Node legend = chart.lookup(".chart-legend");
+            if (legend != null) {
+                ((javafx.scene.layout.Region) legend).setStyle("-fx-background-color: transparent;");
+            }
         });
         chart.setMaxWidth(Double.MAX_VALUE);
         chart.setPrefHeight(320);
