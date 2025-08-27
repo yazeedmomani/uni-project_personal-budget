@@ -37,22 +37,23 @@ public class Form {
     public void reset(){
         TextInputControl[] inputs = this.inputs.toArray(new TextInputControl[0]);
         clear(inputs);
-        removeMessage();
-        setInvalid(false, inputs);
+        clearAlerts();
     }
 
     public void setMessage(String type, String text) {
         message.setText(text);
-        if(type.equals("error")){message.setId("form_errorMessage");}
+        if(type.equals("error")) message.setId("form_errorMessage");
         if(type.equals("success")) message.setId("form_successMessage");
         body.getChildren().addFirst(message);
     }
 
-    public void removeMessage() {body.getChildren().remove(message);}
+    public void alert(TextInputControl... inputs) {
+        for(Node input : inputs) input.getStyleClass().add("form_invalidInput");
+    }
 
-    public void setInvalid(boolean isInvalid, TextInputControl... inputs) {
-        if(isInvalid) for(Node input : inputs) input.getStyleClass().add("form_invalidInput");
-        if(!isInvalid) for(Node input : inputs) input.getStyleClass().remove("form_invalidInput");
+    public void clearAlerts() {
+        body.getChildren().remove(message);
+        for(Node input : inputs) input.getStyleClass().remove("form_invalidInput");
     }
 
     public void hideFooter(){root.setBottom(null);}
@@ -109,6 +110,8 @@ public class Form {
         idInput = FormComponents.createInput("ID");
         readButton = FormComponents.createButton("Retrieve Record");
         createButton = FormComponents.createButton("New Record");
+
+        inputs.add(idInput);
 
         HBox group = new HBox(idInput, readButton);
         group.setSpacing(12);

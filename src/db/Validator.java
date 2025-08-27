@@ -14,7 +14,7 @@ public class Validator {
 
         for(TextInputControl input : inputs) {
             if (form.getString(input).isEmpty()) {
-                form.setInvalid(true, input);
+                form.alert(input);
                 hasError = true;
             }
         }
@@ -30,7 +30,7 @@ public class Validator {
             try {
                 LocalDate.parse(form.getString(input), Database.getDateFormat());
             } catch (DateTimeParseException e) {
-                form.setInvalid(true, input);
+                form.alert(input);
                 hasError = true;
             }
         }
@@ -46,7 +46,7 @@ public class Validator {
             try {
                 form.getDouble(input);
             } catch (NumberFormatException e) {
-                form.setInvalid(true, input);
+                form.alert(input);
                 hasError = true;
             }
         }
@@ -63,7 +63,7 @@ public class Validator {
         for(TextInputControl input : inputs){
             double number = form.getDouble(input);
             if(number < 0){
-                form.setInvalid(true, input);
+                form.alert(input);
                 hasError = true;
             }
         }
@@ -80,7 +80,7 @@ public class Validator {
             try {
                 form.getInt(input);
             } catch (NumberFormatException e) {
-                form.setInvalid(true, input);
+                form.alert(input);
                 hasError = true;
             }
         }

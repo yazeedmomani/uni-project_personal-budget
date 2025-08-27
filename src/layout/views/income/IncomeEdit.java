@@ -107,8 +107,7 @@ public class IncomeEdit {
     }
 
     private static void handleDeleteButton(ActionEvent e, IncomeRecord record){
-        form.removeMessage();
-        form.setInvalid(false, idField, dateField, sourceField, amountField, notesField);
+        form.clearAlerts();
 
         try{
             Database.getIncomeDAO().delete(record);
@@ -146,8 +145,7 @@ public class IncomeEdit {
     }
 
     private static boolean isInvalid(){
-        form.removeMessage();
-        form.setInvalid(false, idField, dateField, sourceField, amountField, notesField);
+        form.clearAlerts();
 
         if (validator.assertNotEmpty(dateField, sourceField, amountField)) return true;
         if (validator.assertDateFormat(dateField)) return true;
@@ -157,11 +155,11 @@ public class IncomeEdit {
     }
 
     private static boolean isInvalidId(){
-        form.removeMessage();
-        form.setInvalid(false, idField);
+        form.clearAlerts();
 
         if(validator.assertNotEmpty(idField)) return true;
         if(validator.assertInteger(idField)) return true;
+        if(validator.assertPositiveNumber(idField)) return true;
 
         return false;
     }

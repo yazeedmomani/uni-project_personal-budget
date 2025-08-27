@@ -62,7 +62,7 @@ public class Settings {
         String password = passwordField.getText().trim();
         String passwordConfirm = passwordConfirmField.getText().trim();
 
-        clearFormMessages();
+        form.clearAlerts();
 
         boolean nameAndUsernameAreEmpty = name.equals("") && username.equals("");
         boolean nameIsEmpty = name.equals("");
@@ -73,37 +73,32 @@ public class Settings {
 
         if(nameAndUsernameAreEmpty){
             form.setMessage("error","Enter name and username");
-            form.setInvalid(true, nameField, usernameField);
+            form.alert(nameField, usernameField);
         }
         else if (nameIsEmpty){
             form.setMessage("error","Enter name");
-            form.setInvalid(true, nameField);
+            form.alert(nameField);
         }
         else if (usernameIsEmpty){
             form.setMessage("error","Enter username");
-            form.setInvalid(true, usernameField);
+            form.alert(usernameField);
         }
         else if(onlyPasswordFilled){
             form.setMessage("error","Confirm password");
-            form.setInvalid(true, passwordConfirmField);
+            form.alert(passwordConfirmField);
         }
         else if(onlyPasswordConfirmFilled){
             form.setMessage("error","Enter password");
-            form.setInvalid(true, passwordField);
+            form.alert(passwordField);
         }
         else if(passwordsNotEqual) {
             form.setMessage("error","Passwords do not match");
-            form.setInvalid(true, passwordField, passwordConfirmField);
+            form.alert(passwordField, passwordConfirmField);
         }
         else{
             return false;
         }
         return true;
-    }
-
-    private static void clearFormMessages(){
-        form.removeMessage();
-        form.setInvalid(false, nameField, usernameField, passwordField, passwordConfirmField);
     }
 
     private static void initializeForm(){
