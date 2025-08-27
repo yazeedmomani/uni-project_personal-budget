@@ -7,6 +7,8 @@ import javafx.scene.layout.*;
 import org.w3c.dom.Text;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Form {
     private BorderPane root;
@@ -15,6 +17,7 @@ public class Form {
     private Button createButton, updateButton, readButton, deleteButton;
     private TextField idInput;
     private Label message;
+    private List<TextInputControl> inputs = new ArrayList<>();
 
     public TextField getIdInput() {return idInput;}
     public Button getCreateButton() {return createButton;}
@@ -31,7 +34,8 @@ public class Form {
 
     public void clear(TextInputControl... inputs){for(TextInputControl input : inputs) input.clear();}
 
-    public void reset(TextInputControl... inputs){
+    public void reset(){
+        TextInputControl[] inputs = this.inputs.toArray(new TextInputControl[0]);
         clear(inputs);
         removeMessage();
         setInvalid(false, inputs);
@@ -134,7 +138,8 @@ public class Form {
         footer.getStyleClass().add("form_footer");
     }
 
-    private void addField(String title, Node input){
+    private void addField(String title, TextInputControl input){
+        inputs.add(input);
         Label label = FormComponents.createLabel(title);
         VBox field = FormComponents.createField(label, input);
         body.getChildren().add(field);

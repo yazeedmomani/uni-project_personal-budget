@@ -167,7 +167,7 @@ public class IncomeEdit {
     }
 
     private static void enterCreateMode(){
-        form.reset(idField, dateField, sourceField, amountField, notesField);
+        form.reset();
         form.hideHeader();
         updateButton.setText("Insert Record");
         updateButton.setOnAction(IncomeEdit::handleInsertButton);
@@ -177,7 +177,7 @@ public class IncomeEdit {
     }
 
     private static void exitCreateMode(){
-        form.reset(idField, dateField, sourceField, amountField, notesField);
+        form.reset();
         form.hideFooter();
         updateButton.setText("Update Record");
         updateButton.setOnAction(null);
@@ -198,6 +198,6 @@ public class IncomeEdit {
 
     private static void exitUpdateMode(){
         form.hideFooter();
-        form.reset(idField, dateField, sourceField, amountField, notesField);
+        form.reset();
     }
 }
