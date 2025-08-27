@@ -93,14 +93,10 @@ public class IncomeEdit {
             deleteButton.setOnAction(null);
             form.showHeader();
 
-            Label successLabel = form.getSuccessLabel();
-            successLabel.setText("Record inserted successfully");
-            form.showSuccessLabel();
+            form.setMessage("success","Record inserted successfully");
         }
         catch (Exception exp){
-            Label errorLabel = form.getErrorLabel();
-            errorLabel.setText("Failed to insert record");
-            form.showErrorLabel();
+            form.setMessage("error","Failed to insert record");
         }
     }
 
@@ -112,9 +108,7 @@ public class IncomeEdit {
         try{
             IncomeRecord record = Database.getIncomeDAO().get(id);
             if(record == null){
-                Label errorLabel = form.getErrorLabel();
-                errorLabel.setText("Record does not exist");
-                form.showErrorLabel();
+                form.setMessage("error","Record does not exist");
                 form.hideFooter();
                 return;
             }
@@ -127,9 +121,7 @@ public class IncomeEdit {
             notesField.setText(record.getNotes());
         }
         catch (Exception exp){
-            Label errorLabel = form.getErrorLabel();
-            errorLabel.setText("Failed to retrieve record");
-            form.showErrorLabel();
+            form.setMessage("error","Failed to retrieve record");
         }
     }
 
@@ -140,14 +132,10 @@ public class IncomeEdit {
             Database.getIncomeDAO().delete(record);
             form.hideFooter();
             reset();
-            Label successLabel = form.getSuccessLabel();
-            successLabel.setText("Record deleted successfully");
-            form.showSuccessLabel();
+            form.setMessage("success","Record deleted successfully");
         }
         catch (Exception exp){
-            Label errorLabel = form.getErrorLabel();
-            errorLabel.setText("Failed to delete record");
-            form.showErrorLabel();
+            form.setMessage("error","Failed to delete record");
         }
     }
 
@@ -169,14 +157,10 @@ public class IncomeEdit {
 
             form.hideFooter();
             reset();
-            Label successLabel = form.getSuccessLabel();
-            successLabel.setText("Record updated successfully");
-            form.showSuccessLabel();
+            form.setMessage("success","Record updated successfully");
         }
         catch (Exception exp){
-            Label errorLabel = form.getErrorLabel();
-            errorLabel.setText("Failed to update record");
-            form.showErrorLabel();
+            form.setMessage("error","Failed to update record");
         }
     }
 
@@ -206,31 +190,28 @@ public class IncomeEdit {
         }
         boolean amountIsNegative = (amountValue != null && amountValue < 0);
 
-        Label errorLabel = form.getErrorLabel();
-
         if(dateIsEmpty || sourceIsEmpty || amountIsEmpty){
-            errorLabel.setText("Please fill in the required fields");
-            if(dateIsEmpty) setInvalid(true, dateField);
-            if(sourceIsEmpty) setInvalid(true, sourceField);
-            if(amountIsEmpty) setInvalid(true, amountField);
+            form.setMessage("error","Please fill in the required fields");
+            if(dateIsEmpty) form.setInvalid(true, dateField);
+            if(sourceIsEmpty) form.setInvalid(true, sourceField);
+            if(amountIsEmpty) form.setInvalid(true, amountField);
         }
         else if(dateWrongFormat){
-            errorLabel.setText("Invalid date format. Use YYYY-MM-DD");
-            setInvalid(true, dateField);
+            form.setMessage("error","Invalid date format. Use YYYY-MM-DD");
+            form.setInvalid(true, dateField);
         }
         else if(amountNotNumber){
-            errorLabel.setText("Invalid amount. Use numbers only");
-            setInvalid(true, amountField);
+            form.setMessage("error","Invalid amount. Use numbers only");
+            form.setInvalid(true, amountField);
         }
         else if(amountIsNegative){
-            errorLabel.setText("Amount must be zero or greater");
-            setInvalid(true, amountField);
+            form.setMessage("error","Amount must be zero or greater");
+            form.setInvalid(true, amountField);
         }
         else{
             return false;
         }
 
-        form.showErrorLabel();
         return true;
     }
 
@@ -238,9 +219,8 @@ public class IncomeEdit {
         String id = idField.getText().trim();
 
         clearFields(dateField, sourceField, amountField, notesField);
-        form.hideSuccessLabel();
-        form.hideErrorLabel();
-        setInvalid(false, idField);
+        form.removeMessage();
+        form.setInvalid(false, idField);
 
         boolean fieldIsEmpty = id.equals("");
         boolean inputNotNumber;
@@ -251,20 +231,17 @@ public class IncomeEdit {
             inputNotNumber = true;
         }
 
-        Label errorLabel = form.getErrorLabel();
-
         if(fieldIsEmpty){
-            errorLabel.setText("Enter ID");
+            form.setMessage("error", "Enter ID");
         }
         else if(inputNotNumber){
-            errorLabel.setText("ID must be a number");
+            form.setMessage("error","ID must be a number");
         }
         else{
             return false;
         }
 
-        form.showErrorLabel();
-        setInvalid(true, idField);
+        form.setInvalid(true, idField);
         return true;
     }
 
@@ -278,15 +255,9 @@ public class IncomeEdit {
         resetFormMessages();
     }
 
-    private static void setInvalid(boolean isInvalid, TextInputControl... inputs){
-        if(isInvalid) for(Node input : inputs) input.getStyleClass().add(form.getInvalidClass());
-        if(!isInvalid) for(Node input : inputs) input.getStyleClass().remove(form.getInvalidClass());
-    }
-
     private static void resetFormMessages(){
-        form.hideSuccessLabel();
-        form.hideErrorLabel();
-        setInvalid(false, idField, dateField, sourceField, amountField, notesField);
+        form.removeMessage();
+        form.setInvalid(false, idField, dateField, sourceField, amountField, notesField);
     }
 
     private static void clearFields(TextInputControl... inputs){

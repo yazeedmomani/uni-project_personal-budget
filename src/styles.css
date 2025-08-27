@@ -417,18 +417,19 @@
     -fx-effect: none;
 }
 
-.form_successLabel{
+.form_message{
     -fx-alignment: CENTER_LEFT;
     -fx-text-fill: green;
     -fx-font-size: 14px;
     -fx-wrap-text: true;
 }
 
-.form_errorLabel{
-    -fx-alignment: CENTER_LEFT;
+#form_errorMessage{
     -fx-text-fill: red;
-    -fx-font-size: 14px;
-    -fx-wrap-text: true;
+}
+
+#form_successMessage{
+    -fx-text-fill: green;
 }
 
 .form_invalidInput{

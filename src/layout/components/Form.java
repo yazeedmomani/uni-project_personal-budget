@@ -10,8 +10,7 @@ public class Form {
     private VBox body;
     private Button createButton, updateButton, readButton, deleteButton;
     private TextField idInput;
-    private Label errorLabel, successLabel;
-    private final String INVALID_INPUT_CLASS = "form_invalidInput";
+    private Label message;
 
     public TextField getIdInput() {return idInput;}
     public Button getCreateButton() {return createButton;}
@@ -21,16 +20,19 @@ public class Form {
 
     public BorderPane getRoot() {return root;}
 
-    public Label getErrorLabel() {return errorLabel;}
-    public String getInvalidClass() {return INVALID_INPUT_CLASS;}
+    public void setMessage(String type, String text) {
+        message.setText(text);
+        if(type.equals("error")){message.setId("form_errorMessage");}
+        if(type.equals("success")) message.setId("form_successMessage");
+        body.getChildren().addFirst(message);
+    }
 
-    public void showErrorLabel() {body.getChildren().addFirst(errorLabel);}
-    public void hideErrorLabel() {body.getChildren().remove(errorLabel);}
+    public void removeMessage() {body.getChildren().remove(message);}
 
-    public Label getSuccessLabel() {return successLabel;}
-
-    public void showSuccessLabel() {body.getChildren().addFirst(successLabel);}
-    public void hideSuccessLabel() {body.getChildren().remove(successLabel);}
+    public void setInvalid(boolean isInvalid, TextInputControl... inputs) {
+        if(isInvalid) for(Node input : inputs) input.getStyleClass().add("form_invalidInput");
+        if(!isInvalid) for(Node input : inputs) input.getStyleClass().remove("form_invalidInput");
+    }
 
     public void hideFooter(){root.setBottom(null);}
     public void hideHeader(){root.setTop(null);}
@@ -62,18 +64,12 @@ public class Form {
     }
 
     public Form(){
-        initializeLabels();
+        message = new Label();
+        message.getStyleClass().add("form_message");
         initializeHeader();
         initializeBody();
         initializeFooter();
         initializeRoot();
-    }
-
-    private void initializeLabels(){
-        errorLabel = new Label();
-        errorLabel.getStyleClass().add("form_errorLabel");
-        successLabel = new Label();
-        successLabel.getStyleClass().add("form_successLabel");
     }
 
     private void initializeRoot(){

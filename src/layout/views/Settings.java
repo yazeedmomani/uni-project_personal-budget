@@ -48,15 +48,11 @@ public class Settings {
             Database.updateUser(updatedUser);
             Database.setCurrentUser(updatedUser);
             TopMenu.reloadWelcomeLabel();
-            Label successLabel = form.getSuccessLabel();
-            successLabel.setText("Changes saved successfully");
-            form.showSuccessLabel();
+            form.setMessage("success","Changes saved successfully");
         }
         catch (Exception exp){
             System.out.println("Settings Error: " + exp.getMessage());
-            Label errorLabel = form.getErrorLabel();
-            errorLabel.setText("Couldn't save changes");
-            form.showErrorLabel();
+            form.setMessage("error","Couldn't save changes");
         }
     }
 
@@ -75,39 +71,29 @@ public class Settings {
         boolean onlyPasswordConfirmFilled = password.equals("") && !passwordConfirm.equals("");
         boolean passwordsNotEqual = !password.equals(passwordConfirm);
 
-        Label errorLabel = form.getErrorLabel();
-
         if(nameAndUsernameAreEmpty){
-            errorLabel.setText("Enter name and username");
-            form.showErrorLabel();
-            nameField.getStyleClass().add(form.getInvalidClass());
-            usernameField.getStyleClass().add(form.getInvalidClass());
+            form.setMessage("error","Enter name and username");
+            form.setInvalid(true, nameField, usernameField);
         }
         else if (nameIsEmpty){
-            errorLabel.setText("Enter name");
-            form.showErrorLabel();
-            nameField.getStyleClass().add(form.getInvalidClass());
+            form.setMessage("error","Enter name");
+            form.setInvalid(true, nameField);
         }
         else if (usernameIsEmpty){
-            errorLabel.setText("Enter username");
-            form.showErrorLabel();
-            usernameField.getStyleClass().add(form.getInvalidClass());
+            form.setMessage("error","Enter username");
+            form.setInvalid(true, usernameField);
         }
         else if(onlyPasswordFilled){
-            errorLabel.setText("Confirm password");
-            form.showErrorLabel();
-            passwordConfirmField.getStyleClass().add(form.getInvalidClass());
+            form.setMessage("error","Confirm password");
+            form.setInvalid(true, passwordConfirmField);
         }
         else if(onlyPasswordConfirmFilled){
-            errorLabel.setText("Enter password");
-            form.showErrorLabel();
-            passwordField.getStyleClass().add(form.getInvalidClass());
+            form.setMessage("error","Enter password");
+            form.setInvalid(true, passwordField);
         }
         else if(passwordsNotEqual) {
-            errorLabel.setText("Passwords do not match");
-            form.showErrorLabel();
-            passwordField.getStyleClass().add(form.getInvalidClass());
-            passwordConfirmField.getStyleClass().add(form.getInvalidClass());
+            form.setMessage("error","Passwords do not match");
+            form.setInvalid(true, passwordField, passwordConfirmField);
         }
         else{
             return false;
@@ -116,12 +102,8 @@ public class Settings {
     }
 
     private static void clearFormMessages(){
-        form.hideSuccessLabel();
-        form.hideErrorLabel();
-        nameField.getStyleClass().remove(form.getInvalidClass());
-        usernameField.getStyleClass().remove(form.getInvalidClass());
-        passwordField.getStyleClass().remove(form.getInvalidClass());
-        passwordConfirmField.getStyleClass().remove(form.getInvalidClass());
+        form.removeMessage();
+        form.setInvalid(false, nameField, usernameField, passwordField, passwordConfirmField);
     }
 
     private static void initializeForm(){
