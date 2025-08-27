@@ -35,7 +35,7 @@ public class Settings {
 
         updateButton = form.getUpdateButton();
         updateButton.setText("Save");
-        updateButton.setOnAction(Settings::handleSave);
+        updateButton.setOnAction(Settings::clickHandler);
 
         nameField = form.addField("Name", "Name");
         usernameField = form.addField("Username", "Username");
@@ -54,13 +54,17 @@ public class Settings {
         return dashbaord.getRoot();
     }
 
-    private static void handleSave(ActionEvent e){
-        String name = nameField.getText();
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+    private static void clickHandler(ActionEvent e){
+        form.clearAlerts();
 
-        if(isInvalid()) return;
-        if(password.equals("")) {password = user.getPassword();}
+        if(validator.assertNotEmpty(usernameField, nameField)) return;
+        if(validator.assertConfirmation(passwordField, passwordConfirmField)) return;
+
+        String name = form.getString(nameField);
+        String username = form.getString(usernameField);
+        String password = form.getString(passwordField);
+
+        if(password.isEmpty()) {password = user.getPassword();}
 
         User updatedUser = new User(user.getId(), name, username, password);
 
@@ -74,58 +78,5 @@ public class Settings {
             System.out.println("Settings Error: " + exp.getMessage());
             form.setAlertMessage("error","Couldn't save changes");
         }
-    }
-
-    private static boolean isInvalid(){
-        String name = nameField.getText().trim();
-        String username = usernameField.getText().trim();
-        String password = passwordField.getText().trim();
-        String passwordConfirm = passwordConfirmField.getText().trim();
-
-        form.clearAlerts();
-
-        boolean nameAndUsernameAreEmpty = name.equals("") && username.equals("");
-        boolean nameIsEmpty = name.equals("");
-        boolean usernameIsEmpty = username.equals("");
-        boolean onlyPasswordFilled = !password.equals("") && passwordConfirm.equals("");
-        boolean onlyPasswordConfirmFilled = password.equals("") && !passwordConfirm.equals("");
-        boolean passwordsNotEqual = !password.equals(passwordConfirm);
-
-        if(nameAndUsernameAreEmpty){
-            form.setAlertMessage("error","Enter name and username");
-            form.alert(nameField, usernameField);
-        }
-        else if (nameIsEmpty){
-            form.setAlertMessage("error","Enter name");
-            form.alert(nameField);
-        }
-        else if (usernameIsEmpty){
-            form.setAlertMessage("error","Enter username");
-            form.alert(usernameField);
-        }
-        else if(onlyPasswordFilled){
-            form.setAlertMessage("error","Confirm password");
-            form.alert(passwordConfirmField);
-        }
-        else if(onlyPasswordConfirmFilled){
-            form.setAlertMessage("error","Enter password");
-            form.alert(passwordField);
-        }
-        else if(passwordsNotEqual) {
-            form.setAlertMessage("error","Passwords do not match");
-            form.alert(passwordField, passwordConfirmField);
-        }
-        else{
-            return false;
-        }
-        return true;
-    }
-
-    private static void initializeForm(){
-
-    }
-
-    private static void initializeFields(){
-
     }
 }

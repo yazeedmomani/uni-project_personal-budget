@@ -76,6 +76,7 @@ public class Validator {
         if(assertNumber(inputs)) return true;
 
         boolean hasError = false;
+
         for(TextInputControl input : inputs){
             try {
                 form.getInt(input);
@@ -85,6 +86,34 @@ public class Validator {
             }
         }
         if(hasError) form.setAlertMessage("error","Please enter a whole number");
+
+        return hasError;
+    }
+
+    public boolean assertConfirmation(TextInputControl... inputs){
+        boolean hasError = false;
+        int emptyInputs = 0;
+
+        // ASSERT ALL EMPTY OR NON EMPTY
+        for(TextInputControl input : inputs)
+            if (form.getString(input).isEmpty())
+                emptyInputs++;
+        if(emptyInputs < inputs.length && emptyInputs != 0) hasError = true;
+
+        if(hasError) for(TextInputControl input : inputs) form.alert(input);
+        if(hasError) form.setAlertMessage("error","Please fill in both fields");
+        if(hasError) return hasError;
+
+        // ASSERT EQUALITY
+        String firstInput = form.getString(inputs[0]);
+
+        for(TextInputControl input : inputs)
+            if (!form.getString(input).equals(firstInput))
+                hasError = true;
+
+        if(hasError) for(TextInputControl input : inputs) form.alert(input);
+        if(hasError) form.setAlertMessage("error","Values do not match");
+        if(hasError) return hasError;
 
         return hasError;
     }
