@@ -58,5 +58,18 @@ public class Validator {
         return false;
     }
 
+    public boolean checkInteger(TextInputControl input){
+        if(checkNumber(input)) return false;
+
+        try {
+            form.getInt(input);
+            return false;
+        } catch (NumberFormatException e) {
+            form.setMessage("error","Please enter a whole number");
+            form.setInvalid(true, input);
+            return true;
+        }
+    }
+
     public Validator(Form form) {this.form = form;}
 }

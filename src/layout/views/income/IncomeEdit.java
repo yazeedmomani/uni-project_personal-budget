@@ -156,32 +156,13 @@ public class IncomeEdit {
     }
 
     private static boolean isInvalidId(){
-        String id = form.getString(idField);
-
         form.removeMessage();
         form.setInvalid(false, idField);
 
-        boolean fieldIsEmpty = id.equals("");
-        boolean inputNotNumber;
-        try {
-            Integer.parseInt(id);
-            inputNotNumber = false;
-        } catch (NumberFormatException e) {
-            inputNotNumber = true;
-        }
+        if(validator.checkNotEmpty(idField)) return true;
+        if(validator.checkInteger(idField)) return true;
 
-        if(fieldIsEmpty){
-            form.setMessage("error", "Enter ID");
-        }
-        else if(inputNotNumber){
-            form.setMessage("error","ID must be a number");
-        }
-        else{
-            return false;
-        }
-
-        form.setInvalid(true, idField);
-        return true;
+        return false;
     }
 
     private static void enterCreateMode(){
