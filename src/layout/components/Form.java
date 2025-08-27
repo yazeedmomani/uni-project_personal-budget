@@ -19,19 +19,26 @@ public class Form {
     private Label alertMessage;
     private List<TextInputControl> inputs = new ArrayList<>();
 
+    // GETTERS
     public TextField getIdInput() {return idInput;}
     public Button getCreateButton() {return createButton;}
     public Button getReadButton() {return readButton;}
     public Button getUpdateButton() {return updateButton;}
     public Button getDeleteButton() {return deleteButton;}
 
+    public HBox getHeader() {return header;}
+    public VBox getBody() {return body;}
+    public HBox getFooter() {return footer;}
+
     public BorderPane getRoot() {return root;}
 
+    // GET FROM INPUT
     public String getString(TextInputControl input){return input.getText().trim();}
     public int getInt(TextInputControl input){return Integer.parseInt(getString(input));}
     public double getDouble(TextInputControl input){return Double.parseDouble(getString(input));}
     public LocalDate getLocalDate(TextInputControl input){return LocalDate.parse(getString(input), Database.getDateFormat());}
 
+    // RESET FORM / CLEAR INPUTS
     public void clear(TextInputControl... inputs){for(TextInputControl input : inputs) input.clear();}
 
     public void reset(){
@@ -40,6 +47,7 @@ public class Form {
         clearAlerts();
     }
 
+    // ALERTS
     public void setAlertMessage(String type, String text) {
         alertMessage.setText(text);
         if(type.equals("error")) alertMessage.setId("form_errorMessage");
@@ -56,11 +64,14 @@ public class Form {
         for(Node input : inputs) input.getStyleClass().remove("form_invalidInput");
     }
 
+    // FOOTER/HEADER VISIBILITY
     public void hideFooter(){root.setBottom(null);}
-    public void hideHeader(){root.setTop(null);}
     public void showFooter(){root.setBottom(footer);}
+
+    public void hideHeader(){root.setTop(null);}
     public void showHeader(){root.setTop(header);}
 
+    // CREATE FIELDS PUBLIC
     public PasswordField addPasswordField(String title, String placeholder){
         PasswordField input = FormComponents.createPasswordInput(placeholder);
         addField(title, input);
@@ -79,21 +90,28 @@ public class Form {
         return input;
     }
 
+    // TODO REMOVE
     public void initializeFormSettings(){
         root.setTop(null);
+
         footer.getChildren().remove(deleteButton);
+
         updateButton.setText("Save");
     }
 
+    // CONSTRUCTOR
     public Form(){
         alertMessage = new Label();
-        alertMessage.getStyleClass().add("form_message");
+        alertMessage.getStyleClass().add("form_alertMessage");
+
         initializeHeader();
         initializeBody();
         initializeFooter();
+
         initializeRoot();
     }
 
+    // INITIALIZE LAYOUTS
     private void initializeRoot(){
         root = new BorderPane();
 
@@ -127,6 +145,7 @@ public class Form {
 
     private void initializeBody(){
         body = new VBox();
+
         body.setSpacing(24);
         body.getStyleClass().add("form_body");
     }
@@ -134,17 +153,22 @@ public class Form {
     private void initializeFooter(){
         updateButton = FormComponents.createButton("Update Record");
         deleteButton = FormComponents.createButton("Delete Record");
+
         deleteButton.setId("form_deleteButton");
 
         footer = new HBox(updateButton, deleteButton);
+
         footer.setSpacing(10);
         footer.getStyleClass().add("form_footer");
     }
 
+    // CREATE FIELDS PRIVATE
     private void addField(String title, TextInputControl input){
         inputs.add(input);
+
         Label label = FormComponents.createLabel(title);
         VBox field = FormComponents.createField(label, input);
+
         body.getChildren().add(field);
     }
 }

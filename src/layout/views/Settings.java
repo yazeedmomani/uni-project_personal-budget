@@ -103,7 +103,9 @@ public class Settings {
 
     private static void initializeForm(){
         form = new Form();
-        form.initializeFormSettings();
+        form.getRoot().setTop(null);
+        form.getFooter().getChildren().remove(form.getDeleteButton());
+        form.getUpdateButton().setText("Save");
         form.showFooter();
 
         nameField = form.addField("Name", "Name");

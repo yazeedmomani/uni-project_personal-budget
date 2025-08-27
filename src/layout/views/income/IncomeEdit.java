@@ -99,6 +99,7 @@ public class IncomeEdit {
     private static void buttonHandler(ActionEvent e){
         Object target = e.getTarget();
 
+        // RETRIEVE RECORD
         if(target.equals(readButton)){
             isCreateMode = false;
 
@@ -124,6 +125,8 @@ public class IncomeEdit {
                 form.setAlertMessage("error","Failed to retrieve record");
             }
         }
+
+        // UPDATE RECORD
         if(target.equals(updateButton) && !isCreateMode){
             form.clearAlerts();
 
@@ -151,6 +154,8 @@ public class IncomeEdit {
                 form.setAlertMessage("error","Failed to update record");
             }
         }
+
+        // DELETE RECORD
         if(target.equals(deleteButton) && !isCreateMode){
             form.clearAlerts();
 
@@ -164,10 +169,14 @@ public class IncomeEdit {
                 form.setAlertMessage("error","Failed to delete record");
             }
         }
+
+        // NEW RECORD
         if(target.equals(createButton)){
             isCreateMode = true;
             enterCreateMode();
         }
+
+        // INSERT RECORD
         if(target.equals(updateButton) && isCreateMode){
             form.clearAlerts();
 
@@ -192,6 +201,8 @@ public class IncomeEdit {
                 form.setAlertMessage("error","Failed to insert record");
             }
         }
+
+        // CANCEL
         if(target.equals(deleteButton) && isCreateMode){
             exitCreateMode();
         }

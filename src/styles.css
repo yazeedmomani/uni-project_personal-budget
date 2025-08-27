@@ -417,7 +417,7 @@
     -fx-effect: none;
 }
 
-.form_message{
+.form_alertMessage{
     -fx-alignment: CENTER_LEFT;
     -fx-text-fill: green;
     -fx-font-size: 14px;
