@@ -1,6 +1,7 @@
 package layout.views.income;
 
 import db.Database;
+import db.Validator;
 import db.models.IncomeRecord;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -24,12 +25,14 @@ public class IncomeEdit {
     private static Dashboard dashbaord;
     private static DashboardCard card;
     private static Form form;
+    private static Validator validator;
     private static TextField idField, dateField, sourceField, amountField;
     private static TextArea notesField;
     private static Button createButton, readButton, updateButton, deleteButton;
 
     public static ScrollPane getRoot(){
         form = new Form();
+        validator = new Validator(form);
 
         idField = form.getIdInput();
         dateField = form.addField("Date", "YYYY-MM-DD");
@@ -149,7 +152,6 @@ public class IncomeEdit {
         form.removeMessage();
         form.setInvalid(false, idField, dateField, sourceField, amountField, notesField);
 
-        boolean dateIsEmpty = date.equals("");
         boolean dateWrongFormat;
         try {
             LocalDate.parse(date, Database.getDateFormat());
@@ -157,8 +159,6 @@ public class IncomeEdit {
         } catch (DateTimeParseException e) {
             dateWrongFormat = true;
         }
-        boolean sourceIsEmpty = source.equals("");
-        boolean amountIsEmpty = amount.equals("");
         boolean amountNotNumber = false;
         Double amountValue = null;
         try {
@@ -168,13 +168,9 @@ public class IncomeEdit {
         }
         boolean amountIsNegative = (amountValue != null && amountValue < 0);
 
-        if(dateIsEmpty || sourceIsEmpty || amountIsEmpty){
-            form.setMessage("error","Please fill in the required fields");
-            if(dateIsEmpty) form.setInvalid(true, dateField);
-            if(sourceIsEmpty) form.setInvalid(true, sourceField);
-            if(amountIsEmpty) form.setInvalid(true, amountField);
-        }
-        else if(dateWrongFormat){
+        if (validator.checkNotEmpty(dateField, sourceField, amountField)) return true;
+
+        if(dateWrongFormat){
             form.setMessage("error","Invalid date format. Use YYYY-MM-DD");
             form.setInvalid(true, dateField);
         }
