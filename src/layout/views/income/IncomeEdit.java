@@ -29,6 +29,8 @@ public class IncomeEdit {
     private static TextField idField, dateField, sourceField, amountField;
     private static TextArea notesField;
     private static Button createButton, readButton, updateButton, deleteButton;
+    private static boolean isCreateMode;
+    private static IncomeRecord record;
 
     public static ScrollPane getRoot(){
         form = new Form();
@@ -45,8 +47,10 @@ public class IncomeEdit {
         updateButton = form.getUpdateButton();
         deleteButton = form.getDeleteButton();
 
-        readButton.setOnAction(IncomeEdit::handleReadButton);
-        createButton.setOnAction(IncomeEdit::handleCreateButton);
+        createButton.setOnAction(IncomeEdit::buttonHandler);
+        readButton.setOnAction(IncomeEdit::buttonHandler);
+        updateButton.setOnAction(IncomeEdit::buttonHandler);
+        deleteButton.setOnAction(IncomeEdit::buttonHandler);
 
         card = new DashboardCard(form.getRoot());
         dashbaord = new Dashboard();
@@ -93,7 +97,6 @@ public class IncomeEdit {
 
         try{
             IncomeRecord record = Database.getIncomeDAO().get(id);
-            System.out.println(record);
             if(record == null){
                 exitUpdateMode();
                 form.setAlertMessage("error","Record does not exist");
@@ -168,9 +171,7 @@ public class IncomeEdit {
         form.reset();
         form.hideHeader();
         updateButton.setText("Insert Record");
-        updateButton.setOnAction(IncomeEdit::handleInsertButton);
         deleteButton.setText("Cancel");
-        deleteButton.setOnAction(IncomeEdit::handleCancelButton);
         form.showFooter();
     }
 
@@ -178,15 +179,11 @@ public class IncomeEdit {
         form.reset();
         form.hideFooter();
         updateButton.setText("Update Record");
-        updateButton.setOnAction(null);
         deleteButton.setText("Delete Record");
-        deleteButton.setOnAction(null);
         form.showHeader();
     }
 
     private static void enterUpdateMode(IncomeRecord record){
-        deleteButton.setOnAction(deleteEvent -> handleDeleteButton(deleteEvent, record));
-        updateButton.setOnAction(updateEvent -> handleUpdateButton(updateEvent, record));
         dateField.setText(record.getDate().toString());
         sourceField.setText(record.getSource());
         amountField.setText(String.valueOf(record.getAmount()));
@@ -197,5 +194,94 @@ public class IncomeEdit {
     private static void exitUpdateMode(){
         form.hideFooter();
         form.reset();
+    }
+
+    private static void buttonHandler(ActionEvent e){
+        Object target = e.getTarget();
+
+        if(target.equals(readButton)){
+            isCreateMode = false;
+            form.clear(dateField, sourceField, amountField, notesField);
+
+            if(isInvalidId()) return;
+
+            int id = form.getInt(idField);
+
+            try{
+                record = Database.getIncomeDAO().get(id);
+                if(record == null){
+                    exitUpdateMode();
+                    form.setAlertMessage("error","Record does not exist");
+                    return;
+                }
+                enterUpdateMode(record);
+            }
+            catch (Exception exp){
+                form.setAlertMessage("error","Failed to retrieve record");
+            }
+        }
+        if(target.equals(updateButton) && !isCreateMode){
+            if(isInvalid()) return;
+
+            LocalDate date = form.getLocalDate(dateField);
+            String source = form.getString(sourceField);
+            double amount = form.getDouble(amountField);
+            String notes = form.getString(notesField);
+
+            record.setDate(date);
+            record.setSource(source);
+            record.setAmount(amount);
+            record.setNotes(notes);
+
+            try{
+                Database.getIncomeDAO().update(record);
+
+                exitUpdateMode();
+                form.setAlertMessage("success","Record updated successfully");
+            }
+            catch (Exception exp){
+                form.setAlertMessage("error","Failed to update record");
+            }
+        }
+        if(target.equals(deleteButton) && !isCreateMode){
+            form.clearAlerts();
+
+            try{
+                Database.getIncomeDAO().delete(record);
+
+                exitUpdateMode();
+                form.setAlertMessage("success","Record deleted successfully");
+            }
+            catch (Exception exp){
+                form.setAlertMessage("error","Failed to delete record");
+            }
+        }
+        if(target.equals(createButton)){
+            isCreateMode = true;
+            enterCreateMode();
+        }
+        if(target.equals(updateButton) && isCreateMode){
+            if(isInvalid()) return;
+
+            LocalDate date = form.getLocalDate(dateField);
+            String source = form.getString(sourceField);
+            double amount = form.getDouble(amountField);
+            String notes = form.getString(notesField);
+
+            record = new IncomeRecord(date, source, amount, notes);
+
+            try{
+                Database.getIncomeDAO().create(record);
+
+                exitCreateMode();
+                form.setAlertMessage("success","Record inserted successfully");
+            }
+            catch (Exception exp){
+                form.setAlertMessage("error","Failed to insert record");
+            }
+        }
+        if(target.equals(deleteButton) && isCreateMode){
+            exitCreateMode();
+        }
     }
 }

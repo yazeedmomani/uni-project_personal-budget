@@ -12,6 +12,11 @@ public class IncomeRecord {
     private double amount;
     private String notes;
 
+    public IncomeRecord(){
+        this.id = -1;
+        this.userId = -1;
+    }
+
     public IncomeRecord(int id, int userId, LocalDate date, String source, double amount, String notes) {
         this.id = id;
         this.userId = userId;
