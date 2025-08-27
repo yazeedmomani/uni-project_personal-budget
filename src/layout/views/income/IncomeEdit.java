@@ -210,21 +210,21 @@ public class IncomeEdit {
 
         if(dateIsEmpty || sourceIsEmpty || amountIsEmpty){
             errorLabel.setText("Please fill in the required fields");
-            if(dateIsEmpty) dateField.getStyleClass().add(form.getInvalidClass());
-            if(sourceIsEmpty) sourceField.getStyleClass().add(form.getInvalidClass());
-            if(amountIsEmpty) amountField.getStyleClass().add(form.getInvalidClass());
+            if(dateIsEmpty) setInvalid(true, dateField);
+            if(sourceIsEmpty) setInvalid(true, sourceField);
+            if(amountIsEmpty) setInvalid(true, amountField);
         }
         else if(dateWrongFormat){
             errorLabel.setText("Invalid date format. Use YYYY-MM-DD");
-            dateField.getStyleClass().add(form.getInvalidClass());
+            setInvalid(true, dateField);
         }
         else if(amountNotNumber){
             errorLabel.setText("Invalid amount. Use numbers only");
-            amountField.getStyleClass().add(form.getInvalidClass());
+            setInvalid(true, amountField);
         }
         else if(amountIsNegative){
             errorLabel.setText("Amount must be zero or greater");
-            amountField.getStyleClass().add(form.getInvalidClass());
+            setInvalid(true, amountField);
         }
         else{
             return false;
@@ -240,7 +240,7 @@ public class IncomeEdit {
         clearFields(dateField, sourceField, amountField, notesField);
         form.hideSuccessLabel();
         form.hideErrorLabel();
-        idField.getStyleClass().remove(form.getInvalidClass());
+        setInvalid(false, idField);
 
         boolean fieldIsEmpty = id.equals("");
         boolean inputNotNumber;
@@ -264,7 +264,7 @@ public class IncomeEdit {
         }
 
         form.showErrorLabel();
-        idField.getStyleClass().add(form.getInvalidClass());
+        setInvalid(true, idField);
         return true;
     }
 

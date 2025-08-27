@@ -14,7 +14,6 @@ public class Form {
     private final String INVALID_INPUT_CLASS = "form_invalidInput";
 
     public TextField getIdInput() {return idInput;}
-
     public Button getCreateButton() {return createButton;}
     public Button getReadButton() {return readButton;}
     public Button getUpdateButton() {return updateButton;}
