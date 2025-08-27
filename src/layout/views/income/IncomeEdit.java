@@ -56,7 +56,7 @@ public class IncomeEdit {
 
         card = new DashboardCard(form.getRoot());
         dashboard = new Dashboard();
-        dashboard.initializeFormSettings();
+        dashboard.getRoot().setFitToHeight(true);
         dashboard.add(card, 0, 0, 2, 3);
         return dashboard.getRoot();
     }

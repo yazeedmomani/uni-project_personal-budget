@@ -1,6 +1,7 @@
 package layout.views;
 
 import db.Database;
+import db.Validator;
 import db.models.User;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
@@ -14,22 +15,41 @@ public class Settings {
     private static Dashboard dashbaord;
     private static DashboardCard card;
     private static Form form;
+    private static Validator validator;
+
     private static TextField nameField, usernameField;
     private static PasswordField passwordField, passwordConfirmField;
+    private static Button updateButton;
+
     private static User user;
 
     public static ScrollPane getRoot(){
         user = Database.getCurrentUser();
-        initializeForm();
-        initializeFields();
-        form.getUpdateButton().setOnAction(Settings::handleSave);
+
+        form = new Form();
+        validator = new Validator(form);
+
+        form.getFooter().getChildren().remove(form.getDeleteButton());
+        form.hideHeader();
+        form.showFooter();
+
+        updateButton = form.getUpdateButton();
+        updateButton.setText("Save");
+        updateButton.setOnAction(Settings::handleSave);
+
+        nameField = form.addField("Name", "Name");
+        usernameField = form.addField("Username", "Username");
+        passwordField = form.addPasswordField("Password", "Password");
+        passwordConfirmField = form.addPasswordField("Confirm Password", "Password");
+
+        nameField.setText(user.getName());
+        usernameField.setText(user.getUsername());
 
         card = new DashboardCard(form.getRoot());
         card.setTitle("Settings");
         card.setTItleStyle("-fx-padding: 0 10 12 10");
-
         dashbaord = new Dashboard();
-        dashbaord.initializeFormSettings();
+        dashbaord.getRoot().setFitToHeight(true);
         dashbaord.add(card, 0, 0, 2, 3);
         return dashbaord.getRoot();
     }
@@ -102,20 +122,10 @@ public class Settings {
     }
 
     private static void initializeForm(){
-        form = new Form();
-        form.getRoot().setTop(null);
-        form.getFooter().getChildren().remove(form.getDeleteButton());
-        form.getUpdateButton().setText("Save");
-        form.showFooter();
 
-        nameField = form.addField("Name", "Name");
-        usernameField = form.addField("Username", "Username");
-        passwordField = form.addPasswordField("Password", "Password");
-        passwordConfirmField = form.addPasswordField("Confirm Password", "Password");
     }
 
     private static void initializeFields(){
-        nameField.setText(user.getName());
-        usernameField.setText(user.getUsername());
+
     }
 }

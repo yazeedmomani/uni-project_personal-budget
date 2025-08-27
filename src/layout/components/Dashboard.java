@@ -22,10 +22,6 @@ public class Dashboard {
         grid.add(card.getRoot(), column, row, columnSpan, rowSpan);
     }
 
-    public void initializeFormSettings(){
-        root.setFitToHeight(true);
-    }
-
     public Dashboard(){
         initializeGrid();
         initializeRoot();
