@@ -31,6 +31,12 @@ public class Form {
 
     public void clear(TextInputControl... inputs){for(TextInputControl input : inputs) input.clear();}
 
+    public void reset(TextInputControl... inputs){
+        clear(inputs);
+        removeMessage();
+        setInvalid(false, inputs);
+    }
+
     public void setMessage(String type, String text) {
         message.setText(text);
         if(type.equals("error")){message.setId("form_errorMessage");}
