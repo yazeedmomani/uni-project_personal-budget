@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 public class Validator {
     private Form form;
 
-    public boolean checkNotEmpty(TextInputControl... inputs){
+    public boolean assertNotEmpty(TextInputControl... inputs){
         boolean hasEmptyInput = false;
 
         for(TextInputControl input : inputs) {
@@ -23,7 +23,7 @@ public class Validator {
         return hasEmptyInput;
     }
 
-    public boolean checkDateFormat(TextInputControl input){
+    public boolean assertDateFormat(TextInputControl input){
         try {
             LocalDate.parse(form.getString(input), Database.getDateFormat());
             return false;
@@ -34,7 +34,7 @@ public class Validator {
         }
     }
 
-    public boolean checkNumber(TextInputControl input){
+    public boolean assertNumber(TextInputControl input){
         try {
             form.getDouble(input);
             return false;
@@ -45,8 +45,8 @@ public class Validator {
         }
     }
 
-    public boolean checkPositiveNumber(TextInputControl input){
-        if(checkNumber(input)) return false;
+    public boolean assertPositiveNumber(TextInputControl input){
+        if(assertNumber(input)) return false;
 
         double number = form.getDouble(input);
 
@@ -58,8 +58,8 @@ public class Validator {
         return false;
     }
 
-    public boolean checkInteger(TextInputControl input){
-        if(checkNumber(input)) return false;
+    public boolean assertInteger(TextInputControl input){
+        if(assertNumber(input)) return false;
 
         try {
             form.getInt(input);

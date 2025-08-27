@@ -148,9 +148,9 @@ public class IncomeEdit {
         form.removeMessage();
         form.setInvalid(false, idField, dateField, sourceField, amountField, notesField);
 
-        if (validator.checkNotEmpty(dateField, sourceField, amountField)) return true;
-        if (validator.checkDateFormat(dateField)) return true;
-        if (validator.checkPositiveNumber(amountField)) return true;
+        if (validator.assertNotEmpty(dateField, sourceField, amountField)) return true;
+        if (validator.assertDateFormat(dateField)) return true;
+        if (validator.assertPositiveNumber(amountField)) return true;
 
         return false;
     }
@@ -159,8 +159,8 @@ public class IncomeEdit {
         form.removeMessage();
         form.setInvalid(false, idField);
 
-        if(validator.checkNotEmpty(idField)) return true;
-        if(validator.checkInteger(idField)) return true;
+        if(validator.assertNotEmpty(idField)) return true;
+        if(validator.assertInteger(idField)) return true;
 
         return false;
     }
