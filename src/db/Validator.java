@@ -10,65 +10,83 @@ public class Validator {
     private Form form;
 
     public boolean assertNotEmpty(TextInputControl... inputs){
-        boolean hasEmptyInput = false;
+        boolean hasError = false;
 
         for(TextInputControl input : inputs) {
             if (form.getString(input).isEmpty()) {
                 form.setInvalid(true, input);
-                hasEmptyInput = true;
+                hasError = true;
             }
         }
-        if(hasEmptyInput) form.setMessage("error","Please fill in the required fields");
+        if(hasError) form.setMessage("error","Please fill in the required fields");
 
-        return hasEmptyInput;
+        return hasError;
     }
 
-    public boolean assertDateFormat(TextInputControl input){
-        try {
-            LocalDate.parse(form.getString(input), Database.getDateFormat());
-            return false;
-        } catch (DateTimeParseException e) {
-            form.setMessage("error","Invalid date format. Use YYYY-MM-DD");
-            form.setInvalid(true, input);
-            return true;
+    public boolean assertDateFormat(TextInputControl... inputs){
+        boolean hasError = false;
+
+        for(TextInputControl input : inputs){
+            try {
+                LocalDate.parse(form.getString(input), Database.getDateFormat());
+            } catch (DateTimeParseException e) {
+                form.setInvalid(true, input);
+                hasError = true;
+            }
         }
+        if(hasError) form.setMessage("error","Invalid date format. Use YYYY-MM-DD");
+
+        return hasError;
     }
 
-    public boolean assertNumber(TextInputControl input){
-        try {
-            form.getDouble(input);
-            return false;
-        } catch (NumberFormatException e) {
-            form.setMessage("error","Use numbers only");
-            form.setInvalid(true, input);
-            return true;
+    public boolean assertNumber(TextInputControl... inputs){
+        boolean hasError = false;
+
+        for(TextInputControl input : inputs){
+            try {
+                form.getDouble(input);
+            } catch (NumberFormatException e) {
+                form.setInvalid(true, input);
+                hasError = true;
+            }
         }
+        if(hasError) form.setMessage("error","Use numbers only");
+
+        return hasError;
     }
 
-    public boolean assertPositiveNumber(TextInputControl input){
-        if(assertNumber(input)) return false;
+    public boolean assertPositiveNumber(TextInputControl... inputs){
+        if(assertNumber(inputs)) return true;
 
-        double number = form.getDouble(input);
+        boolean hasError = false;
 
-        if(number < 0){
-            form.setMessage("error","Values must be zero or greater");
-            form.setInvalid(true, input);
-            return true;
+        for(TextInputControl input : inputs){
+            double number = form.getDouble(input);
+            if(number < 0){
+                form.setInvalid(true, input);
+                hasError = true;
+            }
         }
-        return false;
+        if(hasError) form.setMessage("error","Values must be zero or greater");
+
+        return hasError;
     }
 
-    public boolean assertInteger(TextInputControl input){
-        if(assertNumber(input)) return false;
+    public boolean assertInteger(TextInputControl... inputs){
+        if(assertNumber(inputs)) return true;
 
-        try {
-            form.getInt(input);
-            return false;
-        } catch (NumberFormatException e) {
-            form.setMessage("error","Please enter a whole number");
-            form.setInvalid(true, input);
-            return true;
+        boolean hasError = false;
+        for(TextInputControl input : inputs){
+            try {
+                form.getInt(input);
+            } catch (NumberFormatException e) {
+                form.setInvalid(true, input);
+                hasError = true;
+            }
         }
+        if(hasError) form.setMessage("error","Please enter a whole number");
+
+        return hasError;
     }
 
     public Validator(Form form) {this.form = form;}

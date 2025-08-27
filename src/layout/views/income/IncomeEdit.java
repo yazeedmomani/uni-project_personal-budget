@@ -93,9 +93,10 @@ public class IncomeEdit {
 
         try{
             IncomeRecord record = Database.getIncomeDAO().get(id);
+            System.out.println(record);
             if(record == null){
-                form.setMessage("error","Record does not exist");
                 exitUpdateMode();
+                form.setMessage("error","Record does not exist");
                 return;
             }
             enterUpdateMode(record);
