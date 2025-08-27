@@ -152,13 +152,7 @@ public class IncomeEdit {
         form.removeMessage();
         form.setInvalid(false, idField, dateField, sourceField, amountField, notesField);
 
-        boolean dateWrongFormat;
-        try {
-            LocalDate.parse(date, Database.getDateFormat());
-            dateWrongFormat = false;
-        } catch (DateTimeParseException e) {
-            dateWrongFormat = true;
-        }
+
         boolean amountNotNumber = false;
         Double amountValue = null;
         try {
@@ -169,12 +163,9 @@ public class IncomeEdit {
         boolean amountIsNegative = (amountValue != null && amountValue < 0);
 
         if (validator.checkNotEmpty(dateField, sourceField, amountField)) return true;
+        if (validator.checkDateFormat(dateField)) return true;
 
-        if(dateWrongFormat){
-            form.setMessage("error","Invalid date format. Use YYYY-MM-DD");
-            form.setInvalid(true, dateField);
-        }
-        else if(amountNotNumber){
+        if(amountNotNumber){
             form.setMessage("error","Invalid amount. Use numbers only");
             form.setInvalid(true, amountField);
         }

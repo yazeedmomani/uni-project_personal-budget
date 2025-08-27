@@ -3,6 +3,9 @@ package db;
 import javafx.scene.control.TextInputControl;
 import layout.components.Form;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 public class Validator {
     private Form form;
 
@@ -18,6 +21,17 @@ public class Validator {
         if(hasEmptyInput) form.setMessage("error","Please fill in the required fields");
 
         return hasEmptyInput;
+    }
+
+    public boolean checkDateFormat(TextInputControl input){
+        try {
+            LocalDate.parse(form.getString(input), Database.getDateFormat());
+            return false;
+        } catch (DateTimeParseException e) {
+            form.setMessage("error","Invalid date format. Use YYYY-MM-DD");
+            form.setInvalid(true, input);
+            return true;
+        }
     }
 
     public Validator(Form form) {this.form = form;}
