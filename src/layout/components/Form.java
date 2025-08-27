@@ -1,8 +1,12 @@
 package layout.components;
 
+import db.Database;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import org.w3c.dom.Text;
+
+import java.time.LocalDate;
 
 public class Form {
     private BorderPane root;
@@ -19,6 +23,11 @@ public class Form {
     public Button getDeleteButton() {return deleteButton;}
 
     public BorderPane getRoot() {return root;}
+
+    public String getString(TextInputControl input){return input.getText().trim();}
+    public int getInt(TextInputControl input){return Integer.parseInt(getString(input));}
+    public double getDouble(TextInputControl input){return Double.parseDouble(getString(input));}
+    public LocalDate getLocalDate(TextInputControl input){return LocalDate.parse(getString(input), Database.getDateFormat());}
 
     public void setMessage(String type, String text) {
         message.setText(text);

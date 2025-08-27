@@ -75,10 +75,10 @@ public class IncomeEdit {
     private static void handleInsertButton(ActionEvent e){
         if(isInvalid()) return;
 
-        LocalDate date = LocalDate.parse(dateField.getText().trim(), Database.getDateFormat());
-        String source = sourceField.getText().trim();
-        double amount = Double.parseDouble(amountField.getText().trim());
-        String notes = notesField.getText().trim();
+        LocalDate date = form.getLocalDate(dateField);
+        String source = form.getString(sourceField);
+        double amount = form.getDouble(amountField);
+        String notes = form.getString(notesField);
 
         IncomeRecord record = new IncomeRecord(date, source, amount, notes);
 
@@ -103,7 +103,7 @@ public class IncomeEdit {
     private static void handleReadButton(ActionEvent e){
         if(isInvalidId()) return;
 
-        int id = Integer.parseInt(idField.getText());
+        int id = form.getInt(idField);
 
         try{
             IncomeRecord record = Database.getIncomeDAO().get(id);
@@ -142,10 +142,10 @@ public class IncomeEdit {
     private static void handleUpdateButton(ActionEvent e, IncomeRecord record){
         if(isInvalid()) return;
 
-        LocalDate date = LocalDate.parse(dateField.getText().trim(), Database.getDateFormat());
-        String source = sourceField.getText().trim();
-        double amount = Double.parseDouble(amountField.getText().trim());
-        String notes = notesField.getText().trim();
+        LocalDate date = form.getLocalDate(dateField);
+        String source = form.getString(sourceField);
+        double amount = form.getDouble(amountField);
+        String notes = form.getString(notesField);
 
         record.setDate(date);
         record.setSource(source);
@@ -165,9 +165,9 @@ public class IncomeEdit {
     }
 
     private static boolean isInvalid(){
-        String date = dateField.getText().trim();
-        String source = sourceField.getText().trim();
-        String amount = amountField.getText().trim();
+        String date = form.getString(dateField);
+        String source = form.getString(sourceField);
+        String amount = form.getString(amountField);
 
         resetFormMessages();
 
@@ -216,7 +216,7 @@ public class IncomeEdit {
     }
 
     private static boolean isInvalidId(){
-        String id = idField.getText().trim();
+        String id = form.getString(idField);
 
         clearFields(dateField, sourceField, amountField, notesField);
         form.removeMessage();
