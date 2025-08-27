@@ -16,7 +16,7 @@ public class Form {
     private VBox body;
     private Button createButton, updateButton, readButton, deleteButton;
     private TextField idInput;
-    private Label message;
+    private Label alertMessage;
     private List<TextInputControl> inputs = new ArrayList<>();
 
     public TextField getIdInput() {return idInput;}
@@ -40,11 +40,11 @@ public class Form {
         clearAlerts();
     }
 
-    public void setMessage(String type, String text) {
-        message.setText(text);
-        if(type.equals("error")) message.setId("form_errorMessage");
-        if(type.equals("success")) message.setId("form_successMessage");
-        body.getChildren().addFirst(message);
+    public void setAlertMessage(String type, String text) {
+        alertMessage.setText(text);
+        if(type.equals("error")) alertMessage.setId("form_errorMessage");
+        if(type.equals("success")) alertMessage.setId("form_successMessage");
+        body.getChildren().addFirst(alertMessage);
     }
 
     public void alert(TextInputControl... inputs) {
@@ -52,7 +52,7 @@ public class Form {
     }
 
     public void clearAlerts() {
-        body.getChildren().remove(message);
+        body.getChildren().remove(alertMessage);
         for(Node input : inputs) input.getStyleClass().remove("form_invalidInput");
     }
 
@@ -86,8 +86,8 @@ public class Form {
     }
 
     public Form(){
-        message = new Label();
-        message.getStyleClass().add("form_message");
+        alertMessage = new Label();
+        alertMessage.getStyleClass().add("form_message");
         initializeHeader();
         initializeBody();
         initializeFooter();

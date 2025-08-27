@@ -48,11 +48,11 @@ public class Settings {
             Database.updateUser(updatedUser);
             Database.setCurrentUser(updatedUser);
             TopMenu.reloadWelcomeLabel();
-            form.setMessage("success","Changes saved successfully");
+            form.setAlertMessage("success","Changes saved successfully");
         }
         catch (Exception exp){
             System.out.println("Settings Error: " + exp.getMessage());
-            form.setMessage("error","Couldn't save changes");
+            form.setAlertMessage("error","Couldn't save changes");
         }
     }
 
@@ -72,27 +72,27 @@ public class Settings {
         boolean passwordsNotEqual = !password.equals(passwordConfirm);
 
         if(nameAndUsernameAreEmpty){
-            form.setMessage("error","Enter name and username");
+            form.setAlertMessage("error","Enter name and username");
             form.alert(nameField, usernameField);
         }
         else if (nameIsEmpty){
-            form.setMessage("error","Enter name");
+            form.setAlertMessage("error","Enter name");
             form.alert(nameField);
         }
         else if (usernameIsEmpty){
-            form.setMessage("error","Enter username");
+            form.setAlertMessage("error","Enter username");
             form.alert(usernameField);
         }
         else if(onlyPasswordFilled){
-            form.setMessage("error","Confirm password");
+            form.setAlertMessage("error","Confirm password");
             form.alert(passwordConfirmField);
         }
         else if(onlyPasswordConfirmFilled){
-            form.setMessage("error","Enter password");
+            form.setAlertMessage("error","Enter password");
             form.alert(passwordField);
         }
         else if(passwordsNotEqual) {
-            form.setMessage("error","Passwords do not match");
+            form.setAlertMessage("error","Passwords do not match");
             form.alert(passwordField, passwordConfirmField);
         }
         else{

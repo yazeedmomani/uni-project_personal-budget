@@ -18,7 +18,7 @@ public class Validator {
                 hasError = true;
             }
         }
-        if(hasError) form.setMessage("error","Please fill in the required fields");
+        if(hasError) form.setAlertMessage("error","Please fill in the required fields");
 
         return hasError;
     }
@@ -34,7 +34,7 @@ public class Validator {
                 hasError = true;
             }
         }
-        if(hasError) form.setMessage("error","Invalid date format. Use YYYY-MM-DD");
+        if(hasError) form.setAlertMessage("error","Invalid date format. Use YYYY-MM-DD");
 
         return hasError;
     }
@@ -50,7 +50,7 @@ public class Validator {
                 hasError = true;
             }
         }
-        if(hasError) form.setMessage("error","Use numbers only");
+        if(hasError) form.setAlertMessage("error","Use numbers only");
 
         return hasError;
     }
@@ -67,7 +67,7 @@ public class Validator {
                 hasError = true;
             }
         }
-        if(hasError) form.setMessage("error","Values must be zero or greater");
+        if(hasError) form.setAlertMessage("error","Values must be zero or greater");
 
         return hasError;
     }
@@ -84,7 +84,7 @@ public class Validator {
                 hasError = true;
             }
         }
-        if(hasError) form.setMessage("error","Please enter a whole number");
+        if(hasError) form.setAlertMessage("error","Please enter a whole number");
 
         return hasError;
     }

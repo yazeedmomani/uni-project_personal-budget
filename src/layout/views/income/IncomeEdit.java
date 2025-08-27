@@ -77,10 +77,10 @@ public class IncomeEdit {
             Database.getIncomeDAO().create(record);
 
             exitCreateMode();
-            form.setMessage("success","Record inserted successfully");
+            form.setAlertMessage("success","Record inserted successfully");
         }
         catch (Exception exp){
-            form.setMessage("error","Failed to insert record");
+            form.setAlertMessage("error","Failed to insert record");
         }
     }
 
@@ -96,13 +96,13 @@ public class IncomeEdit {
             System.out.println(record);
             if(record == null){
                 exitUpdateMode();
-                form.setMessage("error","Record does not exist");
+                form.setAlertMessage("error","Record does not exist");
                 return;
             }
             enterUpdateMode(record);
         }
         catch (Exception exp){
-            form.setMessage("error","Failed to retrieve record");
+            form.setAlertMessage("error","Failed to retrieve record");
         }
     }
 
@@ -113,10 +113,10 @@ public class IncomeEdit {
             Database.getIncomeDAO().delete(record);
 
             exitUpdateMode();
-            form.setMessage("success","Record deleted successfully");
+            form.setAlertMessage("success","Record deleted successfully");
         }
         catch (Exception exp){
-            form.setMessage("error","Failed to delete record");
+            form.setAlertMessage("error","Failed to delete record");
         }
     }
 
@@ -137,10 +137,10 @@ public class IncomeEdit {
             Database.getIncomeDAO().update(record);
 
             exitUpdateMode();
-            form.setMessage("success","Record updated successfully");
+            form.setAlertMessage("success","Record updated successfully");
         }
         catch (Exception exp){
-            form.setMessage("error","Failed to update record");
+            form.setAlertMessage("error","Failed to update record");
         }
     }
 
