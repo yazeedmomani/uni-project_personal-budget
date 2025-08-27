@@ -197,14 +197,14 @@ public class IncomeEdit {
         }
         boolean sourceIsEmpty = source.equals("");
         boolean amountIsEmpty = amount.equals("");
-        boolean amountNotNumber;
+        boolean amountNotNumber = false;
+        Double amountValue = null;
         try {
-            Double.parseDouble(amount);
-            amountNotNumber = false;
+            amountValue = Double.parseDouble(amount);
         } catch (NumberFormatException e) {
             amountNotNumber = true;
         }
-        boolean amountIsNegative = Double.parseDouble(amount) < 0;
+        boolean amountIsNegative = (amountValue != null && amountValue < 0);
 
         Label errorLabel = form.getErrorLabel();
 
