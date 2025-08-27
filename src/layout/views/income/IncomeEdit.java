@@ -3,6 +3,7 @@ package layout.views.income;
 import db.Database;
 import db.models.IncomeRecord;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.*;
@@ -236,7 +237,7 @@ public class IncomeEdit {
     private static boolean isInvalidId(){
         String id = idField.getText().trim();
 
-        clearFields();
+        clearFields(dateField, sourceField, amountField, notesField);
         form.hideSuccessLabel();
         form.hideErrorLabel();
         idField.getStyleClass().remove(form.getInvalidClass());
@@ -277,20 +278,18 @@ public class IncomeEdit {
         resetFormMessages();
     }
 
+    private static void setInvalid(boolean isInvalid, TextInputControl... inputs){
+        if(isInvalid) for(Node input : inputs) input.getStyleClass().add(form.getInvalidClass());
+        if(!isInvalid) for(Node input : inputs) input.getStyleClass().remove(form.getInvalidClass());
+    }
+
     private static void resetFormMessages(){
         form.hideSuccessLabel();
         form.hideErrorLabel();
-        idField.getStyleClass().remove(form.getInvalidClass());
-        dateField.getStyleClass().remove(form.getInvalidClass());
-        sourceField.getStyleClass().remove(form.getInvalidClass());
-        amountField.getStyleClass().remove(form.getInvalidClass());
-        notesField.getStyleClass().remove(form.getInvalidClass());
+        setInvalid(false, idField, dateField, sourceField, amountField, notesField);
     }
 
-    private static void clearFields(){
-        dateField.clear();
-        sourceField.clear();
-        amountField.clear();
-        notesField.clear();
+    private static void clearFields(TextInputControl... inputs){
+        for(TextInputControl input : inputs) input.clear();
     }
 }
