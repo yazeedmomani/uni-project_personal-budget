@@ -29,6 +29,8 @@ public class Form {
     public double getDouble(TextInputControl input){return Double.parseDouble(getString(input));}
     public LocalDate getLocalDate(TextInputControl input){return LocalDate.parse(getString(input), Database.getDateFormat());}
 
+    public void clear(TextInputControl... inputs){for(TextInputControl input : inputs) input.clear();}
+
     public void setMessage(String type, String text) {
         message.setText(text);
         if(type.equals("error")){message.setId("form_errorMessage");}

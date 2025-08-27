@@ -126,7 +126,8 @@ public class IncomeEdit {
     }
 
     private static void handleDeleteButton(ActionEvent e, IncomeRecord record){
-        resetFormMessages();
+        form.removeMessage();
+        form.setInvalid(false, idField, dateField, sourceField, amountField, notesField);
 
         try{
             Database.getIncomeDAO().delete(record);
@@ -169,7 +170,8 @@ public class IncomeEdit {
         String source = form.getString(sourceField);
         String amount = form.getString(amountField);
 
-        resetFormMessages();
+        form.removeMessage();
+        form.setInvalid(false, idField, dateField, sourceField, amountField, notesField);
 
         boolean dateIsEmpty = date.equals("");
         boolean dateWrongFormat;
@@ -218,8 +220,8 @@ public class IncomeEdit {
     private static boolean isInvalidId(){
         String id = form.getString(idField);
 
-        clearFields(dateField, sourceField, amountField, notesField);
         form.removeMessage();
+        form.clear(dateField, sourceField, amountField, notesField);
         form.setInvalid(false, idField);
 
         boolean fieldIsEmpty = id.equals("");
@@ -246,21 +248,8 @@ public class IncomeEdit {
     }
 
     private static void reset(){
-        idField.clear();
-        dateField.clear();
-        sourceField.clear();
-        amountField.clear();
-        notesField.clear();
-
-        resetFormMessages();
-    }
-
-    private static void resetFormMessages(){
+        form.clear(idField, dateField, sourceField, amountField, notesField);
         form.removeMessage();
         form.setInvalid(false, idField, dateField, sourceField, amountField, notesField);
-    }
-
-    private static void clearFields(TextInputControl... inputs){
-        for(TextInputControl input : inputs) input.clear();
     }
 }
