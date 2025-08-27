@@ -57,7 +57,7 @@ public class Form {
         return input;
     }
 
-    public void initializeForSettings(){
+    public void initializeFormSettings(){
         root.setTop(null);
         footer.getChildren().remove(deleteButton);
         updateButton.setText("Save");
