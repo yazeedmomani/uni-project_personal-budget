@@ -110,7 +110,7 @@ public class IncomeEdit {
             if(validator.assertInteger(idField)) return;
             if(validator.assertPositiveNumber(idField)) return;
 
-            int id = form.getInt(idField);
+            int id = Validator.getInt(idField);
 
             try{
                 record = Database.getIncomeDAO().get(id);
@@ -134,10 +134,10 @@ public class IncomeEdit {
             if (validator.assertDateFormat(dateField)) return;
             if (validator.assertPositiveNumber(amountField)) return;
 
-            LocalDate date = form.getLocalDate(dateField);
-            String source = form.getString(sourceField);
-            double amount = form.getDouble(amountField);
-            String notes = form.getString(notesField);
+            LocalDate date = Validator.getLocalDate(dateField);
+            String source = Validator.getString(sourceField);
+            double amount = Validator.getDouble(amountField);
+            String notes = Validator.getString(notesField);
 
             record.setDate(date);
             record.setSource(source);
@@ -184,10 +184,10 @@ public class IncomeEdit {
             if (validator.assertDateFormat(dateField)) return;
             if (validator.assertPositiveNumber(amountField)) return;
 
-            LocalDate date = form.getLocalDate(dateField);
-            String source = form.getString(sourceField);
-            double amount = form.getDouble(amountField);
-            String notes = form.getString(notesField);
+            LocalDate date = Validator.getLocalDate(dateField);
+            String source = Validator.getString(sourceField);
+            double amount = Validator.getDouble(amountField);
+            String notes = Validator.getString(notesField);
 
             record = new IncomeRecord(date, source, amount, notes);
 

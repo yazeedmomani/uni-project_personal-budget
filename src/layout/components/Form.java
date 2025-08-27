@@ -32,12 +32,6 @@ public class Form {
 
     public BorderPane getRoot() {return root;}
 
-    // GET FROM INPUT
-    public String getString(TextInputControl input){return input.getText().trim();}
-    public int getInt(TextInputControl input){return Integer.parseInt(getString(input));}
-    public double getDouble(TextInputControl input){return Double.parseDouble(getString(input));}
-    public LocalDate getLocalDate(TextInputControl input){return LocalDate.parse(getString(input), Database.getDateFormat());}
-
     // RESET FORM / CLEAR INPUTS
     public void clear(TextInputControl... inputs){for(TextInputControl input : inputs) input.clear();}
 

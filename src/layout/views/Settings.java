@@ -60,9 +60,9 @@ public class Settings {
         if(validator.assertNotEmpty(usernameField, nameField)) return;
         if(validator.assertConfirmation(passwordField, passwordConfirmField)) return;
 
-        String name = form.getString(nameField);
-        String username = form.getString(usernameField);
-        String password = form.getString(passwordField);
+        String name = Validator.getString(nameField);
+        String username = Validator.getString(usernameField);
+        String password = Validator.getString(passwordField);
 
         if(password.isEmpty()) {password = user.getPassword();}
 
