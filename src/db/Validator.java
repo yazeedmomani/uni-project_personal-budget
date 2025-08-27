@@ -34,5 +34,29 @@ public class Validator {
         }
     }
 
+    public boolean checkNumber(TextInputControl input){
+        try {
+            form.getDouble(input);
+            return false;
+        } catch (NumberFormatException e) {
+            form.setMessage("error","Use numbers only");
+            form.setInvalid(true, input);
+            return true;
+        }
+    }
+
+    public boolean checkPositiveNumber(TextInputControl input){
+        if(checkNumber(input)) return false;
+
+        double number = form.getDouble(input);
+
+        if(number < 0){
+            form.setMessage("error","Values must be zero or greater");
+            form.setInvalid(true, input);
+            return true;
+        }
+        return false;
+    }
+
     public Validator(Form form) {this.form = form;}
 }

@@ -145,39 +145,14 @@ public class IncomeEdit {
     }
 
     private static boolean isInvalid(){
-        String date = form.getString(dateField);
-        String source = form.getString(sourceField);
-        String amount = form.getString(amountField);
-
         form.removeMessage();
         form.setInvalid(false, idField, dateField, sourceField, amountField, notesField);
 
-
-        boolean amountNotNumber = false;
-        Double amountValue = null;
-        try {
-            amountValue = Double.parseDouble(amount);
-        } catch (NumberFormatException e) {
-            amountNotNumber = true;
-        }
-        boolean amountIsNegative = (amountValue != null && amountValue < 0);
-
         if (validator.checkNotEmpty(dateField, sourceField, amountField)) return true;
         if (validator.checkDateFormat(dateField)) return true;
+        if (validator.checkPositiveNumber(amountField)) return true;
 
-        if(amountNotNumber){
-            form.setMessage("error","Invalid amount. Use numbers only");
-            form.setInvalid(true, amountField);
-        }
-        else if(amountIsNegative){
-            form.setMessage("error","Amount must be zero or greater");
-            form.setInvalid(true, amountField);
-        }
-        else{
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     private static boolean isInvalidId(){
