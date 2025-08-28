@@ -17,7 +17,8 @@ import layout.views.TemplateView;
 import java.text.NumberFormat;
 
 public class IncomeView extends TemplateView<IncomeRecord, IncomeDAO> {
-    private static DashboardCard summary1, summary2, barChart, lineChart, table;
+    private static DashboardCard leftSummaryCard, rightSummaryCard, barChartCard, lineChartCard, tableCard;
+    private static IncomeBarChart barChart;
 
     public IncomeView(){
         super(Database.getIncomeDAO());
@@ -27,20 +28,21 @@ public class IncomeView extends TemplateView<IncomeRecord, IncomeDAO> {
     protected void initializeDashboardCards() {
         String incomeThisMonth = getIncomeThisMonth();
         String incomeLastMonth = getIncomeLastMonth();
+        barChart = new IncomeBarChart(data);
 
-        summary1 = new DashboardCard("Income This Month", new Summary(incomeThisMonth).getNode());
-        summary2 = new DashboardCard("Income Last Month", new Summary(incomeLastMonth).getNode());
-        barChart = new DashboardCard("Income by Source (Last 6 Months)", IncomeBarChart.init(data));
-        lineChart = new DashboardCard("Total Income per Month (Last 6 Months)", IncomeLineChart.init(data));
-        table = new DashboardCard("Income Details", IncomeTable.init(data));
+        leftSummaryCard = new DashboardCard("Income This Month", new Summary(incomeThisMonth).getNode());
+        rightSummaryCard = new DashboardCard("Income Last Month", new Summary(incomeLastMonth).getNode());
+        barChartCard = new DashboardCard("Income by Source (Last 6 Months)", barChart.getChart());
+        lineChartCard = new DashboardCard("Total Income per Month (Last 6 Months)", IncomeLineChart.init(data));
+        tableCard = new DashboardCard("Income Details", IncomeTable.init(data));
 
         dashboard = new Dashboard();
 
-        dashboard.add(summary1, 0, 0);
-        dashboard.add(summary2, 1, 0);
-        dashboard.add(barChart, 0, 1);
-        dashboard.add(lineChart, 1, 1);
-        dashboard.add(table, 0, 2, 2, 1);
+        dashboard.add(leftSummaryCard, 0, 0);
+        dashboard.add(rightSummaryCard, 1, 0);
+        dashboard.add(barChartCard, 0, 1);
+        dashboard.add(lineChartCard, 1, 1);
+        dashboard.add(tableCard, 0, 2, 2, 1);
     }
 
     private String getIncomeThisMonth(){
