@@ -5,11 +5,11 @@ import db.Validator;
 import db.models.User;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
-import javafx.scene.layout.FlowPane;
 import layout.components.Dashboard;
 import layout.components.DashboardCard;
 import layout.components.Form;
 import layout.menus.TopMenu;
+import javafx.scene.input.*;
 
 public class Settings {
     private static Dashboard dashbaord;
@@ -42,6 +42,11 @@ public class Settings {
         passwordField = form.addPasswordField("Password", "Password");
         passwordConfirmField = form.addPasswordField("Confirm Password", "Password");
 
+        nameField.setOnKeyPressed(Settings::eventHandler);
+        usernameField.setOnKeyPressed(Settings::eventHandler);
+        passwordField.setOnKeyPressed(Settings::eventHandler);
+        passwordConfirmField.setOnKeyPressed(Settings::eventHandler);
+
         nameField.setText(user.getName());
         usernameField.setText(user.getUsername());
 
@@ -54,7 +59,15 @@ public class Settings {
         return dashbaord.getRoot();
     }
 
+    private static void eventHandler(KeyEvent e){
+        if(e.getCode() == KeyCode.ENTER) save();
+    }
+
     private static void eventHandler(ActionEvent e){
+        save();
+    }
+
+    private static void save(){
         form.clearAlerts();
 
         if(validator.assertNotEmpty(usernameField, nameField)) return;
