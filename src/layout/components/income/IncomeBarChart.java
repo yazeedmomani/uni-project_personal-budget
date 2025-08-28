@@ -13,14 +13,19 @@ import java.util.stream.Collectors;
 public class IncomeBarChart extends TemplateBarChart<IncomeRecord> {
 
     public IncomeBarChart(List<IncomeRecord> data) {
-        super(data, "Source", "Total (JOD)", "#388E3C");
+        super(data, 6,"Source", "Total (JOD)", "#388E3C");
     }
 
     @Override
     protected List<XYChart.Series<String, Number>> buildSeries() {
-        YearMonth start = YearMonth.from(LocalDate.now()).minusMonths(5); // inclusive start
-        LocalDate startDate = start.atDay(1);
+        LocalDate startDate;
         LocalDate endDate = LocalDate.now(); // inclusive end today
+        if (limitMonths == -1) {
+            startDate = LocalDate.MIN; // include all dates
+        } else {
+            YearMonth start = YearMonth.from(LocalDate.now()).minusMonths(limitMonths - 1);
+            startDate = start.atDay(1);
+        }
 
         Map<String, Double> sums = data.stream()
                 .filter(r -> !r.getDate().isBefore(startDate) && !r.getDate().isAfter(endDate))

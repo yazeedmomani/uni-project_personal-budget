@@ -20,12 +20,14 @@ public abstract class TemplateBarChart<Record extends TemplateRecord> {
     private final String primaryColor;        // e.g. "#388E3C" – supply via constructor
     private final String xAxisLabel;          // e.g. "Source"
     private final String yAxisLabel;          // e.g. "Total (JOD)"
+    protected final int limitMonths;
     protected final List<Record> data;
 
-    protected TemplateBarChart(List<Record> data, String xAxisLabel, String yAxisLabel, String primaryColor) {
+    protected TemplateBarChart(List<Record> data, int limitMonths, String xAxisLabel, String yAxisLabel, String primaryColor) {
         this.primaryColor = primaryColor;
         this.xAxisLabel = xAxisLabel == null ? "" : xAxisLabel;
         this.yAxisLabel = yAxisLabel == null ? "" : yAxisLabel;
+        this.limitMonths = limitMonths;
         this.data = data;
 
         initializeChart();
