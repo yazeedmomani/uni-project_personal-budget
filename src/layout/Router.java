@@ -31,22 +31,27 @@ public class Router {
         }
 
         IncomeEdit incomeEdit = new IncomeEdit();
+        IncomeView incomeView = new IncomeView();
 
         switch (LayoutController.getCurrentView()){
             case LayoutController.View.INCOME:
-                if(LayoutController.getCurrentMode().equals(LayoutController.Mode.VIEW))
-                    setWindow("Budget - Income (View)", IncomeView.getRoot());
-                if(LayoutController.getCurrentMode().equals(LayoutController.Mode.EDIT))
-                    setWindow("Budget - Income (Edit)", incomeEdit.getRoot());
+                setDashboardWindow("Income", incomeView.getRoot(), incomeEdit.getRoot());
                 break;
 
             case LayoutController.View.SAVINGS:
-                if(LayoutController.getCurrentMode().equals(LayoutController.Mode.VIEW))
-                    setWindow("Budget - Savings (View)", SavingsView.getRoot());
-                if(LayoutController.getCurrentMode().equals(LayoutController.Mode.EDIT))
-                    setWindow("Budget - Savings (Edit)", SavingsEdit.getRoot());
+                setDashboardWindow("Savings", SavingsView.getRoot(), SavingsEdit.getRoot());
                 break;
         }
+    }
+
+    private static void setDashboardWindow(String title, Node view, Node mode){
+        String adjustedTitle = "Budget - " + title;
+
+        if(LayoutController.getCurrentMode().equals(LayoutController.Mode.VIEW))
+            setWindow(adjustedTitle + " (View)", view);
+
+        if(LayoutController.getCurrentMode().equals(LayoutController.Mode.EDIT))
+            setWindow(adjustedTitle + " (Edit)", mode);
     }
 
     private static void setWindow(String title, Node view){
