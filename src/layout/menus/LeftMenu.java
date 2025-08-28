@@ -9,12 +9,12 @@ public class LeftMenu {
     private static VBox root;
     private static Button incomeBtn, savingsBtn;
 
-    public static void selectView(String view){
+    public static void selectView(LayoutController.View view){
         if(view == null) return;
 
         clearSelection();
-        if(view.equals("income")) incomeBtn.setId("leftMenu_selected");
-        if(view.equals("savings")) savingsBtn.setId("leftMenu_selected");
+        if(view.equals(LayoutController.View.INCOME)) incomeBtn.setId("leftMenu_selected");
+        if(view.equals(LayoutController.View.SAVINGS)) savingsBtn.setId("leftMenu_selected");
     }
 
     public static VBox getRoot(){
@@ -37,8 +37,8 @@ public class LeftMenu {
     private static void handleEvent(ActionEvent e){
         Object source = e.getSource();
 
-        if(source == incomeBtn) LayoutController.setCurrentView("income");
-        if(source == savingsBtn) LayoutController.setCurrentView("savings");
+        if(source == incomeBtn) LayoutController.setCurrentView(LayoutController.View.INCOME);
+        if(source == savingsBtn) LayoutController.setCurrentView(LayoutController.View.SAVINGS);
     }
 
     private static void clearSelection(){

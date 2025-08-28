@@ -15,14 +15,14 @@ public class TopMenu {
     private static Label welcomeLbl;
     private static Region space;
 
-    public static void setButton(String mode){
+    public static void setButton(LayoutController.Mode mode){
         if(mode == null) return;
 
-        if(mode.equals("view")){
+        if(mode.equals(LayoutController.Mode.VIEW)){
             root.getChildren().remove(viewBtn);
             root.getChildren().add(2, editBtn);
         }
-        if(mode.equals("edit")){
+        if(mode.equals(LayoutController.Mode.EDIT)){
             root.getChildren().remove(editBtn);
             root.getChildren().add(2, viewBtn);
         }
@@ -86,8 +86,8 @@ public class TopMenu {
     private static void handleEvent(ActionEvent e){
         Object source = e.getSource();
 
-        if (source == editBtn) LayoutController.setCurrentMode("edit");
-        if (source == viewBtn) LayoutController.setCurrentMode("view");
+        if (source == editBtn) LayoutController.setCurrentMode(LayoutController.Mode.EDIT);
+        if (source == viewBtn) LayoutController.setCurrentMode(LayoutController.Mode.VIEW);
         if (source == logoutBtn) App.logout();
         if (source == settingsBtn) LayoutController.setIsSettings(!LayoutController.getIsSettings());
     }

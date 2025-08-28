@@ -9,8 +9,10 @@ import layout.views.income.*;
 
 public class LayoutController {
     private static final BorderPane root = new BorderPane();
-    private static String currentView;
-    private static String currentMode;
+    public static enum View {INCOME, SAVINGS};
+    public static enum Mode {VIEW, EDIT};
+    private static View currentView;
+    private static Mode currentMode;
     private static boolean isSettings;
 
 
@@ -35,16 +37,16 @@ public class LayoutController {
         root.setLeft(LeftMenu.getRoot());
 
         setIsSettings(false);
-        setCurrentView("income");
-        setCurrentMode("edit"); // TODO change to view
+        setCurrentView(View.INCOME);
+        setCurrentMode(Mode.EDIT); // TODO change to view
         Router.route();
     }
 
-    public static String getCurrentMode(){return currentMode;}
-    public static String getCurrentView(){return currentView;}
+    public static Mode getCurrentMode(){return currentMode;}
+    public static View getCurrentView(){return currentView;}
     public static boolean getIsSettings(){return isSettings;}
 
-    public static void setCurrentMode(String currentMode){
+    public static void setCurrentMode(Mode currentMode){
         LayoutController.currentMode = currentMode;
 
         if(isSettings) setIsSettings(false);
@@ -53,7 +55,7 @@ public class LayoutController {
         Router.route();
     }
 
-    public static void setCurrentView(String currentView){
+    public static void setCurrentView(View currentView){
         LayoutController.currentView = currentView;
 
         if(isSettings) setIsSettings(false);
