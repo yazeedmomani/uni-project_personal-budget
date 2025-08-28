@@ -27,6 +27,8 @@ public class Router {
             return;
         }
 
+        IncomeEdit incomeEdit = new IncomeEdit();
+
         String route = currentView + "/" + currentMode;
         switch (route){
             case "/":
@@ -39,7 +41,7 @@ public class Router {
                 break;
             case "income/edit":
                 App.setWindowTitle("Budget - Income (Edit)");
-                root.setCenter(IncomeEdit.getRoot());
+                root.setCenter(incomeEdit.getRoot());
                 break;
             case "savings/view":
                 App.setWindowTitle("Budget - Savings (View)");
