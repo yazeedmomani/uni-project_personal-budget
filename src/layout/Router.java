@@ -5,10 +5,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import layout.views.Login;
 import layout.views.Settings;
-import layout.views.income.IncomeEdit;
-import layout.views.income.IncomeView;
-import layout.views.savings.SavingsEdit;
-import layout.views.savings.SavingsView;
+import layout.views.income.*;
+import layout.views.savings.*;
 
 public class Router {
     private static String currentView;
