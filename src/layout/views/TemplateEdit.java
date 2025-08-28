@@ -24,8 +24,9 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
     protected TextArea notesField;
     protected Button createButton, readButton, updateButton, deleteButton;
 
-    protected boolean isCreateMode;
-    protected boolean isUpdateMode;
+    protected enum Mode {NORMAL, CREATE, UPDATE};
+    protected Mode mode = Mode.NORMAL;
+
     protected Record record;
     protected DAO dao;
 
@@ -67,7 +68,7 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
 
     // ENTER/EXIT MODES
     private void enterCreateMode(){
-        isCreateMode = true;
+        mode = Mode.CREATE;
         form.reset();
 
         updateButton.setText("Insert Record");
@@ -78,7 +79,7 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
     }
 
     private void exitCreateMode(){
-        isCreateMode = false;
+        mode = Mode.NORMAL;
         form.reset();
 
         form.showHeader();
@@ -86,7 +87,7 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
     }
 
     private void enterUpdateMode(Record record){
-        isUpdateMode = true;
+        mode = Mode.UPDATE;
 
         updateButton.setText("Update Record");
         deleteButton.setText("Delete Record");
@@ -101,7 +102,7 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
     }
 
     private void exitUpdateMode(){
-        isUpdateMode = false;
+        mode = Mode.NORMAL;
         form.reset();
         form.hideFooter();
     }
@@ -114,10 +115,10 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
             if(source.equals(idField))
                 retrieve();
 
-            if((checkSourceEqualAnyFields(source) || source.equals(notesField)) && isUpdateMode)
+            if((checkSourceEqualAnyFields(source) || source.equals(notesField)) && mode.equals(Mode.UPDATE))
                 update();
 
-            if((checkSourceEqualAnyFields(source) || source.equals(notesField)) && isCreateMode)
+            if((checkSourceEqualAnyFields(source) || source.equals(notesField)) && mode.equals(Mode.CREATE))
                 insert();
         }
     }
@@ -131,12 +132,12 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
         }
 
         // UPDATE RECORD
-        if(target.equals(updateButton) && isUpdateMode){
+        if(target.equals(updateButton) && mode.equals(Mode.UPDATE)){
             update();
         }
 
         // DELETE RECORD
-        if(target.equals(deleteButton) && isUpdateMode){
+        if(target.equals(deleteButton) && mode.equals(Mode.UPDATE)){
             form.clearAlerts();
 
             try{
@@ -156,12 +157,12 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
         }
 
         // INSERT RECORD
-        if(target.equals(updateButton) && isCreateMode){
+        if(target.equals(updateButton) && mode.equals(Mode.CREATE)){
             insert();
         }
 
         // CANCEL
-        if(target.equals(deleteButton) && isCreateMode){
+        if(target.equals(deleteButton) && mode.equals(Mode.CREATE)){
             exitCreateMode();
         }
     }
