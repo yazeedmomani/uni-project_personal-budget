@@ -5,71 +5,10 @@ import db.models.IncomeRecord;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.ArrayList;
 
-public class IncomeDAO {
-    private final int userId;
-
+public class IncomeDAO extends TemplateDAO<IncomeRecord>{
     public IncomeDAO(int userId) {
-        this.userId = userId;
-    }
-
-    public IncomeRecord get(int id) throws Exception {
-        String sql = "SELECT * FROM income_log WHERE id = ? AND user_id = ?";
-
-        try (Connection connection = Database.getConnection()) {
-            PreparedStatement template = connection.prepareStatement(sql);
-
-            template.setInt(1, id);
-            template.setInt(2, userId);
-
-            try (ResultSet result = template.executeQuery()) {
-                if (!result.next()) return null;
-
-                return new IncomeRecord(
-                        result.getInt("id"),
-                        result.getInt("user_id"),
-                        LocalDate.parse(result.getString("date")),
-                        result.getString("source"),
-                        result.getDouble("amount"),
-                        result.getString("notes")
-                );
-            }
-        }
-    }
-
-    public List<IncomeRecord> getAll() throws Exception {
-        return getAll(0);
-    }
-
-    public List<IncomeRecord> getAll(int limit) throws Exception{
-        List<IncomeRecord> records = new ArrayList<>();
-        String sql = "SELECT * FROM income_log WHERE user_id = ? ORDER BY id DESC";
-        if (limit > 0) sql += " LIMIT ?";
-
-        try (Connection connection = Database.getConnection()) {
-            PreparedStatement template = connection.prepareStatement(sql);
-
-            template.setInt(1, userId);
-            if (limit > 0) template.setInt(2, limit);
-
-            try (ResultSet result = template.executeQuery()) {
-                while (result.next()) {
-                    IncomeRecord record = new IncomeRecord(
-                            result.getInt("id"),
-                            result.getInt("user_id"),
-                            LocalDate.parse(result.getString("date")),
-                            result.getString("source"),
-                            result.getDouble("amount"),
-                            result.getString("notes")
-                    );
-                    records.add(record);
-                }
-            }
-        }
-
-        return records;
+        super(userId, "income_log");
     }
 
     public IncomeRecord create(IncomeRecord record) throws Exception {
@@ -118,16 +57,15 @@ public class IncomeDAO {
         }
     }
 
-    public void delete(IncomeRecord record) throws Exception {
-        String sql = "DELETE FROM income_log WHERE id = ? AND user_id = ?";
-
-        try (Connection connection = Database.getConnection()) {
-            PreparedStatement template = connection.prepareStatement(sql);
-
-            template.setInt(1, record.getId());
-            template.setInt(2, userId);
-
-            template.executeUpdate();
-        }
+    @Override
+    protected IncomeRecord createRecord(ResultSet result) throws Exception{
+        return new IncomeRecord(
+                result.getInt("id"),
+                result.getInt("user_id"),
+                LocalDate.parse(result.getString("date")),
+                result.getString("source"),
+                result.getDouble("amount"),
+                result.getString("notes")
+        );
     }
 }

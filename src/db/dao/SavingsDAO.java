@@ -1,7 +1,6 @@
 package db.dao;
 
 import db.Database;
-import db.models.IncomeRecord;
 import db.models.SavingsRecord;
 
 import java.sql.*;
@@ -9,68 +8,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SavingsDAO {
-    private final int userId;
-
+public class SavingsDAO extends TemplateDAO<SavingsRecord>{
     public SavingsDAO(int userId) {
-        this.userId = userId;
-    }
-
-    public SavingsRecord get(int id) throws Exception {
-        String sql = "SELECT * FROM savings_log WHERE id = ? AND user_id = ?";
-
-        try (Connection connection = Database.getConnection()) {
-            PreparedStatement template = connection.prepareStatement(sql);
-
-            template.setInt(1, id);
-            template.setInt(2, userId);
-
-            try (ResultSet result = template.executeQuery()) {
-                if (!result.next()) return null;
-
-                return new SavingsRecord(
-                        result.getInt("id"),
-                        result.getInt("user_id"),
-                        LocalDate.parse(result.getString("date")),
-                        result.getDouble("change"),
-                        result.getDouble("balance"),
-                        result.getString("notes")
-                );
-            }
-        }
-    }
-
-    public List<SavingsRecord> getAll() throws Exception {
-        return getAll(0);
-    }
-
-    public List<SavingsRecord> getAll(int limit) throws Exception{
-        List<SavingsRecord> records = new ArrayList<>();
-        String sql = "SELECT * FROM savings_log WHERE user_id = ? ORDER BY id DESC";
-        if (limit > 0) sql += " LIMIT ?";
-
-        try (Connection connection = Database.getConnection()) {
-            PreparedStatement template = connection.prepareStatement(sql);
-
-            template.setInt(1, userId);
-            if (limit > 0) template.setInt(2, limit);
-
-            try (ResultSet result = template.executeQuery()) {
-                while (result.next()) {
-                    SavingsRecord record = new SavingsRecord(
-                            result.getInt("id"),
-                            result.getInt("user_id"),
-                            LocalDate.parse(result.getString("date")),
-                            result.getDouble("change"),
-                            result.getDouble("balance"),
-                            result.getString("notes")
-                    );
-                    records.add(record);
-                }
-            }
-        }
-
-        return records;
+        super(userId, "savings_log");
     }
 
     public SavingsRecord create(SavingsRecord record) throws Exception {
@@ -123,19 +63,6 @@ public class SavingsDAO {
         }
     }
 
-    public void delete(SavingsRecord record) throws Exception {
-        String sql = "DELETE FROM savings_log WHERE id = ? AND user_id = ?";
-
-        try (Connection connection = Database.getConnection()) {
-            PreparedStatement template = connection.prepareStatement(sql);
-
-            template.setInt(1, record.getId());
-            template.setInt(2, userId);
-
-            template.executeUpdate();
-        }
-    }
-
     public double getLastBalance() throws Exception {
         String sql = "SELECT balance FROM savings_log WHERE user_id = ? ORDER BY id DESC LIMIT 1";
 
@@ -147,5 +74,17 @@ public class SavingsDAO {
                 return result.next() ? result.getDouble("balance") : 0.0;
             }
         }
+    }
+
+    @Override
+    protected SavingsRecord createRecord(ResultSet result) throws Exception{
+        return new SavingsRecord(
+                result.getInt("id"),
+                result.getInt("user_id"),
+                LocalDate.parse(result.getString("date")),
+                result.getDouble("change"),
+                result.getDouble("balance"),
+                result.getString("notes")
+        );
     }
 }
