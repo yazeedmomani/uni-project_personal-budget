@@ -24,7 +24,7 @@ public class LayoutController {
         root.setTop(null);
         root.setLeft(null);
 
-        if(isSettings) setisSettings(false);
+        if(isSettings) setIsSettings(false);
         setCurrentView(null);
         setCurrentMode(null);
         Router.route();
@@ -34,7 +34,7 @@ public class LayoutController {
         root.setTop(TopMenu.getRoot());
         root.setLeft(LeftMenu.getRoot());
 
-        setisSettings(false);
+        setIsSettings(false);
         setCurrentView("income");
         setCurrentMode("edit"); // TODO change to view
         Router.route();
@@ -42,12 +42,12 @@ public class LayoutController {
 
     public static String getCurrentMode(){return currentMode;}
     public static String getCurrentView(){return currentView;}
-    public static boolean getisSettings(){return isSettings;}
+    public static boolean getIsSettings(){return isSettings;}
 
     public static void setCurrentMode(String currentMode){
         LayoutController.currentMode = currentMode;
 
-        if(isSettings) setisSettings(false);
+        if(isSettings) setIsSettings(false);
 
         TopMenu.setButton(currentMode);
         Router.route();
@@ -56,13 +56,13 @@ public class LayoutController {
     public static void setCurrentView(String currentView){
         LayoutController.currentView = currentView;
 
-        if(isSettings) setisSettings(false);
+        if(isSettings) setIsSettings(false);
 
         LeftMenu.selectView(currentView);
         Router.route();
     }
 
-    public static void setisSettings(boolean bool){
+    public static void setIsSettings(boolean bool){
         isSettings = bool;
         TopMenu.selectSettings(bool);
         Router.route();

@@ -89,6 +89,6 @@ public class TopMenu {
         if (source == editBtn) LayoutController.setCurrentMode("edit");
         if (source == viewBtn) LayoutController.setCurrentMode("view");
         if (source == logoutBtn) App.logout();
-        if (source == settingsBtn) LayoutController.setisSettings(!LayoutController.getisSettings());
+        if (source == settingsBtn) LayoutController.setIsSettings(!LayoutController.getIsSettings());
     }
 }

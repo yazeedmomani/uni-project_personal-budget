@@ -17,7 +17,7 @@ public class Router {
         BorderPane root = LayoutController.getMainRoot();
         currentView = LayoutController.getCurrentView() == null ? "" : LayoutController.getCurrentView();
         currentMode = LayoutController.getCurrentMode() == null ? "" : LayoutController.getCurrentMode();
-        viewSettings = LayoutController.getisSettings();
+        viewSettings = LayoutController.getIsSettings();
 
         root.setCenter(null);
 
