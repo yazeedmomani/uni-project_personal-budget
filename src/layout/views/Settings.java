@@ -35,7 +35,7 @@ public class Settings {
 
         updateButton = form.getUpdateButton();
         updateButton.setText("Save");
-        updateButton.setOnAction(Settings::clickHandler);
+        updateButton.setOnAction(Settings::eventHandler);
 
         nameField = form.addField("Name", "Name");
         usernameField = form.addField("Username", "Username");
@@ -54,7 +54,7 @@ public class Settings {
         return dashbaord.getRoot();
     }
 
-    private static void clickHandler(ActionEvent e){
+    private static void eventHandler(ActionEvent e){
         form.clearAlerts();
 
         if(validator.assertNotEmpty(usernameField, nameField)) return;

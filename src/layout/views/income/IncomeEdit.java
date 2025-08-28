@@ -49,10 +49,10 @@ public class IncomeEdit {
         updateButton = form.getUpdateButton();
         deleteButton = form.getDeleteButton();
 
-        createButton.setOnAction(IncomeEdit::clickHandler);
-        readButton.setOnAction(IncomeEdit::clickHandler);
-        updateButton.setOnAction(IncomeEdit::clickHandler);
-        deleteButton.setOnAction(IncomeEdit::clickHandler);
+        createButton.setOnAction(IncomeEdit::eventHandler);
+        readButton.setOnAction(IncomeEdit::eventHandler);
+        updateButton.setOnAction(IncomeEdit::eventHandler);
+        deleteButton.setOnAction(IncomeEdit::eventHandler);
 
         card = new DashboardCard(form.getRoot());
         dashboard = new Dashboard();
@@ -96,7 +96,7 @@ public class IncomeEdit {
         form.hideFooter();
     }
 
-    private static void clickHandler(ActionEvent e){
+    private static void eventHandler(ActionEvent e){
         Object target = e.getTarget();
 
         // RETRIEVE RECORD

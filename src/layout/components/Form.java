@@ -84,15 +84,6 @@ public class Form {
         return input;
     }
 
-    // TODO REMOVE
-    public void initializeFormSettings(){
-        root.setTop(null);
-
-        footer.getChildren().remove(deleteButton);
-
-        updateButton.setText("Save");
-    }
-
     // CONSTRUCTOR
     public Form(){
         alertMessage = new Label();

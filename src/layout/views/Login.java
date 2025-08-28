@@ -1,6 +1,7 @@
 package layout.views;
 
 import db.Database;
+import db.Validator;
 import db.models.User;
 import javafx.event.*;
 import javafx.scene.input.*;
@@ -10,75 +11,69 @@ import javafx.scene.control.*;
 import app.App;
 
 public class Login {
-    private static Button submitBtn;
-    private static TextField usernameInput;
-    private static PasswordField passwordInput;
-    private static Label errorLbl;
     private static VBox centerBox;
     private static FlowPane root;
 
+    private static Button submitBtn;
+    private static TextField usernameInput;
+    private static PasswordField passwordInput;
+
+    private static Label alertMessage;
+    private static final String INVALID_INPUT_CLASS = "login_invalidInput";
+
+
     public static FlowPane getRoot(){
-        createCenterBox();
+        alertMessage = new Label();
+        alertMessage.getStyleClass().add("login_errorLabel");
+
+        usernameInput = new TextField();
+        passwordInput = new PasswordField();
+        submitBtn = new Button("Log in");
+
+        initializeInput(usernameInput, "Username");
+        initializeInput(passwordInput, "Password");
+        submitBtn.getStyleClass().add("login_button");
+        submitBtn.setOnAction(Login::eventHandler);
+
+        centerBox = new VBox(usernameInput, passwordInput, submitBtn);
+        centerBox.getStyleClass().add("login_centerBox");
 
         root = new FlowPane(centerBox);
         root.getStyleClass().add("login");
-        root.setOnMouseClicked(Login::handleEvent);
+        root.setOnMouseClicked(Login::eventHandler);
 
         return root;
     }
 
-    private static void createCenterBox(){
-        usernameInput = createInput("Username");
-        passwordInput = createPasswordInput("Password");
-        submitBtn = createButton("Log in");
-
-        centerBox = new VBox(usernameInput, passwordInput, submitBtn);
-        centerBox.getStyleClass().add("login_centerBox");
-    }
-
-    private static PasswordField createPasswordInput(String promptText){
-        PasswordField input = new PasswordField();
+    // LAYOUT HELPER
+    private static void initializeInput(TextInputControl input, String promptText){
         input.setPromptText(promptText);
         input.getStyleClass().add("login_input");
-        input.setOnKeyPressed(Login::handleEvent);
-        return input;
+        input.setOnKeyPressed(Login::eventHandler);
     }
 
-    private static TextField createInput(String promptText){
-        TextField input = new TextField();
-        input.setPromptText(promptText);
-        input.getStyleClass().add("login_input");
-        input.setOnKeyPressed(Login::handleEvent);
-        return input;
+    // EVENT HANDLERS
+    private static void eventHandler(KeyEvent e){
+        if(e.getCode() == KeyCode.ENTER) submit();
     }
 
-    private static Button createButton(String text){
-        Button button = new Button(text);
-        button.getStyleClass().add("login_button");
-        button.setOnAction(Login::handleEvent);
-        return button;
-    }
-
-    private static void handleEvent(KeyEvent e){
-        if(e.getCode() == KeyCode.ENTER) handleSumbit();
-    }
-
-    private static void handleEvent(Event e){
+    private static void eventHandler(Event e){
         Object source = e.getSource();
 
         if(source == root || source == centerBox) root.requestFocus();
-        if(source == submitBtn) handleSumbit();
+        if(source == submitBtn) submit();
     }
 
-    private static void handleSumbit(){
+    private static void submit(){
+        clearAlerts();
+        if(assertNotEmpty()) return;
+
         try{
             User user = Database.getUser(usernameInput.getText(), passwordInput.getText());
-
             if(user == null){
-                handleInvalid();
+                setAlertMessage("Invalid username or password");
                 return;
             }
-
             App.login(user);
         }
         catch(Exception exception){
@@ -86,35 +81,34 @@ public class Login {
         }
     }
 
-    private static void handleInvalid(){
-        String invalidClass = "login_invalidInput";
-        String username = usernameInput.getText();
-        String password = passwordInput.getText();
+    // ASSERTION
+    private static boolean assertNotEmpty(){
+        String username = Validator.getString(usernameInput);
+        String password = Validator.getString(passwordInput);
 
-        centerBox.getChildren().remove(errorLbl);
-        usernameInput.getStyleClass().remove(invalidClass);
-        passwordInput.getStyleClass().remove(invalidClass);
-
-        errorLbl = new Label();
-        errorLbl.getStyleClass().add("login_errorLabel");
-
-        if(username.equals("") && password.equals("")){
-            errorLbl.setText("Enter username and password");
-            usernameInput.getStyleClass().add(invalidClass);
-            passwordInput.getStyleClass().add(invalidClass);
-        }
-        else if (username.equals("")){
-            errorLbl.setText("Enter username");
-            usernameInput.getStyleClass().add(invalidClass);
-        }
-        else if (password.equals("")){
-            errorLbl.setText("Enter password");
-            passwordInput.getStyleClass().add(invalidClass);
-        }
-        else{
-            errorLbl.setText("Invalid username or password");
+        if(username.isEmpty() || password.isEmpty()){
+            setAlertMessage("Enter username and password");
+            if(username.isEmpty()) alert(usernameInput);
+            if(password.isEmpty()) alert(passwordInput);
+            return true;
         }
 
-        centerBox.getChildren().addFirst(errorLbl);
+        return false;
+    }
+
+    // ALERTS
+    private static void setAlertMessage(String message){
+        alertMessage.setText(message);
+        centerBox.getChildren().addFirst(alertMessage);
+    }
+
+    private static void alert(TextInputControl input){
+        input.getStyleClass().add(INVALID_INPUT_CLASS);
+    }
+
+    private static void clearAlerts(){
+        centerBox.getChildren().remove(alertMessage);
+        usernameInput.getStyleClass().remove(INVALID_INPUT_CLASS);
+        passwordInput.getStyleClass().remove(INVALID_INPUT_CLASS);
     }
 }
