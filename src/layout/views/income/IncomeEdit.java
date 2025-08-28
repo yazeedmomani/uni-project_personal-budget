@@ -3,23 +3,17 @@ package layout.views.income;
 import db.Database;
 import db.Validator;
 import db.models.IncomeRecord;
-import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+
+import javafx.event.*;
 import javafx.scene.control.*;
-import javafx.scene.control.TextField;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
+
 import layout.components.Dashboard;
 import layout.components.DashboardCard;
 import layout.components.Form;
-import layout.components.income.IncomeBarChart;
 
-import java.util.Collections;
-import java.util.List;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class IncomeEdit {
     private static Dashboard dashboard;
@@ -32,6 +26,7 @@ public class IncomeEdit {
     private static Button createButton, readButton, updateButton, deleteButton;
 
     private static boolean isCreateMode;
+    private static boolean isUpdateMode;
     private static IncomeRecord record;
 
     public static ScrollPane getRoot(){
@@ -43,6 +38,12 @@ public class IncomeEdit {
         sourceField = form.addField("Source", "Income Source");
         amountField = form.addField("Amount", "0.00");
         notesField = form.addAreaField("Notes", "Notes (optional)");
+
+        idField.setOnKeyPressed(IncomeEdit::eventHandler);
+        dateField.setOnKeyPressed(IncomeEdit::eventHandler);
+        sourceField.setOnKeyPressed(IncomeEdit::eventHandler);
+        amountField.setOnKeyPressed(IncomeEdit::eventHandler);
+        notesField.setOnKeyPressed(IncomeEdit::eventHandler);
 
         createButton = form.getCreateButton();
         readButton = form.getReadButton();
@@ -61,7 +62,9 @@ public class IncomeEdit {
         return dashboard.getRoot();
     }
 
+    // ENTER/EXIT MODES
     private static void enterCreateMode(){
+        isCreateMode = true;
         form.reset();
 
         updateButton.setText("Insert Record");
@@ -72,6 +75,7 @@ public class IncomeEdit {
     }
 
     private static void exitCreateMode(){
+        isCreateMode = false;
         form.reset();
 
         form.showHeader();
@@ -79,6 +83,8 @@ public class IncomeEdit {
     }
 
     private static void enterUpdateMode(IncomeRecord record){
+        isUpdateMode = true;
+
         updateButton.setText("Update Record");
         deleteButton.setText("Delete Record");
 
@@ -91,9 +97,27 @@ public class IncomeEdit {
     }
 
     private static void exitUpdateMode(){
+        isUpdateMode = false;
         form.reset();
-
         form.hideFooter();
+    }
+
+    // EVENT HANDLERS
+    private static void eventHandler(KeyEvent e){
+        Object source = e.getSource();
+
+        if(e.getCode() == KeyCode.ENTER){
+            if(source.equals(idField))
+                retrieve();
+
+            if((source.equals(dateField) || source.equals(sourceField)
+                    || source.equals(amountField) || source.equals(notesField)) && isUpdateMode)
+                update();
+
+            if((source.equals(dateField) || source.equals(sourceField)
+                    || source.equals(amountField) || source.equals(notesField)) && isCreateMode)
+                insert();
+        }
     }
 
     private static void eventHandler(ActionEvent e){
@@ -101,62 +125,16 @@ public class IncomeEdit {
 
         // RETRIEVE RECORD
         if(target.equals(readButton)){
-            isCreateMode = false;
-
-            form.clear(dateField, sourceField, amountField, notesField);
-            form.clearAlerts();
-
-            if(validator.assertNotEmpty(idField)) return;
-            if(validator.assertInteger(idField)) return;
-            if(validator.assertPositiveNumber(idField)) return;
-
-            int id = Validator.getInt(idField);
-
-            try{
-                record = Database.getIncomeDAO().get(id);
-                if(record == null){
-                    exitUpdateMode();
-                    form.setAlertMessage("error","Record does not exist");
-                    return;
-                }
-                enterUpdateMode(record);
-            }
-            catch (Exception exp){
-                form.setAlertMessage("error","Failed to retrieve record");
-            }
+            retrieve();
         }
 
         // UPDATE RECORD
-        if(target.equals(updateButton) && !isCreateMode){
-            form.clearAlerts();
-
-            if (validator.assertNotEmpty(dateField, sourceField, amountField)) return;
-            if (validator.assertDateFormat(dateField)) return;
-            if (validator.assertPositiveNumber(amountField)) return;
-
-            LocalDate date = Validator.getLocalDate(dateField);
-            String source = Validator.getString(sourceField);
-            double amount = Validator.getDouble(amountField);
-            String notes = Validator.getString(notesField);
-
-            record.setDate(date);
-            record.setSource(source);
-            record.setAmount(amount);
-            record.setNotes(notes);
-
-            try{
-                Database.getIncomeDAO().update(record);
-
-                exitUpdateMode();
-                form.setAlertMessage("success","Record updated successfully");
-            }
-            catch (Exception exp){
-                form.setAlertMessage("error","Failed to update record");
-            }
+        if(target.equals(updateButton) && isUpdateMode){
+            update();
         }
 
         // DELETE RECORD
-        if(target.equals(deleteButton) && !isCreateMode){
+        if(target.equals(deleteButton) && isUpdateMode){
             form.clearAlerts();
 
             try{
@@ -172,39 +150,95 @@ public class IncomeEdit {
 
         // NEW RECORD
         if(target.equals(createButton)){
-            isCreateMode = true;
             enterCreateMode();
         }
 
         // INSERT RECORD
         if(target.equals(updateButton) && isCreateMode){
-            form.clearAlerts();
-
-            if (validator.assertNotEmpty(dateField, sourceField, amountField)) return;
-            if (validator.assertDateFormat(dateField)) return;
-            if (validator.assertPositiveNumber(amountField)) return;
-
-            LocalDate date = Validator.getLocalDate(dateField);
-            String source = Validator.getString(sourceField);
-            double amount = Validator.getDouble(amountField);
-            String notes = Validator.getString(notesField);
-
-            record = new IncomeRecord(date, source, amount, notes);
-
-            try{
-                Database.getIncomeDAO().create(record);
-
-                exitCreateMode();
-                form.setAlertMessage("success","Record inserted successfully");
-            }
-            catch (Exception exp){
-                form.setAlertMessage("error","Failed to insert record");
-            }
+            insert();
         }
 
         // CANCEL
         if(target.equals(deleteButton) && isCreateMode){
             exitCreateMode();
+        }
+    }
+
+    // EVENT HANDLERS HELPERS
+    private static void retrieve(){
+        form.clear(dateField, sourceField, amountField, notesField);
+        form.clearAlerts();
+
+        if(validator.assertNotEmpty(idField)) return;
+        if(validator.assertInteger(idField)) return;
+        if(validator.assertPositiveNumber(idField)) return;
+
+        int id = Validator.getInt(idField);
+
+        try{
+            record = Database.getIncomeDAO().get(id);
+            if(record == null){
+                exitUpdateMode();
+                form.setAlertMessage("error","Record does not exist");
+                return;
+            }
+            enterUpdateMode(record);
+        }
+        catch (Exception exp){
+            form.setAlertMessage("error","Failed to retrieve record");
+        }
+    }
+
+    private static void update(){
+        form.clearAlerts();
+
+        if (validator.assertNotEmpty(dateField, sourceField, amountField)) return;
+        if (validator.assertDateFormat(dateField)) return;
+        if (validator.assertPositiveNumber(amountField)) return;
+
+        LocalDate date = Validator.getLocalDate(dateField);
+        String source = Validator.getString(sourceField);
+        double amount = Validator.getDouble(amountField);
+        String notes = Validator.getString(notesField);
+
+        record.setDate(date);
+        record.setSource(source);
+        record.setAmount(amount);
+        record.setNotes(notes);
+
+        try{
+            Database.getIncomeDAO().update(record);
+
+            exitUpdateMode();
+            form.setAlertMessage("success","Record updated successfully");
+        }
+        catch (Exception exp){
+            form.setAlertMessage("error","Failed to update record");
+        }
+    }
+
+    private static void insert(){
+        form.clearAlerts();
+
+        if (validator.assertNotEmpty(dateField, sourceField, amountField)) return;
+        if (validator.assertDateFormat(dateField)) return;
+        if (validator.assertPositiveNumber(amountField)) return;
+
+        LocalDate date = Validator.getLocalDate(dateField);
+        String source = Validator.getString(sourceField);
+        double amount = Validator.getDouble(amountField);
+        String notes = Validator.getString(notesField);
+
+        record = new IncomeRecord(date, source, amount, notes);
+
+        try{
+            Database.getIncomeDAO().create(record);
+
+            exitCreateMode();
+            form.setAlertMessage("success","Record inserted successfully");
+        }
+        catch (Exception exp){
+            form.setAlertMessage("error","Failed to insert record");
         }
     }
 }
