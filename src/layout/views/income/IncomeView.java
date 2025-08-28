@@ -19,6 +19,7 @@ import java.text.NumberFormat;
 public class IncomeView extends TemplateView<IncomeRecord, IncomeDAO> {
     private static DashboardCard leftSummaryCard, rightSummaryCard, barChartCard, lineChartCard, tableCard;
     private static IncomeBarChart barChart;
+    private static IncomeLineChart lineChart;
 
     public IncomeView(){
         super(Database.getIncomeDAO());
@@ -29,11 +30,12 @@ public class IncomeView extends TemplateView<IncomeRecord, IncomeDAO> {
         String incomeThisMonth = getIncomeThisMonth();
         String incomeLastMonth = getIncomeLastMonth();
         barChart = new IncomeBarChart(data);
+        lineChart = new IncomeLineChart(data);
 
         leftSummaryCard = new DashboardCard("Income This Month", new Summary(incomeThisMonth).getNode());
         rightSummaryCard = new DashboardCard("Income Last Month", new Summary(incomeLastMonth).getNode());
         barChartCard = new DashboardCard("Income by Source (Last 6 Months)", barChart.getChart());
-        lineChartCard = new DashboardCard("Total Income per Month (Last 6 Months)", IncomeLineChart.init(data));
+        lineChartCard = new DashboardCard("Total Income per Month (Last 6 Months)", lineChart.getChart());
         tableCard = new DashboardCard("Income Details", IncomeTable.init(data));
 
         dashboard = new Dashboard();
