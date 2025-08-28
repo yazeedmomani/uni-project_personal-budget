@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class TemplateLineChart<Record extends TemplateRecord> {
+    protected final int limitMonths;
     private final boolean addMedian;
     private final String xAxisLabel;
     private final String yAxisLabel;
@@ -24,16 +25,19 @@ public abstract class TemplateLineChart<Record extends TemplateRecord> {
 
     /**
      * Template constructor matching TemplateBarChart parameters with two additions:
+     * - int limitMonths: limit to the last N months (including current). Use `-1` to include all months in the data.
      * - boolean addMedian: whether to include a median line computed from the first returned series
      * - String secondaryColor: color for the median line and its legend symbol
      */
     protected TemplateLineChart(List<Record> data,
+                                int limitMonths,
                                 boolean addMedian,
                                 String xAxisLabel,
                                 String yAxisLabel,
                                 String primaryColor,
                                 String secondaryColor) {
         this.data = data;
+        this.limitMonths = limitMonths;
         this.addMedian = addMedian;
         this.xAxisLabel = xAxisLabel == null ? "" : xAxisLabel;
         this.yAxisLabel = yAxisLabel == null ? "" : yAxisLabel;

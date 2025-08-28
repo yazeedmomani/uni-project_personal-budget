@@ -15,27 +15,48 @@ import java.util.stream.Collectors;
 public class IncomeLineChart extends TemplateLineChart<IncomeRecord> {
 
     public IncomeLineChart(List<IncomeRecord> data) {
-        super(data, true, "Month", "Total (JOD)", "#388E3C", "#C8E6C9");
+        super(data, 6, true, "Month", "Total (JOD)", "#388E3C", "#C8E6C9");
+    }
+
+    public IncomeLineChart(List<IncomeRecord> data,
+                           int limitMonths,
+                           boolean addMedian,
+                           String xAxisLabel,
+                           String yAxisLabel,
+                           String primaryColor,
+                           String secondaryColor) {
+        super(data, limitMonths, addMedian, xAxisLabel, yAxisLabel, primaryColor, secondaryColor);
     }
 
     @Override
     protected List<XYChart.Series<String, Number>> buildSeries() {
-        // Define month window: last 6 months including current
-        YearMonth startYm = YearMonth.from(LocalDate.now()).minusMonths(5);
-        YearMonth endYm = YearMonth.from(LocalDate.now());
+        int lm = limitMonths;
+        YearMonth nowYm = YearMonth.from(LocalDate.now());
+        YearMonth startYm;
+        YearMonth endYm = nowYm;
+
+        if (lm == -1) {
+            // include all months present in data up to current month
+            startYm = data.stream()
+                    .map(r -> YearMonth.from(r.getDate()))
+                    .min(YearMonth::compareTo)
+                    .orElse(nowYm);
+        } else {
+            if (lm < 1) lm = 1; // safety clamp
+            startYm = nowYm.minusMonths(lm - 1);
+        }
+
         LocalDate startDate = startYm.atDay(1);
         LocalDate endDate = endYm.atEndOfMonth();
 
-        // Group by YearMonth and sum amounts
         Map<YearMonth, Double> monthlyTotals = data.stream()
                 .filter(r -> !r.getDate().isBefore(startDate) && !r.getDate().isAfter(endDate))
                 .collect(Collectors.groupingBy(r -> YearMonth.from(r.getDate()),
                         Collectors.summingDouble(IncomeRecord::getAmount)));
 
-        // Build ordered categories and values for the 6 months, filling missing ones with 0
         List<YearMonth> months = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            months.add(startYm.plusMonths(i));
+        for (YearMonth ym = startYm; !ym.isAfter(endYm); ym = ym.plusMonths(1)) {
+            months.add(ym);
         }
 
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MMM yyyy");
