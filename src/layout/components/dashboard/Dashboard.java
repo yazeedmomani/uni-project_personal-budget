@@ -1,6 +1,5 @@
-package layout.components;
+package layout.components.dashboard;
 
-import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 

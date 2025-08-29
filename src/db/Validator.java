@@ -1,7 +1,7 @@
 package db;
 
 import javafx.scene.control.TextInputControl;
-import layout.components.Form;
+import layout.components.form.Form;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;

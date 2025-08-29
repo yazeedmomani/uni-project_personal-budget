@@ -1,4 +1,4 @@
-package layout.components;
+package layout.components.form;
 
 import javafx.scene.Node;
 import javafx.scene.control.*;

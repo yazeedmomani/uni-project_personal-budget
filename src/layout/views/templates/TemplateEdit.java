@@ -1,4 +1,4 @@
-package layout.views;
+package layout.views.templates;
 
 import db.Validator;
 import db.dao.TemplateDAO;
@@ -10,9 +10,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import layout.components.Dashboard;
-import layout.components.DashboardCard;
-import layout.components.Form;
+import layout.components.dashboard.Dashboard;
+import layout.components.dashboard.DashboardCard;
+import layout.components.form.Form;
 
 public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends TemplateDAO<Record>> {
     protected Dashboard dashboard;

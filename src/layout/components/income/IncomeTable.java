@@ -3,7 +3,7 @@ package layout.components.income;
 import db.models.IncomeRecord;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.scene.control.TableColumn;
-import layout.components.TemplateTable;
+import layout.components.templates.TemplateTable;
 
 import java.util.List;
 

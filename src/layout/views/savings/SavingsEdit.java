@@ -7,11 +7,10 @@ import db.models.IncomeRecord;
 import javafx.event.*;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
-import javafx.scene.layout.*;
 
-import layout.components.Dashboard;
-import layout.components.DashboardCard;
-import layout.components.Form;
+import layout.components.dashboard.Dashboard;
+import layout.components.dashboard.DashboardCard;
+import layout.components.form.Form;
 
 import java.time.LocalDate;
 

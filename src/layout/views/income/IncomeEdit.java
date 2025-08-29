@@ -7,7 +7,7 @@ import db.models.IncomeRecord;
 
 import javafx.scene.control.*;
 
-import layout.views.TemplateEdit;
+import layout.views.templates.TemplateEdit;
 
 import java.time.LocalDate;
 

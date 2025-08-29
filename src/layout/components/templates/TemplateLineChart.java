@@ -1,4 +1,4 @@
-package layout.components;
+package layout.components.templates;
 
 import db.models.TemplateRecord;
 import javafx.application.Platform;
@@ -7,8 +7,6 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 

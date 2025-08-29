@@ -1,12 +1,9 @@
-package layout.components;
+package layout.components.form;
 
-import db.Database;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import org.w3c.dom.Text;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

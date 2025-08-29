@@ -5,14 +5,14 @@ import db.dao.IncomeDAO;
 import db.models.IncomeRecord;
 import java.time.*;
 import java.util.*;
-import javafx.scene.control.ScrollPane;
-import layout.components.Dashboard;
-import layout.components.DashboardCard;
+
+import layout.components.dashboard.Dashboard;
+import layout.components.dashboard.DashboardCard;
 import layout.components.Summary;
 import layout.components.income.IncomeBarChart;
 import layout.components.income.IncomeLineChart;
 import layout.components.income.IncomeTable;
-import layout.views.TemplateView;
+import layout.views.templates.TemplateView;
 
 import java.text.NumberFormat;
 

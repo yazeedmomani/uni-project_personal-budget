@@ -5,9 +5,9 @@ import db.Validator;
 import db.models.User;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
-import layout.components.Dashboard;
-import layout.components.DashboardCard;
-import layout.components.Form;
+import layout.components.dashboard.Dashboard;
+import layout.components.dashboard.DashboardCard;
+import layout.components.form.Form;
 import layout.menus.TopMenu;
 import javafx.scene.input.*;
 

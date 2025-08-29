@@ -1,9 +1,9 @@
-package layout.views;
+package layout.views.templates;
 
 import db.dao.TemplateDAO;
 import db.models.TemplateRecord;
 import javafx.scene.control.ScrollPane;
-import layout.components.Dashboard;
+import layout.components.dashboard.Dashboard;
 
 import java.util.Collections;
 import java.util.List;

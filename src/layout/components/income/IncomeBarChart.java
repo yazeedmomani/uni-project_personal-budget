@@ -2,7 +2,7 @@ package layout.components.income;
 
 import db.models.IncomeRecord;
 import javafx.scene.chart.XYChart;
-import layout.components.TemplateBarChart;
+import layout.components.templates.TemplateBarChart;
 
 import java.time.LocalDate;
 import java.time.YearMonth;

@@ -1,4 +1,4 @@
-package layout.components;
+package layout.components.templates;
 
 import db.models.TemplateRecord;
 import javafx.application.Platform;
