@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 public class Summary {
     private Label label;
 
-    public Label getNode() {return label;}
+    public Label getSummary() {return label;}
 
     public Summary(String summary){
         label= new Label(summary);
