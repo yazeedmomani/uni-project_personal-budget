@@ -1,0 +1,51 @@
+user_id,date,party,amount,notes,type
+2,2024-01-25,University,-37,,Credited
+2,2024-01-18,Salam,14,In hac habitasse platea dictumst.,Credited
+2,2025-07-31,Salam,2,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",Credited
+2,2024-04-23,University,-3,,Credited
+2,2025-06-14,Salam,41,"Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",Credited
+2,2025-08-17,Salam,13,Sed sagittis.,Credited
+2,2025-07-27,Salam,30,,Credited
+2,2024-07-26,Salam,-13,,Credited
+2,2024-10-06,University,-26,,Credited
+2,2025-02-20,Salam,6,,Credited
+2,2024-11-06,University,32,Morbi porttitor lorem id ligula.,Credited
+2,2025-05-16,Mahmoud,-15,,Credited
+2,2024-02-07,Mahmoud,34,Proin interdum mauris non ligula pellentesque ultrices.,Credited
+2,2024-05-11,Mahmoud,60,,Credited
+2,2024-12-21,Mahmoud,16,In hac habitasse platea dictumst.,Credited
+2,2025-07-07,Salam,-36,,Credited
+2,2024-07-25,Mahmoud,-40,Pellentesque ultrices mattis odio.,Credited
+2,2024-08-07,Mahmoud,-20,,Credited
+2,2025-07-29,University,33,,Credited
+2,2024-01-03,University,-33,,Credited
+2,2024-07-29,Mahmoud,47,,Credited
+2,2024-09-28,Mahmoud,-20,Aenean fermentum.,Credited
+2,2025-02-02,University,-21,,Credited
+2,2024-11-16,Salam,-24,,Credited
+2,2025-06-23,Mahmoud,56,,Credited
+2,2024-10-23,Salam,-15,"Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.",Credited
+2,2024-02-29,Salam,-37,Proin eu mi.,Credited
+2,2024-08-14,University,-16,,Credited
+2,2024-04-18,Mahmoud,19,,Credited
+2,2025-07-26,Salam,13,Morbi ut odio.,Credited
+2,2025-08-21,Salam,51,,Credited
+2,2025-08-10,Salam,4,,Credited
+2,2024-10-16,Mahmoud,-11,Duis aliquam convallis nunc.,Credited
+2,2025-01-28,Salam,51,,Credited
+2,2025-06-09,Mahmoud,24,Cras pellentesque volutpat dui.,Credited
+2,2024-05-09,Mahmoud,-12,,Credited
+2,2024-08-26,Salam,34,,Credited
+2,2024-09-01,University,57,In eleifend quam a odio.,Credited
+2,2025-06-04,Salam,-33,,Credited
+2,2024-03-18,University,56,Integer ac leo.,Credited
+2,2024-10-08,University,-11,Curabitur in libero ut massa volutpat convallis.,Credited
+2,2025-07-15,University,31,Phasellus sit amet erat.,Credited
+2,2024-03-25,Mahmoud,51,Nulla facilisi.,Credited
+2,2024-03-21,Mahmoud,-12,,Credited
+2,2024-07-25,Salam,55,Mauris sit amet eros.,Credited
+2,2024-08-08,Salam,3,"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi.",Credited
+2,2024-08-20,Salam,26,,Credited
+2,2024-10-31,Mahmoud,2,,Credited
+2,2024-07-02,Salam,30,,Credited
+2,2025-05-19,University,14,Nam dui.,Credited

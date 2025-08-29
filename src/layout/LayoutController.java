@@ -42,7 +42,7 @@ public class LayoutController {
         root.setLeft(LeftMenu.getRoot());
 
         setIsSettings(false);
-        setCurrentView(LayoutView.SAVINGS);
+        setCurrentView(LayoutView.INCOME);
         setCurrentMode(LayoutMode.VIEW);
         route();
     }
