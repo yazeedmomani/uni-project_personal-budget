@@ -20,6 +20,7 @@ public class IncomeView extends TemplateView<IncomeRecord, IncomeDAO> {
     private static DashboardCard leftSummaryCard, rightSummaryCard, barChartCard, lineChartCard, tableCard;
     private static IncomeBarChart barChart;
     private static IncomeLineChart lineChart;
+    private static IncomeTable table;
 
     public IncomeView(){
         super(Database.getIncomeDAO());
@@ -31,12 +32,13 @@ public class IncomeView extends TemplateView<IncomeRecord, IncomeDAO> {
         String incomeLastMonth = getIncomeLastMonth();
         barChart = new IncomeBarChart(data);
         lineChart = new IncomeLineChart(data);
+        table = new IncomeTable(data);
 
         leftSummaryCard = new DashboardCard("Income This Month", new Summary(incomeThisMonth).getNode());
         rightSummaryCard = new DashboardCard("Income Last Month", new Summary(incomeLastMonth).getNode());
         barChartCard = new DashboardCard("Income by Source (Last 6 Months)", barChart.getChart());
         lineChartCard = new DashboardCard("Total Income per Month (Last 6 Months)", lineChart.getChart());
-        tableCard = new DashboardCard("Income Details", IncomeTable.init(data));
+        tableCard = new DashboardCard("Income Details", table.getTable());
 
         dashboard = new Dashboard();
 
