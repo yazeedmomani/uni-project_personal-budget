@@ -170,6 +170,8 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
 
     // EVENT HANDLERS HELPERS
     protected void retrieve(){
+        form.clearAlerts();
+
         if(validator.assertNotEmpty(idField)) return;
         if(validator.assertInteger(idField)) return;
         if(validator.assertPositiveNumber(idField)) return;
