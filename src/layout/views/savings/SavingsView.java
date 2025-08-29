@@ -6,11 +6,9 @@ import db.models.SavingsRecord;
 import layout.components.Summary;
 import layout.components.dashboard.Dashboard;
 import layout.components.dashboard.DashboardCard;
-import layout.components.income.IncomeBarChart;
-import layout.components.income.IncomeLineChart;
-import layout.components.income.IncomeTable;
 import layout.components.savings.SavingsLineChart;
 import layout.components.savings.SavingsMonthlyLineChart;
+import layout.components.savings.SavingsTable;
 import layout.views.templates.TemplateView;
 
 import java.time.LocalDate;
@@ -22,7 +20,7 @@ public class SavingsView extends TemplateView<SavingsRecord, SavingsDAO> {
     private static Summary leftSummary, rightSummary;
     private static SavingsLineChart lineChart;
     private static SavingsMonthlyLineChart monthlyLineChart;
-    private static IncomeTable table;
+    private static SavingsTable table;
 
     public SavingsView(){
         super(Database.getSavingsDAO());
@@ -37,13 +35,13 @@ public class SavingsView extends TemplateView<SavingsRecord, SavingsDAO> {
         rightSummary = new Summary(growthThisMonth);
         lineChart = new SavingsLineChart(data);
         monthlyLineChart = new SavingsMonthlyLineChart(data);
-//        table = new IncomeTable(data);
+        table = new SavingsTable(data);
 
         leftSummaryCard = new DashboardCard("Balance", leftSummary.getSummary());
         rightSummaryCard = new DashboardCard("Growth This Month", rightSummary.getSummary());
         barChartCard = new DashboardCard("Balance Over This Month", lineChart.getChart());
         lineChartCard = new DashboardCard("Balance per Month (Last 6 Months)", monthlyLineChart.getChart());
-//        tableCard = new DashboardCard("Income Details", table.getTable());
+        tableCard = new DashboardCard("Savings Details", table.getTable());
 
         dashboard = new Dashboard();
 
@@ -51,7 +49,7 @@ public class SavingsView extends TemplateView<SavingsRecord, SavingsDAO> {
         dashboard.add(rightSummaryCard, 1, 0);
         dashboard.add(barChartCard, 0, 1);
         dashboard.add(lineChartCard, 1, 1);
-//        dashboard.add(tableCard, 0, 2, 2, 1);
+        dashboard.add(tableCard, 0, 2, 2, 1);
     }
 
     private String getLastBalance(){
