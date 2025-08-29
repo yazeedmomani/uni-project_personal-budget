@@ -67,7 +67,7 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
     }
 
     // ENTER/EXIT MODES
-    private void enterCreateMode(){
+    protected void enterCreateMode(){
         mode = Mode.CREATE;
         form.reset();
 
@@ -78,7 +78,7 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
         form.showFooter();
     }
 
-    private void exitCreateMode(){
+    protected void exitCreateMode(){
         mode = Mode.NORMAL;
         form.reset();
 

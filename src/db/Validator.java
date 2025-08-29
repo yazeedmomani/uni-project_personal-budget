@@ -10,8 +10,14 @@ public class Validator {
     private Form form;
 
     public static String getString(TextInputControl input){return input.getText().trim();}
-    public static int getInt(TextInputControl input){return Integer.parseInt(getString(input));}
-    public static double getDouble(TextInputControl input){return Double.parseDouble(getString(input));}
+    public static int getInt(TextInputControl input){
+        String text = getString(input);
+        return text.isEmpty() ? 0 : Integer.parseInt(getString(input));
+    }
+    public static double getDouble(TextInputControl input){
+        String text = getString(input);
+        return text.isEmpty() ? 0.0 : Double.parseDouble(getString(input));
+    }
     public static LocalDate getLocalDate(TextInputControl input){return LocalDate.parse(getString(input), Database.getDateFormat());}
 
     public boolean assertNotEmpty(TextInputControl... inputs){

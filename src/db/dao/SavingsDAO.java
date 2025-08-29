@@ -47,11 +47,9 @@ public class SavingsDAO extends TemplateDAO<SavingsRecord>{
         try (Connection connection = Database.getConnection()) {
             PreparedStatement template = connection.prepareStatement(sql);
 
-            double balance = this.getLastBalance() + record.getChange();
-
             template.setString(1, record.getDate().toString());
             template.setDouble(2, record.getChange());
-            template.setDouble(3, balance);
+            template.setDouble(3, record.getBalance());
             if (record.getNotes() == null || record.getNotes().isBlank()) template.setNull(4, Types.VARCHAR);
             else template.setString(4, record.getNotes());
             template.setInt(5, record.getId());
@@ -59,7 +57,7 @@ public class SavingsDAO extends TemplateDAO<SavingsRecord>{
 
             template.executeUpdate();
 
-            return new SavingsRecord(record.getId(), userId, record.getDate(), record.getChange(), balance, record.getNotes());
+            return new SavingsRecord(record.getId(), userId, record.getDate(), record.getChange(), record.getBalance(), record.getNotes());
         }
     }
 

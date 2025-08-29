@@ -13,6 +13,7 @@ import java.time.LocalDate;
 
 public class SavingsEdit extends TemplateEdit<SavingsRecord, SavingsDAO> {
     private TextField dateField, changeField, balanceField;
+    private double lastBalance, change;
 
     public SavingsEdit(){
         super(Database.getSavingsDAO());
@@ -26,9 +27,17 @@ public class SavingsEdit extends TemplateEdit<SavingsRecord, SavingsDAO> {
         changeField = form.addField("Change", "0.00");
         balanceField = form.addField("Balance", "Balance");
 
+        balanceField.setDisable(true);
+
         dateField.setOnKeyPressed(super::eventHandler);
         changeField.setOnKeyPressed(super::eventHandler);
-        balanceField.setOnKeyPressed(super::eventHandler);
+
+        changeField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(mode == Mode.UPDATE)
+                balanceField.setText(String.valueOf(lastBalance + (Validator.getDouble(changeField) - change)));
+            if(mode == Mode.CREATE)
+                balanceField.setText(String.valueOf(lastBalance + Validator.getDouble(changeField)));
+        });
     }
 
     protected void setFieldTextToRetrievedValue(){
@@ -83,5 +92,45 @@ public class SavingsEdit extends TemplateEdit<SavingsRecord, SavingsDAO> {
         catch (Exception exp){
             form.setAlertMessage("error","Failed to retrieve record");
         }
+    }
+
+    @Override
+    protected void enterUpdateMode(SavingsRecord record){
+        mode = Mode.UPDATE;
+
+        updateButton.setText("Update Record");
+        deleteButton.setText("Delete Record");
+
+        lastBalance = record.getBalance();
+        change = record.getChange();
+
+        idField.setText(String.valueOf(record.getId()));
+        String n = record.getNotes();
+        notesField.setText(n == null ? "" : n);
+
+        setFieldTextToRetrievedValue();
+
+        form.showFooter();
+    }
+
+    @Override
+    protected void enterCreateMode(){
+        mode = Mode.CREATE;
+        form.reset();
+
+        try{
+            lastBalance = dao.getLastBalance();
+        }
+        catch (Exception e){
+            form.setAlertMessage("error", "Failed to fetch last balance");
+        }
+
+        updateButton.setText("Insert Record");
+        deleteButton.setText("Cancel");
+
+        balanceField.setText(String.valueOf(lastBalance));
+
+        form.hideHeader();
+        form.showFooter();
     }
 }

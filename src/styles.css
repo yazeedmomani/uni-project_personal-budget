@@ -328,6 +328,20 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.10), 6, 0.15, 0, 1);
 }
 
+.form_input:disabled{
+    -fx-background-color: #F6F6F6; /* light grey background */
+    -fx-border-color: #e5e7eb;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 8 10 8 10;
+    -fx-font-size: 14px;
+    -fx-text-fill: #4d4d4d;
+    -fx-prompt-text-fill: rgba(0,0,0,0.45);
+    -fx-opacity: 1;
+}
+
 /* --- TextArea fixes (remove inner box) --- */
 .text-area.form_input {
     -fx-control-inner-background: #ffffff;
