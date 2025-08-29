@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Form {
     private BorderPane root;
-    private HBox header, footer;
+    private HBox header, footer, headerLeftComponents;
     private VBox body;
     private Button createButton, updateButton, readButton, deleteButton;
     private TextField idInput;
@@ -26,6 +26,8 @@ public class Form {
     public HBox getHeader() {return header;}
     public VBox getBody() {return body;}
     public HBox getFooter() {return footer;}
+
+    public HBox getHeaderLeftComponents() {return headerLeftComponents;}
 
     public BorderPane getRoot() {return root;}
 
@@ -113,13 +115,13 @@ public class Form {
 
         inputs.add(idInput);
 
-        HBox group = new HBox(idInput, readButton);
-        group.setSpacing(12);
+        headerLeftComponents = new HBox(idInput, readButton);
+        headerLeftComponents.setSpacing(12);
 
         Region space = new Region();
         HBox.setHgrow(space, Priority.ALWAYS);
 
-        header = new HBox(group, space, createButton);
+        header = new HBox(headerLeftComponents, space, createButton);
 
         header.setFillHeight(true);
         header.getStyleClass().add("form_header");

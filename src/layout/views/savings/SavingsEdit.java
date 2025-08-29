@@ -19,6 +19,9 @@ public class SavingsEdit extends TemplateEdit<SavingsRecord, SavingsDAO> {
     }
 
     protected void initializeCustomFields(){
+        form.getHeaderLeftComponents().getChildren().remove(idField);
+        readButton.setText("Retrieve Last Record");
+
         dateField = form.addField("Date", "YYYY-MM-DD");
         changeField = form.addField("Change", "0.00");
         balanceField = form.addField("Balance", "Balance");
@@ -61,5 +64,24 @@ public class SavingsEdit extends TemplateEdit<SavingsRecord, SavingsDAO> {
 
         record = new SavingsRecord(date, change, notes);
         return false;
+    }
+
+    @Override
+    protected void retrieve(){
+        form.reset();
+
+        try{
+            int id = dao.getLastID();
+            record = dao.get(id);
+            if(record == null){
+                exitUpdateMode();
+                form.setAlertMessage("error","Record does not exist");
+                return;
+            }
+            enterUpdateMode(record);
+        }
+        catch (Exception exp){
+            form.setAlertMessage("error","Failed to retrieve record");
+        }
     }
 }

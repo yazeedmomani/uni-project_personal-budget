@@ -76,6 +76,19 @@ public class SavingsDAO extends TemplateDAO<SavingsRecord>{
         }
     }
 
+    public int getLastID() throws Exception{
+        String sql = "SELECT id FROM savings_log WHERE user_id = ? ORDER BY id DESC LIMIT 1";
+
+        try (Connection connection = Database.getConnection()) {
+            PreparedStatement template = connection.prepareStatement(sql);
+            template.setInt(1, userId);
+
+            try (ResultSet result = template.executeQuery()) {
+                return result.next() ? result.getInt("id") : 0;
+            }
+        }
+    }
+
     @Override
     protected SavingsRecord createRecord(ResultSet result) throws Exception{
         return new SavingsRecord(

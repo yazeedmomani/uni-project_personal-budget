@@ -37,8 +37,8 @@ public class LayoutController {
         root.setLeft(LeftMenu.getRoot());
 
         setIsSettings(false);
-        setCurrentView(View.INCOME);
-        setCurrentMode(Mode.EDIT); // TODO change to view
+        setCurrentView(View.SAVINGS);
+        setCurrentMode(Mode.EDIT);
         Router.route();
     }
 

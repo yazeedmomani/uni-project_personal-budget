@@ -37,14 +37,6 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
         form = new Form();
         validator = new Validator(form);
 
-        idField = form.getIdInput();
-        idField.setOnKeyPressed(this::eventHandler);
-
-        initializeCustomFields();
-
-        notesField = form.addAreaField("Notes", "Notes (optional)");
-        notesField.setOnKeyPressed(this::eventHandler);
-
         createButton = form.getCreateButton();
         readButton = form.getReadButton();
         updateButton = form.getUpdateButton();
@@ -54,6 +46,14 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
         readButton.setOnAction(this::eventHandler);
         updateButton.setOnAction(this::eventHandler);
         deleteButton.setOnAction(this::eventHandler);
+
+        idField = form.getIdInput();
+        idField.setOnKeyPressed(this::eventHandler);
+
+        initializeCustomFields();
+
+        notesField = form.addAreaField("Notes", "Notes (optional)");
+        notesField.setOnKeyPressed(this::eventHandler);
 
         card = new DashboardCard(form.getRoot());
         dashboard = new Dashboard();
@@ -86,7 +86,7 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
         form.hideFooter();
     }
 
-    private void enterUpdateMode(Record record){
+    protected void enterUpdateMode(Record record){
         mode = Mode.UPDATE;
 
         updateButton.setText("Update Record");
@@ -101,7 +101,7 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
         form.showFooter();
     }
 
-    private void exitUpdateMode(){
+    protected void exitUpdateMode(){
         mode = Mode.NORMAL;
         form.reset();
         form.hideFooter();
@@ -168,7 +168,7 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
     }
 
     // EVENT HANDLERS HELPERS
-    private void retrieve(){
+    protected void retrieve(){
         if(validator.assertNotEmpty(idField)) return;
         if(validator.assertInteger(idField)) return;
         if(validator.assertPositiveNumber(idField)) return;
