@@ -12,11 +12,11 @@ public class Validator {
     public static String getString(TextInputControl input){return input.getText().trim();}
     public static int getInt(TextInputControl input){
         String text = getString(input);
-        return text.isEmpty() ? 0 : Integer.parseInt(getString(input));
+        return text.isEmpty() || text.equals("-") ? 0 : Integer.parseInt(getString(input));
     }
     public static double getDouble(TextInputControl input){
         String text = getString(input);
-        return text.isEmpty() ? 0.0 : Double.parseDouble(getString(input));
+        return text.isEmpty() || text.equals("-") ? 0.0 : Double.parseDouble(getString(input));
     }
     public static LocalDate getLocalDate(TextInputControl input){return LocalDate.parse(getString(input), Database.getDateFormat());}
 
