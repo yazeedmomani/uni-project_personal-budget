@@ -70,11 +70,4 @@ public class IncomeView extends TemplateView<IncomeRecord, IncomeDAO> {
                 .sum();
         return formatJOD(sum);
     }
-
-    private String formatJOD(double amount){
-        NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
-        nf.setMaximumFractionDigits(0);
-        nf.setMinimumFractionDigits(0);
-        return "JOD " + nf.format(Math.round(amount));
-    }
 }

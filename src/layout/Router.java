@@ -33,6 +33,7 @@ public class Router {
         IncomeEdit incomeEdit = new IncomeEdit();
         IncomeView incomeView = new IncomeView();
         SavingsEdit savingsEdit = new SavingsEdit();
+        SavingsView savingsView = new SavingsView();
 
         switch (LayoutController.getCurrentView()){
             case LayoutController.View.INCOME:
@@ -40,7 +41,7 @@ public class Router {
                 break;
 
             case LayoutController.View.SAVINGS:
-                setDashboardWindow("Savings", SavingsView.getRoot(), savingsEdit.getRoot());
+                setDashboardWindow("Savings", savingsView.getRoot(), savingsEdit.getRoot());
                 break;
         }
     }

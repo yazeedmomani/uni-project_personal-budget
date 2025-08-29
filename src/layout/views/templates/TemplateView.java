@@ -5,8 +5,10 @@ import db.models.TemplateRecord;
 import javafx.scene.control.ScrollPane;
 import layout.components.dashboard.Dashboard;
 
+import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 public abstract class TemplateView<Record extends TemplateRecord, DAO extends TemplateDAO<Record>> {
     protected Dashboard dashboard;
@@ -32,6 +34,13 @@ public abstract class TemplateView<Record extends TemplateRecord, DAO extends Te
             System.out.println("View Error: " + e.getMessage());
         }
         if (data == null) data = Collections.emptyList();
+    }
+
+    protected String formatJOD(double amount){
+        NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+        nf.setMaximumFractionDigits(0);
+        nf.setMinimumFractionDigits(0);
+        return "JOD " + nf.format(Math.round(amount));
     }
 
     protected abstract void initializeDashboardCards();
