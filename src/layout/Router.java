@@ -7,7 +7,6 @@ import layout.views.Login;
 import layout.views.Settings;
 import layout.views.income.*;
 import layout.views.savings.*;
-import layout.enums.*;
 
 public class Router {
     private static boolean viewSettings;
@@ -36,11 +35,11 @@ public class Router {
         SavingsView savingsView = new SavingsView();
 
         switch (LayoutController.getCurrentView()){
-            case View.INCOME:
+            case LayoutView.INCOME:
                 setDashboardWindow("Income", incomeView.getRoot(), incomeEdit.getRoot());
                 break;
 
-            case View.SAVINGS:
+            case LayoutView.SAVINGS:
                 setDashboardWindow("Savings", savingsView.getRoot(), savingsEdit.getRoot());
                 break;
         }
@@ -49,10 +48,10 @@ public class Router {
     private static void setDashboardWindow(String title, Node view, Node mode){
         String adjustedTitle = "Budget - " + title;
 
-        if(LayoutController.getCurrentMode().equals(Mode.VIEW))
+        if(LayoutController.getCurrentMode().equals(LayoutMode.VIEW))
             setWindow(adjustedTitle + " (View)", view);
 
-        if(LayoutController.getCurrentMode().equals(Mode.EDIT))
+        if(LayoutController.getCurrentMode().equals(LayoutMode.EDIT))
             setWindow(adjustedTitle + " (Edit)", mode);
     }
 

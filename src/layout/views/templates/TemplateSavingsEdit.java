@@ -4,7 +4,7 @@ import db.Validator;
 import db.dao.TemplateSavingsDAO;
 import db.models.TemplateSavingsRecord;
 import javafx.scene.control.TextField;
-import layout.components.form.Form;
+import layout.components.form.FormAlertType;
 
 import java.time.LocalDate;
 
@@ -81,13 +81,13 @@ public abstract class TemplateSavingsEdit<Record extends TemplateSavingsRecord, 
             record = dao.get(id);
             if(record == null){
                 exitUpdateMode();
-                form.setAlertMessage(Form.AlertType.ERROR,"Record does not exist");
+                form.setAlertMessage(FormAlertType.ERROR,"Record does not exist");
                 return;
             }
             enterUpdateMode(record);
         }
         catch (Exception exp){
-            form.setAlertMessage(Form.AlertType.ERROR,"Failed to retrieve record");
+            form.setAlertMessage(FormAlertType.ERROR,"Failed to retrieve record");
         }
     }
 
@@ -119,7 +119,7 @@ public abstract class TemplateSavingsEdit<Record extends TemplateSavingsRecord, 
             lastBalance = dao.getLastBalance();
         }
         catch (Exception e){
-            form.setAlertMessage(Form.AlertType.ERROR, "Failed to fetch last balance");
+            form.setAlertMessage(FormAlertType.ERROR, "Failed to fetch last balance");
         }
 
         updateButton.setText("Insert Record");

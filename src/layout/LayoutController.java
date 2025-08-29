@@ -1,17 +1,13 @@
 package layout;
 
-import app.App;
 import javafx.scene.layout.BorderPane;
 import layout.menus.LeftMenu;
-import layout.views.Login;
 import layout.menus.TopMenu;
-import layout.views.income.*;
-import layout.enums.*;
 
 public class LayoutController {
     private static final BorderPane root = new BorderPane();
-    private static View currentView;
-    private static Mode currentMode;
+    private static LayoutView currentView;
+    private static LayoutMode currentMode;
     private static boolean isSettings;
 
 
@@ -36,16 +32,16 @@ public class LayoutController {
         root.setLeft(LeftMenu.getRoot());
 
         setIsSettings(false);
-        setCurrentView(View.SAVINGS);
-        setCurrentMode(Mode.VIEW);
+        setCurrentView(LayoutView.SAVINGS);
+        setCurrentMode(LayoutMode.VIEW);
         Router.route();
     }
 
-    public static Mode getCurrentMode(){return currentMode;}
-    public static View getCurrentView(){return currentView;}
+    public static LayoutMode getCurrentMode(){return currentMode;}
+    public static LayoutView getCurrentView(){return currentView;}
     public static boolean getIsSettings(){return isSettings;}
 
-    public static void setCurrentMode(Mode currentMode){
+    public static void setCurrentMode(LayoutMode currentMode){
         LayoutController.currentMode = currentMode;
 
         if(isSettings) setIsSettings(false);
@@ -54,7 +50,7 @@ public class LayoutController {
         Router.route();
     }
 
-    public static void setCurrentView(View currentView){
+    public static void setCurrentView(LayoutView currentView){
         LayoutController.currentView = currentView;
 
         if(isSettings) setIsSettings(false);

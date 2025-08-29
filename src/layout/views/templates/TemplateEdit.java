@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import layout.components.dashboard.Dashboard;
 import layout.components.dashboard.DashboardCard;
 import layout.components.form.Form;
+import layout.components.form.FormAlertType;
 
 public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends TemplateDAO<Record>> {
     protected Dashboard dashboard;
@@ -144,10 +145,10 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
                 dao.delete(record);
 
                 exitUpdateMode();
-                form.setAlertMessage(Form.AlertType.SUCCESS,"Record deleted successfully");
+                form.setAlertMessage(FormAlertType.SUCCESS,"Record deleted successfully");
             }
             catch (Exception exp){
-                form.setAlertMessage(Form.AlertType.ERROR,"Failed to delete record");
+                form.setAlertMessage(FormAlertType.ERROR,"Failed to delete record");
             }
         }
 
@@ -181,13 +182,13 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
             record = dao.get(id);
             if(record == null){
                 exitUpdateMode();
-                form.setAlertMessage(Form.AlertType.ERROR,"Record does not exist");
+                form.setAlertMessage(FormAlertType.ERROR,"Record does not exist");
                 return;
             }
             enterUpdateMode(record);
         }
         catch (Exception exp){
-            form.setAlertMessage(Form.AlertType.ERROR,"Failed to retrieve record");
+            form.setAlertMessage(FormAlertType.ERROR,"Failed to retrieve record");
         }
     }
 
@@ -203,10 +204,10 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
             dao.update(record);
 
             exitUpdateMode();
-            form.setAlertMessage(Form.AlertType.SUCCESS,"Record updated successfully");
+            form.setAlertMessage(FormAlertType.SUCCESS,"Record updated successfully");
         }
         catch (Exception exp){
-            form.setAlertMessage(Form.AlertType.ERROR,"Failed to update record");
+            form.setAlertMessage(FormAlertType.ERROR,"Failed to update record");
         }
     }
 
@@ -221,10 +222,10 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
             dao.create(record);
 
             exitCreateMode();
-            form.setAlertMessage(Form.AlertType.SUCCESS,"Record inserted successfully");
+            form.setAlertMessage(FormAlertType.SUCCESS,"Record inserted successfully");
         }
         catch (Exception exp){
-            form.setAlertMessage(Form.AlertType.ERROR,"Failed to insert record");
+            form.setAlertMessage(FormAlertType.ERROR,"Failed to insert record");
         }
     }
 

@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import layout.components.dashboard.Dashboard;
 import layout.components.dashboard.DashboardCard;
 import layout.components.form.Form;
+import layout.components.form.FormAlertType;
 import layout.menus.TopMenu;
 import javafx.scene.input.*;
 
@@ -85,11 +86,11 @@ public class Settings {
             Database.updateUser(updatedUser);
             Database.setCurrentUser(updatedUser);
             TopMenu.reloadWelcomeLabel();
-            form.setAlertMessage(Form.AlertType.SUCCESS,"Changes saved successfully");
+            form.setAlertMessage(FormAlertType.SUCCESS,"Changes saved successfully");
         }
         catch (Exception exp){
             System.out.println("Settings Error: " + exp.getMessage());
-            form.setAlertMessage(Form.AlertType.ERROR,"Couldn't save changes");
+            form.setAlertMessage(FormAlertType.ERROR,"Couldn't save changes");
         }
     }
 }

@@ -16,8 +16,6 @@ public class Form {
     private Label alertMessage;
     private List<TextInputControl> inputs = new ArrayList<>();
 
-    public static enum AlertType {ERROR, SUCCESS};
-
     // GETTERS
     public TextField getIdInput() {return idInput;}
     public Button getCreateButton() {return createButton;}
@@ -43,10 +41,10 @@ public class Form {
     }
 
     // ALERTS
-    public void setAlertMessage(AlertType type, String text) {
+    public void setAlertMessage(FormAlertType type, String text) {
         alertMessage.setText(text);
-        if(type.equals(AlertType.ERROR)) alertMessage.setId("form_errorMessage");
-        if(type.equals(AlertType.SUCCESS)) alertMessage.setId("form_successMessage");
+        if(type.equals(FormAlertType.ERROR)) alertMessage.setId("form_errorMessage");
+        if(type.equals(FormAlertType.SUCCESS)) alertMessage.setId("form_successMessage");
         body.getChildren().addFirst(alertMessage);
     }
 
