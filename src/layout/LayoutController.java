@@ -38,7 +38,7 @@ public class LayoutController {
 
         setIsSettings(false);
         setCurrentView(View.SAVINGS);
-        setCurrentMode(Mode.EDIT);
+        setCurrentMode(Mode.VIEW);
         Router.route();
     }
 

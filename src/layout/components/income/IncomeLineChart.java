@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class IncomeLineChart extends TemplateLineChart<IncomeRecord> {
 
     public IncomeLineChart(List<IncomeRecord> data) {
-        super(data, 6, true, "Month", "Total (JOD)", "#388E3C", "#C8E6C9");
+        super(data, 6, true, "Month", "Total (JOD)", "#388E3C", "#81C784");
     }
 
     public IncomeLineChart(List<IncomeRecord> data,
