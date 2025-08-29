@@ -85,11 +85,11 @@ public class Settings {
             Database.updateUser(updatedUser);
             Database.setCurrentUser(updatedUser);
             TopMenu.reloadWelcomeLabel();
-            form.setAlertMessage("success","Changes saved successfully");
+            form.setAlertMessage(Form.AlertType.SUCCESS,"Changes saved successfully");
         }
         catch (Exception exp){
             System.out.println("Settings Error: " + exp.getMessage());
-            form.setAlertMessage("error","Couldn't save changes");
+            form.setAlertMessage(Form.AlertType.ERROR,"Couldn't save changes");
         }
     }
 }

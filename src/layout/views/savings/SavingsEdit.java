@@ -7,6 +7,7 @@ import db.dao.SavingsDAO;
 import db.models.SavingsRecord;
 import javafx.scene.control.*;
 
+import layout.components.form.Form;
 import layout.views.templates.TemplateEdit;
 
 import java.time.LocalDate;
@@ -84,13 +85,13 @@ public class SavingsEdit extends TemplateEdit<SavingsRecord, SavingsDAO> {
             record = dao.get(id);
             if(record == null){
                 exitUpdateMode();
-                form.setAlertMessage("error","Record does not exist");
+                form.setAlertMessage(Form.AlertType.ERROR,"Record does not exist");
                 return;
             }
             enterUpdateMode(record);
         }
         catch (Exception exp){
-            form.setAlertMessage("error","Failed to retrieve record");
+            form.setAlertMessage(Form.AlertType.ERROR,"Failed to retrieve record");
         }
     }
 
@@ -122,7 +123,7 @@ public class SavingsEdit extends TemplateEdit<SavingsRecord, SavingsDAO> {
             lastBalance = dao.getLastBalance();
         }
         catch (Exception e){
-            form.setAlertMessage("error", "Failed to fetch last balance");
+            form.setAlertMessage(Form.AlertType.ERROR, "Failed to fetch last balance");
         }
 
         updateButton.setText("Insert Record");

@@ -144,10 +144,10 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
                 dao.delete(record);
 
                 exitUpdateMode();
-                form.setAlertMessage("success","Record deleted successfully");
+                form.setAlertMessage(Form.AlertType.SUCCESS,"Record deleted successfully");
             }
             catch (Exception exp){
-                form.setAlertMessage("error","Failed to delete record");
+                form.setAlertMessage(Form.AlertType.ERROR,"Failed to delete record");
             }
         }
 
@@ -181,13 +181,13 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
             record = dao.get(id);
             if(record == null){
                 exitUpdateMode();
-                form.setAlertMessage("error","Record does not exist");
+                form.setAlertMessage(Form.AlertType.ERROR,"Record does not exist");
                 return;
             }
             enterUpdateMode(record);
         }
         catch (Exception exp){
-            form.setAlertMessage("error","Failed to retrieve record");
+            form.setAlertMessage(Form.AlertType.ERROR,"Failed to retrieve record");
         }
     }
 
@@ -203,10 +203,10 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
             dao.update(record);
 
             exitUpdateMode();
-            form.setAlertMessage("success","Record updated successfully");
+            form.setAlertMessage(Form.AlertType.SUCCESS,"Record updated successfully");
         }
         catch (Exception exp){
-            form.setAlertMessage("error","Failed to update record");
+            form.setAlertMessage(Form.AlertType.ERROR,"Failed to update record");
         }
     }
 
@@ -221,10 +221,10 @@ public abstract class TemplateEdit<Record extends TemplateRecord, DAO extends Te
             dao.create(record);
 
             exitCreateMode();
-            form.setAlertMessage("success","Record inserted successfully");
+            form.setAlertMessage(Form.AlertType.SUCCESS,"Record inserted successfully");
         }
         catch (Exception exp){
-            form.setAlertMessage("error","Failed to insert record");
+            form.setAlertMessage(Form.AlertType.ERROR,"Failed to insert record");
         }
     }
 

@@ -29,7 +29,7 @@ public class Validator {
                 hasError = true;
             }
         }
-        if(hasError) form.setAlertMessage("error","Please fill in the required fields");
+        if(hasError) form.setAlertMessage(Form.AlertType.ERROR,"Please fill in the required fields");
 
         return hasError;
     }
@@ -45,7 +45,7 @@ public class Validator {
                 hasError = true;
             }
         }
-        if(hasError) form.setAlertMessage("error","Invalid date format. Use YYYY-MM-DD");
+        if(hasError) form.setAlertMessage(Form.AlertType.ERROR,"Invalid date format. Use YYYY-MM-DD");
 
         return hasError;
     }
@@ -61,7 +61,7 @@ public class Validator {
                 hasError = true;
             }
         }
-        if(hasError) form.setAlertMessage("error","Use numbers only");
+        if(hasError) form.setAlertMessage(Form.AlertType.ERROR,"Use numbers only");
 
         return hasError;
     }
@@ -78,7 +78,7 @@ public class Validator {
                 hasError = true;
             }
         }
-        if(hasError) form.setAlertMessage("error","Values must be zero or greater");
+        if(hasError) form.setAlertMessage(Form.AlertType.ERROR,"Values must be zero or greater");
 
         return hasError;
     }
@@ -96,7 +96,7 @@ public class Validator {
                 hasError = true;
             }
         }
-        if(hasError) form.setAlertMessage("error","Please enter a whole number");
+        if(hasError) form.setAlertMessage(Form.AlertType.ERROR,"Please enter a whole number");
 
         return hasError;
     }
@@ -112,7 +112,7 @@ public class Validator {
         if(emptyInputs < inputs.length && emptyInputs != 0) hasError = true;
 
         if(hasError) for(TextInputControl input : inputs) form.alert(input);
-        if(hasError) form.setAlertMessage("error","Please fill in both fields");
+        if(hasError) form.setAlertMessage(Form.AlertType.ERROR,"Please fill in both fields");
         if(hasError) return hasError;
 
         // ASSERT EQUALITY
@@ -123,7 +123,7 @@ public class Validator {
                 hasError = true;
 
         if(hasError) for(TextInputControl input : inputs) form.alert(input);
-        if(hasError) form.setAlertMessage("error","Values do not match");
+        if(hasError) form.setAlertMessage(Form.AlertType.ERROR,"Values do not match");
         if(hasError) return hasError;
 
         return hasError;
