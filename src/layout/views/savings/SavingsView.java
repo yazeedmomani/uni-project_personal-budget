@@ -10,6 +10,7 @@ import layout.components.income.IncomeBarChart;
 import layout.components.income.IncomeLineChart;
 import layout.components.income.IncomeTable;
 import layout.components.savings.SavingsLineChart;
+import layout.components.savings.SavingsMonthlyLineChart;
 import layout.views.templates.TemplateView;
 
 import java.time.LocalDate;
@@ -19,8 +20,8 @@ import java.util.Comparator;
 public class SavingsView extends TemplateView<SavingsRecord, SavingsDAO> {
     private static DashboardCard leftSummaryCard, rightSummaryCard, barChartCard, lineChartCard, tableCard;
     private static Summary leftSummary, rightSummary;
-    private static SavingsLineChart barChart;
-    private static IncomeLineChart lineChart;
+    private static SavingsLineChart lineChart;
+    private static SavingsMonthlyLineChart monthlyLineChart;
     private static IncomeTable table;
 
     public SavingsView(){
@@ -34,14 +35,14 @@ public class SavingsView extends TemplateView<SavingsRecord, SavingsDAO> {
 
         leftSummary = new Summary(lastBalance);
         rightSummary = new Summary(growthThisMonth);
-        barChart = new SavingsLineChart(data);
-//        lineChart = new IncomeLineChart(data);
+        lineChart = new SavingsLineChart(data);
+        monthlyLineChart = new SavingsMonthlyLineChart(data);
 //        table = new IncomeTable(data);
 
         leftSummaryCard = new DashboardCard("Balance", leftSummary.getSummary());
         rightSummaryCard = new DashboardCard("Growth This Month", rightSummary.getSummary());
-        barChartCard = new DashboardCard("Balance Over This Month", barChart.getChart());
-//        lineChartCard = new DashboardCard("Total Income per Month (Last 6 Months)", lineChart.getChart());
+        barChartCard = new DashboardCard("Balance Over This Month", lineChart.getChart());
+        lineChartCard = new DashboardCard("Balance per Month (Last 6 Months)", monthlyLineChart.getChart());
 //        tableCard = new DashboardCard("Income Details", table.getTable());
 
         dashboard = new Dashboard();
@@ -49,7 +50,7 @@ public class SavingsView extends TemplateView<SavingsRecord, SavingsDAO> {
         dashboard.add(leftSummaryCard, 0, 0);
         dashboard.add(rightSummaryCard, 1, 0);
         dashboard.add(barChartCard, 0, 1);
-//        dashboard.add(lineChartCard, 1, 1);
+        dashboard.add(lineChartCard, 1, 1);
 //        dashboard.add(tableCard, 0, 2, 2, 1);
     }
 
