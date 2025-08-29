@@ -8,6 +8,7 @@ import javafx.scene.shape.SVGPath;
 
 import app.App;
 import layout.LayoutController;
+import layout.enums.Mode;
 
 public class TopMenu {
     private static Button settingsBtn, logoutBtn, editBtn, viewBtn;
@@ -15,14 +16,14 @@ public class TopMenu {
     private static Label welcomeLbl;
     private static Region space;
 
-    public static void setButton(LayoutController.Mode mode){
+    public static void setButton(Mode mode){
         if(mode == null) return;
 
-        if(mode.equals(LayoutController.Mode.VIEW)){
+        if(mode.equals(Mode.VIEW)){
             root.getChildren().remove(viewBtn);
             root.getChildren().add(2, editBtn);
         }
-        if(mode.equals(LayoutController.Mode.EDIT)){
+        if(mode.equals(Mode.EDIT)){
             root.getChildren().remove(editBtn);
             root.getChildren().add(2, viewBtn);
         }
@@ -86,8 +87,8 @@ public class TopMenu {
     private static void handleEvent(ActionEvent e){
         Object source = e.getSource();
 
-        if (source == editBtn) LayoutController.setCurrentMode(LayoutController.Mode.EDIT);
-        if (source == viewBtn) LayoutController.setCurrentMode(LayoutController.Mode.VIEW);
+        if (source == editBtn) LayoutController.setCurrentMode(Mode.EDIT);
+        if (source == viewBtn) LayoutController.setCurrentMode(Mode.VIEW);
         if (source == logoutBtn) App.logout();
         if (source == settingsBtn) LayoutController.setIsSettings(!LayoutController.getIsSettings());
     }

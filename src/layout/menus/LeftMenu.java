@@ -4,17 +4,18 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import layout.LayoutController;
+import layout.enums.View;
 
 public class LeftMenu {
     private static VBox root;
     private static Button incomeBtn, savingsBtn;
 
-    public static void selectView(LayoutController.View view){
+    public static void selectView(View view){
         if(view == null) return;
 
         clearSelection();
-        if(view.equals(LayoutController.View.INCOME)) incomeBtn.setId("leftMenu_selected");
-        if(view.equals(LayoutController.View.SAVINGS)) savingsBtn.setId("leftMenu_selected");
+        if(view.equals(View.INCOME)) incomeBtn.setId("leftMenu_selected");
+        if(view.equals(View.SAVINGS)) savingsBtn.setId("leftMenu_selected");
     }
 
     public static VBox getRoot(){
@@ -37,8 +38,8 @@ public class LeftMenu {
     private static void handleEvent(ActionEvent e){
         Object source = e.getSource();
 
-        if(source == incomeBtn) LayoutController.setCurrentView(LayoutController.View.INCOME);
-        if(source == savingsBtn) LayoutController.setCurrentView(LayoutController.View.SAVINGS);
+        if(source == incomeBtn) LayoutController.setCurrentView(View.INCOME);
+        if(source == savingsBtn) LayoutController.setCurrentView(View.SAVINGS);
     }
 
     private static void clearSelection(){

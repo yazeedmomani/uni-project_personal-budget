@@ -6,11 +6,10 @@ import layout.menus.LeftMenu;
 import layout.views.Login;
 import layout.menus.TopMenu;
 import layout.views.income.*;
+import layout.enums.*;
 
 public class LayoutController {
     private static final BorderPane root = new BorderPane();
-    public static enum View {INCOME, SAVINGS};
-    public static enum Mode {VIEW, EDIT};
     private static View currentView;
     private static Mode currentMode;
     private static boolean isSettings;
