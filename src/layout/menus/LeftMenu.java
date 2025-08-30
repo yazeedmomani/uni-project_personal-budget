@@ -1,13 +1,14 @@
 package layout.menus;
 
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import layout.LayoutController;
 import layout.LayoutView;
 
 public class LeftMenu {
-    private static VBox root;
+    private static VBox root, moneyInTitle, moneyKeeptitle, moneyOutTitle;
     private static Button incomeBtn, receivablesBtn, savingsBtn, investmentsBtn, fixedExpensesBtn, payablesBtn;
 
     public static void selectView(LayoutView view){
@@ -30,7 +31,11 @@ public class LeftMenu {
         fixedExpensesBtn = createButton("Monthly Bills");
         payablesBtn = createButton("Payables");
 
-        root = new VBox(incomeBtn, receivablesBtn, savingsBtn, investmentsBtn, fixedExpensesBtn, payablesBtn);
+        moneyInTitle = createTitle("Money In", false);
+        moneyKeeptitle = createTitle("Money Keep", true);
+        moneyOutTitle = createTitle("Money Out", true);
+
+        root = new VBox(moneyInTitle ,incomeBtn, receivablesBtn, moneyKeeptitle, savingsBtn, investmentsBtn, moneyOutTitle, fixedExpensesBtn, payablesBtn);
         root.getStyleClass().add("leftMenu");
 
         return root;
@@ -41,6 +46,19 @@ public class LeftMenu {
         button.getStyleClass().add("leftMenu_btn");
         button.setOnAction(LeftMenu::handleEvent);
         return button;
+    }
+
+    private static VBox createTitle(String title, boolean addBorder){
+        Label label = new Label(title);
+        label.getStyleClass().add("leftMenu_title_text");
+
+        VBox container = new VBox(label);
+        container.getStyleClass().add("leftMenu_title");
+
+        if(addBorder) container.setId("leftMenu_title_withBorder");
+        if(addBorder) VBox.setMargin(container, new Insets(18, 0, 0, 0));
+
+        return container;
     }
 
     private static void handleEvent(ActionEvent e){
