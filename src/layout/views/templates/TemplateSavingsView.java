@@ -42,7 +42,7 @@ public abstract class TemplateSavingsView<Record extends TemplateSavingsRecord, 
         leftSummaryCard = new DashboardCard("Balance", leftSummary.getSummary());
         rightSummaryCard = new DashboardCard("Monthly Growth", rightSummary.getSummary());
         barChartCard = new DashboardCard("Balance Trend (This Month)", lineChart.getChart());
-        lineChartCard = new DashboardCard("Monthly Balance (Last 6 Months)", monthlyLineChart.getChart());
+        lineChartCard = new DashboardCard("Monthly Growth (Last 6 Months)", monthlyLineChart.getChart());
         tableCard = new DashboardCard(getTableTitle(), table.getTable());
 
         dashboard = new Dashboard();
