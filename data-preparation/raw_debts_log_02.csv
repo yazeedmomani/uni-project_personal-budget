@@ -1,51 +1,51 @@
 user_id,date,party,amount,notes,type
-1,2024-12-06,Razan,0,Donec ut mauris eget massa tempor convallis.,Recieved
-1,2024-07-21,Razan,45,"Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",Recieved
-1,2025-03-22,Rose,-15,,Recieved
-1,2024-06-16,Razan,-8,,Recieved
-1,2024-04-14,Razan,25,,Recieved
-1,2024-02-04,Rose,45,,Recieved
-1,2024-06-19,Rose,-36,"Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.",Recieved
-1,2024-07-02,Ibrahim,-4,,Recieved
-1,2024-12-23,Ibrahim,-10,,Recieved
-1,2024-08-06,Ibrahim,42,,Recieved
-1,2025-07-29,Rose,-31,,Recieved
-1,2024-03-30,Rose,23,,Recieved
-1,2025-08-22,Rose,-1,,Recieved
-1,2025-02-03,Ibrahim,47,Curabitur at ipsum ac tellus semper interdum.,Recieved
-1,2024-02-28,Razan,-35,,Recieved
-1,2024-05-23,Rose,48,,Recieved
-1,2024-01-08,Rose,56,Nullam varius.,Recieved
-1,2025-05-16,Rose,33,,Recieved
-1,2024-12-31,Razan,-21,,Recieved
-1,2025-01-30,Rose,0,,Recieved
-1,2024-03-25,Ibrahim,23,"Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",Recieved
-1,2024-01-19,Ibrahim,-13,,Recieved
-1,2024-08-26,Razan,-32,Aliquam non mauris.,Recieved
-1,2024-11-08,Ibrahim,-40,Donec dapibus.,Recieved
-1,2025-08-18,Razan,60,,Recieved
-1,2025-05-04,Razan,41,Mauris lacinia sapien quis libero.,Recieved
-1,2024-06-02,Razan,-26,,Recieved
-1,2024-02-24,Ibrahim,32,,Recieved
-1,2024-09-11,Rose,-25,,Recieved
-1,2024-06-26,Razan,-32,,Recieved
-1,2024-09-16,Ibrahim,22,,Recieved
-1,2024-12-13,Razan,8,,Recieved
-1,2025-02-19,Razan,-36,,Recieved
-1,2024-09-13,Rose,-20,,Recieved
-1,2025-01-23,Ibrahim,-32,,Recieved
-1,2025-04-03,Razan,-23,,Recieved
-1,2024-10-21,Razan,-23,,Recieved
-1,2024-04-26,Razan,20,,Recieved
-1,2024-06-23,Rose,1,,Recieved
-1,2024-01-19,Ibrahim,-13,,Recieved
-1,2024-09-20,Rose,-27,Curabitur at ipsum ac tellus semper interdum.,Recieved
-1,2025-05-13,Ibrahim,47,,Recieved
-1,2024-02-07,Ibrahim,-31,Duis bibendum.,Recieved
-1,2024-06-20,Rose,-17,,Recieved
-1,2024-06-17,Rose,-4,,Recieved
-1,2024-03-29,Razan,48,,Recieved
-1,2025-06-09,Rose,5,,Recieved
-1,2025-01-22,Ibrahim,-15,,Recieved
-1,2025-08-21,Razan,29,,Recieved
-1,2024-10-09,Rose,39,Proin at turpis a pede posuere nonummy.,Recieved
+1,2025-07-10,Uncle Issa,40,Suspendisse potenti.,Recieved
+1,2025-07-30,Landlord,50,Fusce posuere felis sed lacus.,Recieved
+1,2025-05-15,Landlord,-45,,Recieved
+1,2024-10-12,Sara,55,,Recieved
+1,2025-03-07,Lina,80,,Recieved
+1,2024-09-30,Uncle Issa,-20,,Recieved
+1,2024-10-10,Lina,65,Quisque porta volutpat erat.,Recieved
+1,2025-05-12,Uncle Issa,-10,In hac habitasse platea dictumst.,Recieved
+1,2024-09-06,Landlord,55,,Recieved
+1,2024-03-04,Lina,20,Integer non velit.,Recieved
+1,2025-04-14,Lina,-30,,Recieved
+1,2024-07-26,Lina,-10,Curabitur in libero ut massa volutpat convallis.,Recieved
+1,2024-01-21,Uncle Issa,-40,"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.",Recieved
+1,2024-11-21,Sara,5,,Recieved
+1,2025-04-09,Landlord,-25,Nulla facilisi.,Recieved
+1,2024-02-26,Sara,35,Duis consequat dui nec nisi volutpat eleifend.,Recieved
+1,2024-07-27,Landlord,-35,,Recieved
+1,2025-04-19,Uncle Issa,-10,Duis at velit eu est congue elementum.,Recieved
+1,2025-05-22,Sara,-25,,Recieved
+1,2024-03-03,Sara,5,Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.,Recieved
+1,2025-06-21,Lina,-10,"Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",Recieved
+1,2025-08-14,Sara,50,,Recieved
+1,2024-08-13,Sara,-45,,Recieved
+1,2024-07-04,Sara,65,Proin eu mi.,Recieved
+1,2025-04-15,Sara,10,,Recieved
+1,2024-09-23,Uncle Issa,25,Ut tellus.,Recieved
+1,2024-02-19,Lina,-5,,Recieved
+1,2024-06-28,Sara,75,,Recieved
+1,2025-01-30,Landlord,65,,Recieved
+1,2024-05-10,Uncle Issa,80,,Recieved
+1,2024-06-05,Uncle Issa,-10,,Recieved
+1,2025-05-17,Sara,75,Phasellus sit amet erat.,Recieved
+1,2025-05-02,Sara,-35,,Recieved
+1,2025-02-18,Lina,30,In congue.,Recieved
+1,2024-12-21,Landlord,-40,,Recieved
+1,2024-07-21,Uncle Issa,5,,Recieved
+1,2024-06-28,Sara,15,Cras non velit nec nisi vulputate nonummy.,Recieved
+1,2024-12-08,Lina,40,Phasellus sit amet erat.,Recieved
+1,2024-05-27,Sara,60,,Recieved
+1,2025-01-28,Sara,15,Cras non velit nec nisi vulputate nonummy.,Recieved
+1,2025-01-23,Sara,5,Suspendisse potenti.,Recieved
+1,2024-12-31,Sara,70,"Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",Recieved
+1,2024-08-20,Uncle Issa,-60,Nulla tempus.,Recieved
+1,2024-04-04,Landlord,-45,Nulla tellus.,Recieved
+1,2025-03-12,Lina,-10,,Recieved
+1,2024-04-19,Uncle Issa,5,,Recieved
+1,2024-06-22,Uncle Issa,10,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",Recieved
+1,2024-11-22,Lina,5,Nullam molestie nibh in lectus.,Recieved
+1,2025-04-05,Lina,20,Aliquam erat volutpat.,Recieved
+1,2025-04-03,Sara,10,Integer ac leo.,Recieved

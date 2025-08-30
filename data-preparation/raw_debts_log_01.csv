@@ -1,51 +1,51 @@
 user_id,date,party,amount,notes,type
-1,2025-03-28,Ahmad,-29,"Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl.",Credited
-1,2024-04-15,Ahmad,-1,,Credited
-1,2024-07-03,Ahmad,24,,Credited
-1,2024-04-24,Mila,54,,Credited
-1,2024-03-03,Ahmad,-16,,Credited
-1,2025-03-07,Mila,76,,Credited
-1,2024-08-10,Sara,-25,,Credited
-1,2024-02-12,Sara,54,,Credited
-1,2025-05-31,Sara,-37,,Credited
-1,2024-10-12,Mila,24,Vivamus vel nulla eget eros elementum pellentesque.,Credited
-1,2025-03-31,Sara,59,,Credited
-1,2025-05-28,Issa,6,,Credited
-1,2025-01-13,Issa,20,"Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci.",Credited
-1,2024-05-22,Ahmad,2,Suspendisse accumsan tortor quis turpis.,Credited
-1,2024-08-15,Sara,4,,Credited
-1,2025-06-25,Sara,-17,,Credited
-1,2025-04-26,Sara,-5,,Credited
-1,2024-12-08,Issa,65,,Credited
-1,2024-11-16,Mila,5,,Credited
-1,2024-08-15,Ahmad,31,,Credited
-1,2024-01-25,Mila,-10,,Credited
-1,2024-04-22,Mila,44,,Credited
-1,2024-06-25,Mila,-6,Nulla tellus.,Credited
-1,2025-03-28,Ahmad,-52,,Credited
-1,2024-03-10,Ahmad,-22,Integer a nibh.,Credited
-1,2025-01-15,Ahmad,17,,Credited
-1,2024-10-04,Sara,21,Phasellus in felis.,Credited
-1,2024-04-03,Ahmad,59,,Credited
-1,2024-01-28,Issa,-3,,Credited
-1,2025-05-18,Sara,-18,,Credited
-1,2024-12-16,Sara,46,,Credited
-1,2025-08-14,Issa,51,Nunc purus.,Credited
-1,2024-04-25,Ahmad,-5,,Credited
-1,2024-05-09,Sara,1,,Credited
-1,2025-07-09,Issa,40,,Credited
-1,2024-03-25,Mila,-2,"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis.",Credited
-1,2025-06-27,Issa,-6,,Credited
-1,2024-12-16,Mila,10,,Credited
-1,2024-01-04,Ahmad,77,,Credited
-1,2024-06-05,Sara,-6,,Credited
-1,2025-03-15,Issa,12,,Credited
-1,2025-05-13,Mila,8,Suspendisse ornare consequat lectus.,Credited
-1,2025-02-17,Mila,-40,,Credited
-1,2025-02-19,Sara,-54,,Credited
-1,2025-02-12,Issa,18,,Credited
-1,2025-06-10,Ahmad,-34,,Credited
-1,2025-08-04,Mila,4,,Credited
-1,2025-01-05,Issa,-24,,Credited
-1,2024-10-19,Sara,9,,Credited
-1,2024-01-11,Issa,-26,Fusce posuere felis sed lacus.,Credited
+1,2025-08-25,Sara,20,Fusce consequat.,Credited
+1,2024-04-19,Issa,-10,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",Credited
+1,2025-06-05,Ahmad,-50,Vivamus vel nulla eget eros elementum pellentesque.,Credited
+1,2025-04-25,Issa,-10,Maecenas rhoncus aliquam lacus.,Credited
+1,2024-05-21,Mila,65,,Credited
+1,2024-10-24,Sara,-40,,Credited
+1,2025-01-18,Ahmad,-5,Vestibulum ac est lacinia nisi venenatis tristique.,Credited
+1,2024-08-08,Mila,55,,Credited
+1,2024-11-07,Ahmad,20,,Credited
+1,2024-06-11,Ahmad,15,,Credited
+1,2024-08-04,Mila,-30,Donec quis orci eget orci vehicula condimentum.,Credited
+1,2024-10-04,Sara,-10,Integer tincidunt ante vel ipsum.,Credited
+1,2025-06-03,Mila,30,"Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.",Credited
+1,2024-11-10,Mila,30,,Credited
+1,2025-03-22,Ahmad,-50,,Credited
+1,2024-01-12,Sara,-50,,Credited
+1,2024-06-22,Ahmad,-50,,Credited
+1,2024-06-10,Sara,5,Praesent lectus.,Credited
+1,2024-02-03,Ahmad,-25,"In est risus, auctor sed, tristique in, tempus sit amet, sem.",Credited
+1,2024-04-26,Sara,80,,Credited
+1,2024-02-12,Issa,50,Curabitur gravida nisi at nibh.,Credited
+1,2024-06-26,Ahmad,65,,Credited
+1,2024-10-29,Issa,70,,Credited
+1,2024-12-24,Sara,-45,Nulla suscipit ligula in lacus.,Credited
+1,2025-02-03,Issa,55,Praesent lectus.,Credited
+1,2024-06-28,Sara,15,,Credited
+1,2025-03-23,Sara,-10,,Credited
+1,2024-04-03,Issa,-60,Donec semper sapien a libero.,Credited
+1,2024-09-01,Sara,75,Proin interdum mauris non ligula pellentesque ultrices.,Credited
+1,2024-08-05,Ahmad,-30,,Credited
+1,2024-07-29,Mila,-5,,Credited
+1,2025-05-24,Issa,55,Duis bibendum.,Credited
+1,2024-03-15,Sara,35,,Credited
+1,2024-03-19,Sara,70,,Credited
+1,2024-03-23,Issa,-15,,Credited
+1,2024-08-11,Mila,-60,,Credited
+1,2024-10-22,Mila,30,,Credited
+1,2024-01-23,Sara,75,,Credited
+1,2024-10-25,Sara,-40,Donec semper sapien a libero.,Credited
+1,2025-06-20,Issa,45,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",Credited
+1,2024-01-30,Mila,70,,Credited
+1,2024-10-17,Ahmad,55,Aenean sit amet justo.,Credited
+1,2024-10-10,Sara,65,Sed vel enim sit amet nunc viverra dapibus.,Credited
+1,2024-03-30,Issa,30,"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.",Credited
+1,2025-07-24,Sara,15,Aliquam sit amet diam in magna bibendum imperdiet.,Credited
+1,2024-02-04,Mila,-15,,Credited
+1,2025-04-01,Mila,-55,Curabitur gravida nisi at nibh.,Credited
+1,2025-05-27,Issa,30,,Credited
+1,2024-05-03,Ahmad,-45,,Credited
+1,2025-01-16,Issa,5,Praesent lectus.,Credited
