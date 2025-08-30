@@ -26,7 +26,7 @@ public abstract class TemplateView<Record extends TemplateRecord, DAO extends Te
         return dashboard.getRoot();
     }
 
-    private void initializeData(){
+    protected void initializeData(){
         try{
             data = dao.getAll();
         }
