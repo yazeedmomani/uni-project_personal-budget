@@ -31,23 +31,23 @@ public class FixedExpensesView extends TemplateView<IncomeRecord, IncomeDAO> {
         String incomeLastMonth = getIncomeLastMonth();
 
         leftSummary = new Summary(incomeThisMonth);
-        rightSummary = new Summary(incomeLastMonth);
+//        rightSummary = new Summary(incomeLastMonth);
         barChart = new IncomeBarChart(data);
-        lineChart = new IncomeLineChart(data);
+//        lineChart = new IncomeLineChart(data);
         table = new IncomeTable(data);
 
         leftSummaryCard = new DashboardCard("Income This Month", leftSummary.getSummary());
-        rightSummaryCard = new DashboardCard("Income Last Month", rightSummary.getSummary());
+//        rightSummaryCard = new DashboardCard("Income Last Month", rightSummary.getSummary());
         barChartCard = new DashboardCard("Income by Source (Last 6 Months)", barChart.getChart());
-        lineChartCard = new DashboardCard("Total Income per Month (Last 6 Months)", lineChart.getChart());
+//        lineChartCard = new DashboardCard("Total Income per Month (Last 6 Months)", lineChart.getChart());
         tableCard = new DashboardCard("Income Details", table.getTable());
 
         dashboard = new Dashboard();
 
-        dashboard.add(leftSummaryCard, 0, 0);
-        dashboard.add(rightSummaryCard, 1, 0);
-        dashboard.add(barChartCard, 0, 1);
-        dashboard.add(lineChartCard, 1, 1);
+        dashboard.add(leftSummaryCard, 0, 0, 2, 1);
+//        dashboard.add(rightSummaryCard, 1, 0);
+        dashboard.add(barChartCard, 0, 1, 2, 1);
+//        dashboard.add(lineChartCard, 1, 1);
         dashboard.add(tableCard, 0, 2, 2, 1);
     }
 
