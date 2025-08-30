@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class FixedExpensesBarChart extends TemplateBarChart<SubscriptionsRecord> {
 
     public FixedExpensesBarChart(List<SubscriptionsRecord> data) {
-        super(data, 6,"Bill", "Total (JOD)", "#B71C1C", 175, false);
+        super(data, 6,"Bill", "Total (JOD)", "#E64A19", 175, false);
     }
 
     @Override
