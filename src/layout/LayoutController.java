@@ -113,6 +113,10 @@ public class LayoutController {
         DebtsPayablesView debtsPayablesView = new DebtsPayablesView();
 
         switch (currentView){
+            case LayoutView.DASHBAORD:
+                setDashboardWindow("Dashboard", incomeView.getRoot(), incomeView.getRoot());
+                break;
+
             case LayoutView.INCOME:
                 setDashboardWindow("Income", incomeView.getRoot(), incomeEdit.getRoot());
                 break;

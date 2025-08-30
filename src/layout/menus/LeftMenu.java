@@ -9,12 +9,13 @@ import layout.LayoutView;
 
 public class LeftMenu {
     private static VBox root, moneyInTitle, moneyKeeptitle, moneyOutTitle;
-    private static Button incomeBtn, receivablesBtn, savingsBtn, investmentsBtn, fixedExpensesBtn, payablesBtn;
+    private static Button dashbaordBtn, incomeBtn, receivablesBtn, savingsBtn, investmentsBtn, fixedExpensesBtn, payablesBtn;
 
     public static void selectView(LayoutView view){
         if(view == null) return;
 
         clearSelection();
+        if(view.equals(LayoutView.DASHBAORD)) dashbaordBtn.setId("leftMenu_selected");
         if(view.equals(LayoutView.INCOME)) incomeBtn.setId("leftMenu_selected");
         if(view.equals(LayoutView.RECEIVABLES)) receivablesBtn.setId("leftMenu_selected");
         if(view.equals(LayoutView.SAVINGS)) savingsBtn.setId("leftMenu_selected");
@@ -24,6 +25,7 @@ public class LeftMenu {
     }
 
     public static VBox getRoot(){
+        dashbaordBtn = createButton("Dashboard");
         incomeBtn = createButton("Income");
         receivablesBtn = createButton("Receivables");
         savingsBtn = createButton("Savings");
@@ -31,11 +33,11 @@ public class LeftMenu {
         fixedExpensesBtn = createButton("Monthly Bills");
         payablesBtn = createButton("Payables");
 
-        moneyInTitle = createTitle("Money In", false);
+        moneyInTitle = createTitle("Money In", true);
         moneyKeeptitle = createTitle("Money Keep", true);
         moneyOutTitle = createTitle("Money Out", true);
 
-        root = new VBox(moneyInTitle ,incomeBtn, receivablesBtn, moneyKeeptitle, savingsBtn, investmentsBtn, moneyOutTitle, fixedExpensesBtn, payablesBtn);
+        root = new VBox( dashbaordBtn, moneyInTitle ,incomeBtn, receivablesBtn, moneyKeeptitle, savingsBtn, investmentsBtn, moneyOutTitle, fixedExpensesBtn, payablesBtn);
         root.getStyleClass().add("leftMenu");
 
         return root;
@@ -64,6 +66,7 @@ public class LeftMenu {
     private static void handleEvent(ActionEvent e){
         Object source = e.getSource();
 
+        if(source == dashbaordBtn) LayoutController.setCurrentView(LayoutView.DASHBAORD);
         if(source == incomeBtn) LayoutController.setCurrentView(LayoutView.INCOME);
         if(source == receivablesBtn) LayoutController.setCurrentView(LayoutView.RECEIVABLES);
         if(source == savingsBtn) LayoutController.setCurrentView(LayoutView.SAVINGS);
@@ -73,6 +76,7 @@ public class LeftMenu {
     }
 
     private static void clearSelection(){
+        dashbaordBtn.setId(null);
         incomeBtn.setId(null);
         receivablesBtn.setId(null);
         savingsBtn.setId(null);
