@@ -2,6 +2,7 @@ package layout.components.templates;
 
 import db.models.templates.TemplateRecord;
 import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
 import javafx.scene.chart.*;
 
 import java.util.List;
@@ -38,6 +39,20 @@ public abstract class TemplateBarChart<Record extends TemplateRecord> {
     }
 
     /**
+     * Apply legend styling. Legend nodes can be rebuilt when switching views or
+     * when data/animation changes, so this must be callable repeatedly.
+     */
+    private void styleLegend() {
+        if (chart == null) return;
+        // Force CSS so lookups work
+        chart.applyCss();
+        chart.layout();
+        for (javafx.scene.Node node : chart.lookupAll(".chart-legend-item-symbol")) {
+            node.setStyle("-fx-background-color: " + primaryColor + "; -fx-padding: 6px; -fx-background-radius: 30;");
+        }
+    }
+
+    /**
      * Create and style the JavaFX BarChart for the provided data.
      */
     private void initializeChart() {
@@ -62,6 +77,21 @@ public abstract class TemplateBarChart<Record extends TemplateRecord> {
         // Data series are fully defined by subclasses
         List<XYChart.Series<String, Number>> seriesList = buildSeries();
         chart.getData().addAll(seriesList);
+
+        // Re-apply legend styling whenever data changes or nodes are recreated
+        chart.getData().addListener((ListChangeListener<XYChart.Series<String, Number>>) change ->
+                Platform.runLater(this::styleLegend));
+
+        // Also re-apply when the scene is (re)assigned which commonly happens on view switches
+        chart.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                Platform.runLater(this::styleLegend);
+            }
+        });
+
+        // Defensive: when chart lays out (e.g., on resize), legend nodes can be rebuilt
+        chart.widthProperty().addListener((obs, oldV, newV) -> Platform.runLater(this::styleLegend));
+        chart.heightProperty().addListener((obs, oldV, newV) -> Platform.runLater(this::styleLegend));
 
         // Styling after nodes are realized
         Platform.runLater(() -> {
@@ -90,10 +120,8 @@ public abstract class TemplateBarChart<Record extends TemplateRecord> {
                 }
             }
 
-            // Legend symbol color matches bars
-            for (javafx.scene.Node node : chart.lookupAll(".chart-legend-item-symbol")) {
-                node.setStyle("-fx-background-color: " + primaryColor + "; -fx-padding: 6px; -fx-background-radius: 30;");
-            }
+            // Legend symbol color matches bars (robust to view switches)
+            styleLegend();
 
             // Transparent legend background
             javafx.scene.Node legend = chart.lookup(".chart-legend");
