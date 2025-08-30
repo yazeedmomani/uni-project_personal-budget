@@ -2,46 +2,52 @@ package db.models;
 
 import java.time.LocalDate;
 
-public class IncomeRecord extends TemplateRecord{
+public class DebtsRecord extends TemplateRecord{
     private LocalDate date;
-    private String source;
+    private String party;
     private double amount;
+    private final String type;
 
-    public IncomeRecord(){
+    public DebtsRecord(String type){
         super();
+        this.type = type;
     }
 
-    public IncomeRecord(int id, int userId, LocalDate date, String source, double amount, String notes) {
+    public DebtsRecord(int id, int userId, LocalDate date, String party, double amount, String notes, String type) {
         super(id, userId, notes);
         this.date = date;
-        this.source = source;
+        this.party = party;
         this.amount = amount;
+        this.type = type;
     }
 
-    public IncomeRecord(LocalDate date, String source, double amount, String notes) {
+    public DebtsRecord(LocalDate date, String party, double amount, String notes, String type) {
         super(notes);
         this.date = date;
-        this.source = source;
+        this.party = party;
         this.amount = amount;
+        this.type = type;
     }
 
     public LocalDate getDate() { return date; }
-    public String getSource() { return source; }
+    public String getParty() { return party; }
     public double getAmount() { return amount; }
+    public String getType() {return type;}
 
     public void setDate(LocalDate date) {this.date = date;}
-    public void setSource(String source) {this.source = source;}
+    public void setParty(String source) {this.party = source;}
     public void setAmount(double amount) {this.amount = amount;}
 
     @Override
     public String toString(){
-        return "IncomeRecord{" +
+        return "DebtsRecord{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", date='" + date.toString() + '\'' +
-                ", source='" + source + '\'' +
+                ", party='" + party + '\'' +
                 ", amount=" + amount +
                 ", notes='" + notes + '\'' +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
