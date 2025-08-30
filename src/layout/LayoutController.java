@@ -134,7 +134,7 @@ public class LayoutController {
                 break;
 
             case LayoutView.FIXED_EXPENSES:
-                setDetailsWindow("Fixed Expenses", fixedExpensesView.getRoot(), fixedExpensesEdit.getRoot());
+                setDetailsWindow("Monthly Bills", fixedExpensesView.getRoot(), fixedExpensesEdit.getRoot());
                 break;
 
             case LayoutView.PAYABLES:

@@ -1,70 +1,50 @@
 package layout.views.fixed_expenses;
 
 import db.Database;
-import db.dao.IncomeDAO;
-import db.models.IncomeRecord;
+import db.dao.SubscriptionsDAO;
+import db.models.SubscriptionsRecord;
 import layout.components.Summary;
 import layout.components.dashboard.Dashboard;
 import layout.components.dashboard.DashboardCard;
-import layout.components.income.IncomeBarChart;
-import layout.components.income.IncomeLineChart;
-import layout.components.income.IncomeTable;
+import layout.components.fixed_expenses.FixedExpensesBarChart;
+import layout.components.fixed_expenses.FixedExpensesTable;
 import layout.views.templates.TemplateView;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 
-public class FixedExpensesView extends TemplateView<IncomeRecord, IncomeDAO> {
-    private static DashboardCard leftSummaryCard, rightSummaryCard, barChartCard, lineChartCard, tableCard;
-    private static Summary leftSummary, rightSummary;
-    private static IncomeBarChart barChart;
-    private static IncomeLineChart lineChart;
-    private static IncomeTable table;
+public class FixedExpensesView extends TemplateView<SubscriptionsRecord, SubscriptionsDAO> {
+    private static DashboardCard summaryCard, barChartCard, tableCard;
+    private static Summary summary;
+    private static FixedExpensesBarChart barChart;
+    private static FixedExpensesTable table;
 
     public FixedExpensesView(){
-        super(Database.getIncomeDAO());
+        super(Database.getSubscriptionsDAO());
     }
 
     @Override
     protected void initializeDashboardCards() {
-        String incomeThisMonth = getIncomeThisMonth();
-        String incomeLastMonth = getIncomeLastMonth();
+        String totalMonthlyBill = getTotalMonthlyBill();
 
-        leftSummary = new Summary(incomeThisMonth);
-//        rightSummary = new Summary(incomeLastMonth);
-        barChart = new IncomeBarChart(data);
-//        lineChart = new IncomeLineChart(data);
-        table = new IncomeTable(data);
+        summary = new Summary(totalMonthlyBill);
+        barChart = new FixedExpensesBarChart(data);
+        table = new FixedExpensesTable(data);
 
-        leftSummaryCard = new DashboardCard("Income This Month", leftSummary.getSummary());
-//        rightSummaryCard = new DashboardCard("Income Last Month", rightSummary.getSummary());
-        barChartCard = new DashboardCard("Income by Source (Last 6 Months)", barChart.getChart());
-//        lineChartCard = new DashboardCard("Total Income per Month (Last 6 Months)", lineChart.getChart());
-        tableCard = new DashboardCard("Income Details", table.getTable());
+        summaryCard = new DashboardCard("Total Monthly Bills", summary.getSummary());
+        barChartCard = new DashboardCard("Monthly Bills Distribution", barChart.getChart());
+        tableCard = new DashboardCard("Monthly Bills Breakdown", table.getTable());
 
         dashboard = new Dashboard();
 
-        dashboard.add(leftSummaryCard, 0, 0, 2, 1);
-//        dashboard.add(rightSummaryCard, 1, 0);
+        dashboard.add(summaryCard, 0, 0, 2, 1);
         dashboard.add(barChartCard, 0, 1, 2, 1);
-//        dashboard.add(lineChartCard, 1, 1);
         dashboard.add(tableCard, 0, 2, 2, 1);
     }
 
-    private String getIncomeThisMonth(){
-        YearMonth current = YearMonth.from(LocalDate.now());
+    private String getTotalMonthlyBill() {
         double sum = data == null ? 0.0 : data.stream()
-                .filter(r -> r != null && r.getDate() != null && YearMonth.from(r.getDate()).equals(current))
-                .mapToDouble(IncomeRecord::getAmount)
-                .sum();
-        return formatJOD(sum);
-    }
-
-    private String getIncomeLastMonth(){
-        YearMonth last = YearMonth.from(LocalDate.now()).minusMonths(1);
-        double sum = data == null ? 0.0 : data.stream()
-                .filter(r -> r != null && r.getDate() != null && YearMonth.from(r.getDate()).equals(last))
-                .mapToDouble(IncomeRecord::getAmount)
+                .mapToDouble(SubscriptionsRecord::getAmount)
                 .sum();
         return formatJOD(sum);
     }

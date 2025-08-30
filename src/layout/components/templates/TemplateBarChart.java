@@ -20,15 +20,28 @@ public abstract class TemplateBarChart<Record extends TemplateRecord> {
     private BarChart<String, Number> chart;
     private final String primaryColor;        // e.g. "#388E3C" – supply via constructor
     private final String xAxisLabel;          // e.g. "Source"
-    private final String yAxisLabel;          // e.g. "Total (JOD)"
+    private final String yAxisLabel;
+    private final int barGap;// e.g. "Total (JOD)"
     protected final int limitMonths;
     protected final List<Record> data;
+
+    protected TemplateBarChart(List<Record> data, int limitMonths, String xAxisLabel, String yAxisLabel, String primaryColor, int barGap) {
+        this.primaryColor = primaryColor;
+        this.xAxisLabel = xAxisLabel == null ? "" : xAxisLabel;
+        this.yAxisLabel = yAxisLabel == null ? "" : yAxisLabel;
+        this.limitMonths = limitMonths;
+        this.barGap = barGap;
+        this.data = data;
+
+        initializeChart();
+    }
 
     protected TemplateBarChart(List<Record> data, int limitMonths, String xAxisLabel, String yAxisLabel, String primaryColor) {
         this.primaryColor = primaryColor;
         this.xAxisLabel = xAxisLabel == null ? "" : xAxisLabel;
         this.yAxisLabel = yAxisLabel == null ? "" : yAxisLabel;
         this.limitMonths = limitMonths;
+        this.barGap = 70;
         this.data = data;
 
         initializeChart();
@@ -67,7 +80,7 @@ public abstract class TemplateBarChart<Record extends TemplateRecord> {
 
         chart = new javafx.scene.chart.BarChart<>(xAxis, yAxis);
         chart.setAnimated(true);
-        chart.setCategoryGap(70);
+        chart.setCategoryGap(barGap);
         chart.setBarGap(6);
         chart.setAlternativeRowFillVisible(false);
         chart.setAlternativeColumnFillVisible(false);
