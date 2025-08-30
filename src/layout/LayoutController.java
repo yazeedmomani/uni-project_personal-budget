@@ -114,36 +114,46 @@ public class LayoutController {
 
         switch (currentView){
             case LayoutView.DASHBAORD:
-                setDashboardWindow("Dashboard", incomeView.getRoot(), incomeView.getRoot());
+                setDashboardWindow("Dashboard", incomeView.getRoot());
                 break;
 
             case LayoutView.INCOME:
-                setDashboardWindow("Income", incomeView.getRoot(), incomeEdit.getRoot());
+                setDetailsWindow("Income", incomeView.getRoot(), incomeEdit.getRoot());
                 break;
 
             case LayoutView.RECEIVABLES:
-                setDashboardWindow("Receivables", debtsReceivablesView.getRoot(), debtsReceivablesEdit.getRoot());
+                setDetailsWindow("Receivables", debtsReceivablesView.getRoot(), debtsReceivablesEdit.getRoot());
                 break;
 
             case LayoutView.SAVINGS:
-                setDashboardWindow("Savings", savingsView.getRoot(), savingsEdit.getRoot());
+                setDetailsWindow("Savings", savingsView.getRoot(), savingsEdit.getRoot());
                 break;
 
             case LayoutView.INVESTMENTS:
-                setDashboardWindow("Investments", investmentsView.getRoot(), investmentsEdit.getRoot());
+                setDetailsWindow("Investments", investmentsView.getRoot(), investmentsEdit.getRoot());
                 break;
 
             case LayoutView.FIXED_EXPENSES:
-                setDashboardWindow("Fixed Expenses", fixedExpensesView.getRoot(), fixedExpensesEdit.getRoot());
+                setDetailsWindow("Fixed Expenses", fixedExpensesView.getRoot(), fixedExpensesEdit.getRoot());
                 break;
 
             case LayoutView.PAYABLES:
-                setDashboardWindow("Payables", debtsPayablesView.getRoot(), debtsPayablesEdit.getRoot());
+                setDetailsWindow("Payables", debtsPayablesView.getRoot(), debtsPayablesEdit.getRoot());
                 break;
         }
     }
 
-    private static void setDashboardWindow(String title, Node view, Node mode){
+    private static void setDashboardWindow(String title, Node view){
+        String adjustedTitle = "Budget - " + title;
+
+        if(currentMode.equals(LayoutMode.VIEW))
+            setWindow(adjustedTitle, view);
+
+        if(currentMode.equals(LayoutMode.EDIT))
+            setCurrentView(LayoutView.INCOME);
+    }
+
+    private static void setDetailsWindow(String title, Node view, Node mode){
         String adjustedTitle = "Budget - " + title;
 
         if(currentMode.equals(LayoutMode.VIEW))
