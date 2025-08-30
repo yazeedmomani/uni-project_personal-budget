@@ -5,6 +5,7 @@ import db.Validator;
 import db.dao.DebtsDAO;
 import db.models.DebtsRecord;
 import javafx.scene.control.TextField;
+import layout.components.form.FormAlertType;
 
 import java.time.LocalDate;
 
@@ -61,6 +62,32 @@ public abstract class TemplateDebtsEdit extends TemplateEdit<DebtsRecord, DebtsD
 
         record = new DebtsRecord(date, party, amount, notes, getType());
         return false;
+    }
+
+    @Override
+    protected void retrieve(){
+        form.clearAlerts();
+
+        if(validator.assertNotEmpty(idField)) return;
+        if(validator.assertInteger(idField)) return;
+        if(validator.assertPositiveNumber(idField)) return;
+
+        int id = Validator.getInt(idField);
+
+        form.reset();
+
+        try{
+            record = dao.get(id);
+            if(record == null || !record.getType().equals(getType())){
+                exitUpdateMode();
+                form.setAlertMessage(FormAlertType.ERROR,"Record does not exist");
+                return;
+            }
+            enterUpdateMode(record);
+        }
+        catch (Exception exp){
+            form.setAlertMessage(FormAlertType.ERROR,"Failed to retrieve record");
+        }
     }
 
     protected abstract String getType();
