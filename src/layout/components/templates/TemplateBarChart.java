@@ -24,14 +24,16 @@ public abstract class TemplateBarChart<Record extends TemplateRecord> {
     private final int barGap;// e.g. "Total (JOD)"
     protected final int limitMonths;
     protected final List<Record> data;
+    private final boolean showLegend;
 
-    protected TemplateBarChart(List<Record> data, int limitMonths, String xAxisLabel, String yAxisLabel, String primaryColor, int barGap) {
+    protected TemplateBarChart(List<Record> data, int limitMonths, String xAxisLabel, String yAxisLabel, String primaryColor, int barGap, boolean showLegend) {
         this.primaryColor = primaryColor;
         this.xAxisLabel = xAxisLabel == null ? "" : xAxisLabel;
         this.yAxisLabel = yAxisLabel == null ? "" : yAxisLabel;
         this.limitMonths = limitMonths;
         this.barGap = barGap;
         this.data = data;
+        this.showLegend = showLegend;
 
         initializeChart();
     }
@@ -43,6 +45,7 @@ public abstract class TemplateBarChart<Record extends TemplateRecord> {
         this.limitMonths = limitMonths;
         this.barGap = 70;
         this.data = data;
+        this.showLegend = true;
 
         initializeChart();
     }
@@ -79,6 +82,7 @@ public abstract class TemplateBarChart<Record extends TemplateRecord> {
         yAxis.setStyle("-fx-text-fill: #4d4d4d;");
 
         chart = new javafx.scene.chart.BarChart<>(xAxis, yAxis);
+        chart.setLegendVisible(showLegend);
         chart.setAnimated(true);
         chart.setCategoryGap(barGap);
         chart.setBarGap(6);

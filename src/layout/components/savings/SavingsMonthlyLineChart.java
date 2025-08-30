@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class SavingsMonthlyLineChart extends TemplateLineChart<SavingsRecord> {
     public SavingsMonthlyLineChart(List<SavingsRecord> data) {
-        super(data, 6, true, "Month", "Total (JOD)", "#FFB300", "#FED54E");
+        super(data, 6, true, "Month", "Total (JOD)", "#FF8F00", "#FFC007");
     }
 
     public SavingsMonthlyLineChart(List<SavingsRecord> data,
