@@ -39,7 +39,7 @@ public abstract class TemplateDebtsEdit extends TemplateEdit<DebtsRecord, DebtsD
     protected boolean assertAndGetFromFieldsAndSetCurrentRecord(){
         if (validator.assertNotEmpty(dateField, partyField, amountField)) return true;
         if (validator.assertDateFormat(dateField)) return true;
-        if (validator.assertPositiveNumber(amountField)) return true;
+        if (validator.assertNumber(amountField)) return true;
 
         LocalDate date = Validator.getLocalDate(dateField);
         String party = Validator.getString(partyField);
@@ -54,7 +54,7 @@ public abstract class TemplateDebtsEdit extends TemplateEdit<DebtsRecord, DebtsD
     protected boolean assertAndGetFromFieldsAndCreateNewRecord(String notes){
         if (validator.assertNotEmpty(dateField, partyField, amountField)) return true;
         if (validator.assertDateFormat(dateField)) return true;
-        if (validator.assertPositiveNumber(amountField)) return true;
+        if (validator.assertNumber(amountField)) return true;
 
         LocalDate date = Validator.getLocalDate(dateField);
         String party = Validator.getString(partyField);
