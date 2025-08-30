@@ -2,5 +2,9 @@ package layout;
 
 public enum LayoutView {
     INCOME,
-    SAVINGS
+    RECEIVABLES,
+    SAVINGS,
+    INVESTMENTS,
+    FIXED_EXPENSES,
+    PAYABLES
 }

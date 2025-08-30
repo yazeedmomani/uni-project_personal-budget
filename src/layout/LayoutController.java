@@ -7,8 +7,16 @@ import layout.menus.LeftMenu;
 import layout.menus.TopMenu;
 import layout.views.Login;
 import layout.views.Settings;
+import layout.views.debts_payables.DebtsPayablesEdit;
+import layout.views.debts_payables.DebtsPayablesView;
+import layout.views.debts_receivables.DebtsReceivablesEdit;
+import layout.views.debts_receivables.DebtsReceivablesView;
+import layout.views.fixed_expenses.FixedExpensesEdit;
+import layout.views.fixed_expenses.FixedExpensesView;
 import layout.views.income.IncomeEdit;
 import layout.views.income.IncomeView;
+import layout.views.investments.InvestmentsEdit;
+import layout.views.investments.InvestmentsView;
 import layout.views.savings.SavingsEdit;
 import layout.views.savings.SavingsView;
 
@@ -93,16 +101,40 @@ public class LayoutController {
 
         IncomeEdit incomeEdit = new IncomeEdit();
         IncomeView incomeView = new IncomeView();
+        DebtsReceivablesEdit debtsReceivablesEdit = new DebtsReceivablesEdit();
+        DebtsReceivablesView debtsReceivablesView = new DebtsReceivablesView();
         SavingsEdit savingsEdit = new SavingsEdit();
         SavingsView savingsView = new SavingsView();
+        InvestmentsEdit investmentsEdit = new InvestmentsEdit();
+        InvestmentsView investmentsView = new InvestmentsView();
+        FixedExpensesEdit fixedExpensesEdit = new FixedExpensesEdit();
+        FixedExpensesView fixedExpensesView = new FixedExpensesView();
+        DebtsPayablesEdit debtsPayablesEdit = new DebtsPayablesEdit();
+        DebtsPayablesView debtsPayablesView = new DebtsPayablesView();
 
         switch (currentView){
             case LayoutView.INCOME:
                 setDashboardWindow("Income", incomeView.getRoot(), incomeEdit.getRoot());
                 break;
 
+            case LayoutView.RECEIVABLES:
+                setDashboardWindow("Receivables", debtsReceivablesView.getRoot(), debtsReceivablesEdit.getRoot());
+                break;
+
             case LayoutView.SAVINGS:
                 setDashboardWindow("Savings", savingsView.getRoot(), savingsEdit.getRoot());
+                break;
+
+            case LayoutView.INVESTMENTS:
+                setDashboardWindow("Investments", investmentsView.getRoot(), investmentsEdit.getRoot());
+                break;
+
+            case LayoutView.FIXED_EXPENSES:
+                setDashboardWindow("Fixed Expenses", fixedExpensesView.getRoot(), fixedExpensesEdit.getRoot());
+                break;
+
+            case LayoutView.PAYABLES:
+                setDashboardWindow("Payables", debtsPayablesView.getRoot(), debtsPayablesEdit.getRoot());
                 break;
         }
     }
