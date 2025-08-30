@@ -32,8 +32,8 @@ public class DebtsReceivablesView extends TemplateView<DebtsRecord, DebtsDAO> {
         table = new DebtsTable(data);
 
         summaryCard = new DashboardCard("Total Debts to Collect", summary.getSummary());
-        barChartCard = new DashboardCard("Debts Distribution", barChart.getChart());
-        tableCard = new DashboardCard("Debts Transactions", table.getTable());
+        barChartCard = new DashboardCard("Receivables Distribution", barChart.getChart());
+        tableCard = new DashboardCard("Receivables Transactions", table.getTable());
 
         dashboard = new Dashboard();
 

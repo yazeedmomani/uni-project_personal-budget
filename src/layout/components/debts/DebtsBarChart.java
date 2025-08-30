@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class DebtsBarChart extends TemplateBarChart<DebtsRecord> {
 
     public DebtsBarChart(List<DebtsRecord> data, String color) {
-        super(data, 6,"Party", "Debt (JOD)", color, 175, false);
+        super(data, 6,"Party", "Amount (JOD)", color, 175, false);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class DebtsBarChart extends TemplateBarChart<DebtsRecord> {
             }
         });
 
-        series.setName("Debt");
+        series.setName("Debts");
         return List.of(series);
     }
 }
