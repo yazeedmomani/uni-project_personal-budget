@@ -1,8 +1,6 @@
 package db;
 
-import db.dao.IncomeDAO;
-import db.dao.SavingsDAO;
-import db.dao.UsersDAO;
+import db.dao.*;
 import db.models.User;
 
 import java.sql.Connection;
@@ -19,6 +17,9 @@ public class Database {
     private static User currentUser;
     private static IncomeDAO incomeDAO;
     private static SavingsDAO savingsDAO;
+    private static InvestmentsDAO investmentsDAO;
+    private static SubscriptionsDAO subscriptionsDAO;
+    private static DebtsDAO debtsDAO;
 
     public static Connection getConnection() throws Exception{
         return DriverManager.getConnection(URL);
@@ -39,11 +40,17 @@ public class Database {
             currentUser = user;
             incomeDAO = null;
             savingsDAO = null;
+            investmentsDAO = null;
+            subscriptionsDAO = null;
+            debtsDAO = null;
             return;
         }
         currentUser = user;
         incomeDAO = new IncomeDAO(user.getId());
         savingsDAO = new SavingsDAO(user.getId());
+        investmentsDAO = new InvestmentsDAO(user.getId());
+        subscriptionsDAO = new SubscriptionsDAO(user.getId());
+        debtsDAO = new DebtsDAO(user.getId());
     }
 
     public static User getCurrentUser() {return currentUser;}
@@ -52,6 +59,9 @@ public class Database {
     // DAOs
     public static IncomeDAO getIncomeDAO() {return incomeDAO;}
     public static SavingsDAO getSavingsDAO() {return savingsDAO;}
+    public static InvestmentsDAO getInvestmentsDAO() {return investmentsDAO;}
+    public static SubscriptionsDAO getSubscriptionsDAO() {return subscriptionsDAO;}
+    public static DebtsDAO getDebtsDAO() {return debtsDAO;}
 
 
     // Date Format

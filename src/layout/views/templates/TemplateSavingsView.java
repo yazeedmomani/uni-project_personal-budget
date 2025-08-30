@@ -8,17 +8,19 @@ import layout.components.dashboard.DashboardCard;
 import layout.components.savings.SavingsLineChart;
 import layout.components.savings.SavingsMonthlyLineChart;
 import layout.components.savings.SavingsTable;
+import layout.components.templates.TemplateLineChart;
+import layout.components.templates.TemplateTable;
 
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.Comparator;
 
-public abstract class TemplateSavingsView<Record extends TemplateSavingsRecord, DAO extends TemplateSavingsDAO<Record>> extends TemplateView<Record, DAO> {
-    private static DashboardCard leftSummaryCard, rightSummaryCard, barChartCard, lineChartCard, tableCard;
-    private static Summary leftSummary, rightSummary;
-    private static SavingsLineChart lineChart;
-    private static SavingsMonthlyLineChart monthlyLineChart;
-    private static SavingsTable table;
+public abstract class TemplateSavingsView<Record extends TemplateSavingsRecord, DAO extends TemplateSavingsDAO<Record>, LineChart extends TemplateLineChart, MonthlyLineChart extends TemplateLineChart, Table extends TemplateTable> extends TemplateView<Record, DAO> {
+    private DashboardCard leftSummaryCard, rightSummaryCard, barChartCard, lineChartCard, tableCard;
+    private Summary leftSummary, rightSummary;
+    private LineChart lineChart;
+    private MonthlyLineChart monthlyLineChart;
+    private Table table;
 
     public TemplateSavingsView(DAO dao){
         super(dao);
@@ -87,7 +89,7 @@ public abstract class TemplateSavingsView<Record extends TemplateSavingsRecord, 
         return formatJOD(growth);
     }
 
-    protected abstract SavingsLineChart createLineChart();
-    protected abstract SavingsMonthlyLineChart createMonthlyLineChart();
-    protected abstract SavingsTable createTable();
+    protected abstract LineChart createLineChart();
+    protected abstract MonthlyLineChart createMonthlyLineChart();
+    protected abstract Table createTable();
 }

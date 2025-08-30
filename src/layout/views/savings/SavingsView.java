@@ -8,7 +8,7 @@ import layout.components.savings.SavingsMonthlyLineChart;
 import layout.components.savings.SavingsTable;
 import layout.views.templates.TemplateSavingsView;
 
-public class SavingsView extends TemplateSavingsView<SavingsRecord, SavingsDAO> {
+public class SavingsView extends TemplateSavingsView<SavingsRecord, SavingsDAO, SavingsLineChart, SavingsMonthlyLineChart, SavingsTable> {
     public SavingsView(){
         super(Database.getSavingsDAO());
     }
