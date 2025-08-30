@@ -32,7 +32,7 @@ CREATE TABLE investments_log (
     user_id INTEGER NOT NULL,
     date TEXT NOT NULL,
     change REAL NOT NULL,
-    amount REAL NOT NULL,
+    balance REAL NOT NULL,
     notes TEXT,
     FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
 );
