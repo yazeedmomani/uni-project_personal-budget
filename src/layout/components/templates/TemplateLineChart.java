@@ -17,6 +17,7 @@ public abstract class TemplateLineChart<Record extends TemplateRecord> {
     private final String yAxisLabel;
     private final String primaryColor;
     private final String secondaryColor;
+    private final String medianLabel;
     protected final List<Record> data;
 
     private LineChart<String, Number> chart;
@@ -33,6 +34,25 @@ public abstract class TemplateLineChart<Record extends TemplateRecord> {
                                 String xAxisLabel,
                                 String yAxisLabel,
                                 String primaryColor,
+                                String secondaryColor,
+                                String medianLabel) {
+        this.data = data;
+        this.limitMonths = limitMonths;
+        this.addMedian = addMedian;
+        this.xAxisLabel = xAxisLabel == null ? "" : xAxisLabel;
+        this.yAxisLabel = yAxisLabel == null ? "" : yAxisLabel;
+        this.primaryColor = primaryColor;
+        this.secondaryColor = secondaryColor;
+        this.medianLabel = medianLabel;
+        initializeChart();
+    }
+
+    protected TemplateLineChart(List<Record> data,
+                                int limitMonths,
+                                boolean addMedian,
+                                String xAxisLabel,
+                                String yAxisLabel,
+                                String primaryColor,
                                 String secondaryColor) {
         this.data = data;
         this.limitMonths = limitMonths;
@@ -41,6 +61,7 @@ public abstract class TemplateLineChart<Record extends TemplateRecord> {
         this.yAxisLabel = yAxisLabel == null ? "" : yAxisLabel;
         this.primaryColor = primaryColor;
         this.secondaryColor = secondaryColor;
+        this.medianLabel = "Median";
         initializeChart();
     }
 
@@ -93,7 +114,7 @@ public abstract class TemplateLineChart<Record extends TemplateRecord> {
                 }
 
                 XYChart.Series<String, Number> medianSeries = new XYChart.Series<>();
-                medianSeries.setName("Median: " + String.format("%,.0f", median));
+                medianSeries.setName(medianLabel + ": " + String.format("%,.0f", median));
                 for (XYChart.Data<String, Number> dp : primarySeries.getData()) {
                     medianSeries.getData().add(new XYChart.Data<>(dp.getXValue(), median));
                 }

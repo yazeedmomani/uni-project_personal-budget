@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class InvestmentsLineChart extends TemplateLineChart<InvestmentsRecord> {
     public InvestmentsLineChart(List<InvestmentsRecord> data) {
-        super(data, 1, true, "Date", "Total (JOD)", "#04ABC1", "#4ED0E1");
+        super(data, 1, true, "Date", "Balance (JOD)", "#04ABC1", "#4ED0E1", "Median Balance");
     }
 
     public InvestmentsLineChart(List<InvestmentsRecord> data,
@@ -68,7 +68,7 @@ public class InvestmentsLineChart extends TemplateLineChart<InvestmentsRecord> {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         XYChart.Series<String, Number> balanceSeries = new XYChart.Series<>();
-        balanceSeries.setName("Daily Balance");
+        balanceSeries.setName("Balance");
 
         for (LocalDate d : dates) {
             InvestmentsRecord rec = latestPerDate.get(d);

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class IncomeBarChart extends TemplateBarChart<IncomeRecord> {
 
     public IncomeBarChart(List<IncomeRecord> data) {
-        super(data, 6,"Source", "Total (JOD)", "#388E3C");
+        super(data, 6,"Source", "Income (JOD)", "#388E3C");
     }
 
     @Override
@@ -34,7 +34,7 @@ public class IncomeBarChart extends TemplateBarChart<IncomeRecord> {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         sums.forEach((source, total) -> series.getData().add(new XYChart.Data<>(source, total)));
 
-        series.setName("Source");
+        series.setName("Income");
         return List.of(series);
     }
 }

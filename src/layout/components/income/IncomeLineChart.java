@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class IncomeLineChart extends TemplateLineChart<IncomeRecord> {
 
     public IncomeLineChart(List<IncomeRecord> data) {
-        super(data, 6, true, "Month", "Total (JOD)", "#388E3C", "#81C784");
+        super(data, 6, true, "Month", "Income (JOD)", "#388E3C", "#81C784", "Median Income");
     }
 
     public IncomeLineChart(List<IncomeRecord> data,
@@ -61,7 +61,7 @@ public class IncomeLineChart extends TemplateLineChart<IncomeRecord> {
 
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MMM yyyy");
         XYChart.Series<String, Number> totalsSeries = new XYChart.Series<>();
-        totalsSeries.setName("Monthly Total");
+        totalsSeries.setName("Income");
         for (YearMonth ym : months) {
             double total = monthlyTotals.getOrDefault(ym, 0.0);
             String label = ym.format(fmt);

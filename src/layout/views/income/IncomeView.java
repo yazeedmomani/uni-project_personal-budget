@@ -40,9 +40,9 @@ public class IncomeView extends TemplateView<IncomeRecord, IncomeDAO> {
 
         leftSummaryCard = new DashboardCard("Income This Month", leftSummary.getSummary());
         rightSummaryCard = new DashboardCard("Income Last Month", rightSummary.getSummary());
-        barChartCard = new DashboardCard("Income by Source (Last 6 Months)", barChart.getChart());
-        lineChartCard = new DashboardCard("Total Income per Month (Last 6 Months)", lineChart.getChart());
-        tableCard = new DashboardCard("Income Details", table.getTable());
+        barChartCard = new DashboardCard("Income Sources (Last 6 Months)", barChart.getChart());
+        lineChartCard = new DashboardCard("Monthly Income (Last 6 Months)", lineChart.getChart());
+        tableCard = new DashboardCard("Income Transactions", table.getTable());
 
         dashboard = new Dashboard();
 

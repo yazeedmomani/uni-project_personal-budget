@@ -21,7 +21,7 @@ public class SavingsTable extends TemplateTable<SavingsRecord> {
                 )
         );
 
-        TableColumn<SavingsRecord, String> changeCol = new TableColumn<>("Change (JOD)");
+        TableColumn<SavingsRecord, String> changeCol = new TableColumn<>("Change");
         changeCol.setCellValueFactory(cell ->
                 new ReadOnlyStringWrapper(String.format("% .2f", cell.getValue().getChange()))
         );

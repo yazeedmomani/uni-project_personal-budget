@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class SavingsLineChart extends TemplateLineChart<SavingsRecord> {
     public SavingsLineChart(List<SavingsRecord> data) {
-        super(data, 1, true, "Date", "Total (JOD)", "#FF8F00", "#FFC007");
+        super(data, 1, true, "Date", "Balance (JOD)", "#FF8F00", "#FFC007", "Median Balance");
     }
 
     public SavingsLineChart(List<SavingsRecord> data,
@@ -69,7 +69,7 @@ public class SavingsLineChart extends TemplateLineChart<SavingsRecord> {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         XYChart.Series<String, Number> balanceSeries = new XYChart.Series<>();
-        balanceSeries.setName("Daily Balance");
+        balanceSeries.setName("Balance");
 
         for (LocalDate d : dates) {
             SavingsRecord rec = latestPerDate.get(d);
