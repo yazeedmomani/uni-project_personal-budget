@@ -1,6 +1,7 @@
 package layout.components.income;
 
 import db.models.IncomeRecord;
+import db.models.SavingsRecord;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.scene.control.TableColumn;
 import layout.components.templates.TemplateTable;
@@ -34,5 +35,15 @@ public class IncomeTable extends TemplateTable<IncomeRecord> {
         );
 
         return List.of(dateCol, sourceCol, amountCol);
+    }
+
+    @Override
+    protected Number getValueForRowColoring(IncomeRecord record) {
+        return record != null ? record.getAmount() : null;
+    }
+
+    @Override
+    protected String getNegativeRowColor() {
+        return "#F4C7C2";
     }
 }

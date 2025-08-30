@@ -33,4 +33,13 @@ public class SavingsTable extends TemplateTable<SavingsRecord> {
 
         return List.of(dateCol, changeCol, balanceCol);
     }
+    @Override
+    protected Number getValueForRowColoring(SavingsRecord record) {
+        return record != null ? record.getChange() : null;
+    }
+
+    @Override
+    protected String getNegativeRowColor() {
+        return "#FFCCBC";
+    }
 }

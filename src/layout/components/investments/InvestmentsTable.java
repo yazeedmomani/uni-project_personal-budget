@@ -1,5 +1,6 @@
 package layout.components.investments;
 
+import db.models.DebtsRecord;
 import db.models.InvestmentsRecord;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.scene.control.TableColumn;
@@ -32,5 +33,15 @@ public class InvestmentsTable extends TemplateTable<InvestmentsRecord> {
         );
 
         return List.of(dateCol, changeCol, balanceCol);
+    }
+
+    @Override
+    protected Number getValueForRowColoring(InvestmentsRecord record) {
+        return record != null ? record.getChange() : null;
+    }
+
+    @Override
+    protected String getNegativeRowColor() {
+        return "#B2EAF2";
     }
 }

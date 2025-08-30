@@ -1,5 +1,6 @@
 package layout.components.fixed_expenses;
 
+import db.models.IncomeRecord;
 import db.models.SubscriptionsRecord;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.scene.control.TableColumn;
@@ -32,5 +33,15 @@ public class FixedExpensesTable extends TemplateTable<SubscriptionsRecord> {
         );
 
         return List.of(subscriptionCol, amountCol, expectedDayCol);
+    }
+
+    @Override
+    protected Number getValueForRowColoring(SubscriptionsRecord record) {
+        return record != null ? record.getAmount() : null;
+    }
+
+    @Override
+    protected String getNegativeRowColor() {
+        return "#F4C7C2";
     }
 }

@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -85,8 +86,42 @@ public abstract class TemplateTable<R extends TemplateRecord> {
 
         tv.setMaxWidth(Double.MAX_VALUE);
         tv.setPrefHeight(388);
+
+        // Color rows whose target value is negative; color & value provider are defined by subclasses
+        tv.setRowFactory(tableView -> new TableRow<R>() {
+            @Override
+            protected void updateItem(R item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setStyle("");
+                    return;
+                }
+                Number v = getValueForRowColoring(item);
+                if (v != null && v.doubleValue() < 0) {
+                    String color = getNegativeRowColor();
+                    if (color != null && !color.isEmpty()) {
+                        setStyle("-fx-background-color: " + color + ";");
+                    } else {
+                        setStyle("");
+                    }
+                } else {
+                    setStyle("");
+                }
+            }
+        });
+
         return tv;
     }
 
     protected abstract List<TableColumn<R, ?>> buildMiddleColumns();
+
+    /**
+     * Return the numeric value used to decide row coloring. If this value is < 0, the row will be colored.
+     */
+    protected abstract Number getValueForRowColoring(R record);
+
+    /**
+     * Return a JavaFX CSS color value (e.g., "#FFCDD2" or "rgba(255,0,0,0.2)") for rows where the value < 0.
+     */
+    protected abstract String getNegativeRowColor();
 }

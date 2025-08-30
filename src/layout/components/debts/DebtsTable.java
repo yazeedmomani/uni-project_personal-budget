@@ -1,6 +1,8 @@
 package layout.components.debts;
 
 import db.models.DebtsRecord;
+import db.models.IncomeRecord;
+import db.models.SubscriptionsRecord;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.scene.control.TableColumn;
 import layout.components.templates.TemplateTable;
@@ -8,8 +10,11 @@ import layout.components.templates.TemplateTable;
 import java.util.List;
 
 public class DebtsTable extends TemplateTable<DebtsRecord> {
-    public DebtsTable(List<DebtsRecord> data) {
+    private String negativeRowColor;
+
+    public DebtsTable(List<DebtsRecord> data, String negativeRowColor) {
         super(data);
+        this.negativeRowColor = negativeRowColor;
     }
 
     @Override
@@ -34,5 +39,15 @@ public class DebtsTable extends TemplateTable<DebtsRecord> {
         );
 
         return List.of(dateCol, subscriptionCol, amountCol);
+    }
+
+    @Override
+    protected Number getValueForRowColoring(DebtsRecord record) {
+        return record != null ? record.getAmount() : null;
+    }
+
+    @Override
+    protected String getNegativeRowColor() {
+        return negativeRowColor;
     }
 }
