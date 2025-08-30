@@ -28,6 +28,9 @@ public class SchemaLoader {
             runSqlFile(connection, Paths.get("src", "db", "seed", "02_users.sql"));
             runSqlFile(connection, Paths.get("src", "db", "seed", "03_income_log.sql"));
             runSqlFile(connection, Paths.get("src", "db", "seed", "04_savings_log.sql"));
+            runSqlFile(connection, Paths.get("src", "db", "seed", "05_investments_log.sql"));
+            runSqlFile(connection, Paths.get("src", "db", "seed", "06_debts_log.sql"));
+            runSqlFile(connection, Paths.get("src", "db", "seed", "07_subscriptions.sql"));
 
             System.out.println("Schema loaded successfully.");
 
