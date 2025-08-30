@@ -1,12 +1,12 @@
 package db.dao;
 
+import db.dao.templates.TemplateSavingsDAO;
 import db.models.InvestmentsRecord;
-import db.models.SavingsRecord;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
 
-public class InvestmentsDAO extends TemplateSavingsDAO<InvestmentsRecord>{
+public class InvestmentsDAO extends TemplateSavingsDAO<InvestmentsRecord> {
     public InvestmentsDAO(int userId) {
         super(userId, "investments_log");
     }

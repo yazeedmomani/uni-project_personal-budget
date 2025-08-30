@@ -1,4 +1,4 @@
-package db.models;
+package db.models.templates;
 
 import java.time.LocalDate;
 

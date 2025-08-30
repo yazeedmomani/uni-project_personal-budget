@@ -1,12 +1,13 @@
 package db.dao;
 
 import db.Database;
+import db.dao.templates.TemplateDAO;
 import db.models.IncomeRecord;
 
 import java.sql.*;
 import java.time.LocalDate;
 
-public class IncomeDAO extends TemplateDAO<IncomeRecord>{
+public class IncomeDAO extends TemplateDAO<IncomeRecord> {
     public IncomeDAO(int userId) {
         super(userId, "income_log");
     }

@@ -1,8 +1,8 @@
 package layout.views.templates;
 
 import db.Validator;
-import db.dao.TemplateDAO;
-import db.models.TemplateRecord;
+import db.dao.templates.TemplateDAO;
+import db.models.templates.TemplateRecord;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;

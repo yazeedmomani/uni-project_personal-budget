@@ -1,8 +1,10 @@
 package db.models;
 
+import db.models.templates.TemplateRecord;
+
 import java.time.LocalDate;
 
-public class DebtsRecord extends TemplateRecord{
+public class DebtsRecord extends TemplateRecord {
     private LocalDate date;
     private String party;
     private double amount;

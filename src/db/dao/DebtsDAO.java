@@ -1,6 +1,7 @@
 package db.dao;
 
 import db.Database;
+import db.dao.templates.TemplateDAO;
 import db.models.DebtsRecord;
 
 import java.sql.*;
@@ -8,7 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DebtsDAO extends TemplateDAO<DebtsRecord>{
+public class DebtsDAO extends TemplateDAO<DebtsRecord> {
     public DebtsDAO(int userId) {
         super(userId, "debts_log");
     }

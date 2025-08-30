@@ -1,6 +1,6 @@
 package layout.components.templates;
 
-import db.models.TemplateRecord;
+import db.models.templates.TemplateRecord;
 import javafx.application.Platform;
 import javafx.scene.chart.*;
 

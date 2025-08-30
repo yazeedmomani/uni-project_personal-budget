@@ -1,7 +1,6 @@
-package db.utils;
+package db.utils.dao_test;
 
 import db.dao.SavingsDAO;
-import db.models.IncomeRecord;
 import db.models.SavingsRecord;
 import java.time.LocalDate;
 import java.util.List;

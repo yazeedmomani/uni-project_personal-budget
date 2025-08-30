@@ -1,6 +1,6 @@
 package layout.components.templates;
 
-import db.models.TemplateRecord;
+import db.models.templates.TemplateRecord;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

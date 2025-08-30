@@ -1,4 +1,4 @@
-package db.models;
+package db.models.templates;
 
 public abstract class TemplateRecord {
     protected final int id;

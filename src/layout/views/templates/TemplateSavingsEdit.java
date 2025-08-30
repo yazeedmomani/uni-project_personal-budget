@@ -1,8 +1,8 @@
 package layout.views.templates;
 
 import db.Validator;
-import db.dao.TemplateSavingsDAO;
-import db.models.TemplateSavingsRecord;
+import db.dao.templates.TemplateSavingsDAO;
+import db.models.templates.TemplateSavingsRecord;
 import javafx.scene.control.TextField;
 import layout.components.form.FormAlertType;
 

@@ -1,8 +1,7 @@
-package db.dao;
+package db.dao.templates;
 
 import db.Database;
-import db.models.SavingsRecord;
-import db.models.TemplateSavingsRecord;
+import db.models.templates.TemplateSavingsRecord;
 
 import java.sql.*;
 import java.time.LocalDate;

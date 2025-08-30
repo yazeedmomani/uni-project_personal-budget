@@ -1,9 +1,11 @@
 package db.models;
 
 
+import db.models.templates.TemplateSavingsRecord;
+
 import java.time.LocalDate;
 
-public class SavingsRecord extends TemplateSavingsRecord{
+public class SavingsRecord extends TemplateSavingsRecord {
     public SavingsRecord(int id, int userId, LocalDate date, double change, double balance, String notes) {
         super(id, userId, date, change, balance, notes);
         this.date = date;

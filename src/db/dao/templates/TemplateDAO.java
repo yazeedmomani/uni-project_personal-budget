@@ -1,7 +1,7 @@
-package db.dao;
+package db.dao.templates;
 
 import db.Database;
-import db.models.TemplateRecord;
+import db.models.templates.TemplateRecord;
 
 import java.sql.*;
 import java.util.ArrayList;

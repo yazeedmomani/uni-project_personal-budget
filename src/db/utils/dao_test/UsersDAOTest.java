@@ -1,4 +1,4 @@
-package db.utils;
+package db.utils.dao_test;
 
 import db.dao.UsersDAO;
 import db.models.User;

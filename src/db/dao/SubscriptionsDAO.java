@@ -1,10 +1,10 @@
 package db.dao;
 
 import db.Database;
+import db.dao.templates.TemplateDAO;
 import db.models.SubscriptionsRecord;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 public class SubscriptionsDAO extends TemplateDAO<SubscriptionsRecord> {
     public SubscriptionsDAO(int userId) {

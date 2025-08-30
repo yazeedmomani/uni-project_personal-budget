@@ -1,5 +1,7 @@
 package db.models;
 
+import db.models.templates.TemplateRecord;
+
 public class SubscriptionsRecord extends TemplateRecord {
     private String subscription;
     private double amount;

@@ -1,8 +1,7 @@
 package layout.views.templates;
 
-import db.Database;
-import db.dao.TemplateSavingsDAO;
-import db.models.TemplateSavingsRecord;
+import db.dao.templates.TemplateSavingsDAO;
+import db.models.templates.TemplateSavingsRecord;
 import layout.components.Summary;
 import layout.components.dashboard.Dashboard;
 import layout.components.dashboard.DashboardCard;
