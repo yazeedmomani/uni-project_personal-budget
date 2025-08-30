@@ -50,7 +50,7 @@ public class LayoutController {
         root.setLeft(LeftMenu.getRoot());
 
         setIsSettings(false);
-        setCurrentView(LayoutView.INCOME);
+        setCurrentView(LayoutView.DASHBAORD);
         setCurrentMode(LayoutMode.VIEW);
         route();
     }
@@ -114,7 +114,7 @@ public class LayoutController {
 
         switch (currentView){
             case LayoutView.DASHBAORD:
-                setDashboardWindow("Dashboard", incomeView.getRoot());
+                setDashboardWindow(incomeView.getRoot());
                 break;
 
             case LayoutView.INCOME:
@@ -143,11 +143,10 @@ public class LayoutController {
         }
     }
 
-    private static void setDashboardWindow(String title, Node view){
-        String adjustedTitle = "Budget - " + title;
+    private static void setDashboardWindow(Node view){
 
         if(currentMode.equals(LayoutMode.VIEW))
-            setWindow(adjustedTitle, view);
+            setWindow("Budget - Dashboard", view);
 
         if(currentMode.equals(LayoutMode.EDIT))
             setCurrentView(LayoutView.INCOME);
