@@ -2,65 +2,65 @@ package layout.views.fixed_expenses;
 
 import db.Database;
 import db.Validator;
-import db.dao.IncomeDAO;
-import db.models.IncomeRecord;
+import db.dao.SubscriptionsDAO;
+import db.models.SubscriptionsRecord;
 import javafx.scene.control.TextField;
 import layout.views.templates.TemplateEdit;
 
 import java.time.LocalDate;
 
-public class FixedExpensesEdit extends TemplateEdit<IncomeRecord, IncomeDAO> {
-    private TextField dateField, sourceField, amountField;
+public class FixedExpensesEdit extends TemplateEdit<SubscriptionsRecord, SubscriptionsDAO> {
+    private TextField billField, amountField, dueDayField;
 
     public FixedExpensesEdit(){
-        super(Database.getIncomeDAO());
+        super(Database.getSubscriptionsDAO());
     }
 
     protected void initializeCustomFields(){
-        dateField = form.addField("Date", "YYYY-MM-DD");
-        sourceField = form.addField("Source", "Income Source");
+        billField = form.addField("Bill", "e.g., Gym, iCloud, Spotify");
         amountField = form.addField("Amount", "0.00");
+        dueDayField = form.addField("Due Day", "Day of month (1–31)");
 
-        dateField.setOnKeyPressed(super::eventHandler);
-        sourceField.setOnKeyPressed(super::eventHandler);
+        billField.setOnKeyPressed(super::eventHandler);
         amountField.setOnKeyPressed(super::eventHandler);
+        dueDayField.setOnKeyPressed(super::eventHandler);
     }
 
     protected void setFieldTextToRetrievedValue(){
-        dateField.setText(record.getDate().toString());
-        sourceField.setText(record.getSource());
+        billField.setText(record.getSubscription());
         amountField.setText(String.valueOf(record.getAmount()));
+        dueDayField.setText(String.valueOf(record.getExpectedDay()));
     }
 
     protected boolean checkSourceEqualAnyFields(Object source){
-        return source.equals(dateField) || source.equals(sourceField) || source.equals(amountField);
+        return source.equals(billField) || source.equals(amountField) || source.equals(dueDayField);
     }
 
     protected boolean assertAndGetFromFieldsAndSetCurrentRecord(){
-        if (validator.assertNotEmpty(dateField, sourceField, amountField)) return true;
-        if (validator.assertDateFormat(dateField)) return true;
+        if (validator.assertNotEmpty(billField, amountField, dueDayField)) return true;
         if (validator.assertPositiveNumber(amountField)) return true;
+        if (validator.assertDayOfMonth(dueDayField)) return true;
 
-        LocalDate date = Validator.getLocalDate(dateField);
-        String source = Validator.getString(sourceField);
+        String bill = Validator.getString(billField);
         double amount = Validator.getDouble(amountField);
+        int dueDay = Validator.getInt(dueDayField);
 
-        record.setDate(date);
-        record.setSource(source);
+        record.setSubscription(bill);
         record.setAmount(amount);
+        record.setExpectedDay(dueDay);
         return false;
     }
 
     protected boolean assertAndGetFromFieldsAndCreateNewRecord(String notes){
-        if (validator.assertNotEmpty(dateField, sourceField, amountField)) return true;
-        if (validator.assertDateFormat(dateField)) return true;
+        if (validator.assertNotEmpty(billField, amountField, dueDayField)) return true;
         if (validator.assertPositiveNumber(amountField)) return true;
+        if (validator.assertDayOfMonth(dueDayField)) return true;
 
-        LocalDate date = Validator.getLocalDate(dateField);
-        String source = Validator.getString(sourceField);
+        String bill = Validator.getString(billField);
         double amount = Validator.getDouble(amountField);
+        int dueDay = Validator.getInt(dueDayField);
 
-        record = new IncomeRecord(date, source, amount, notes);
+        record = new SubscriptionsRecord(bill, amount, dueDay, notes);
         return false;
     }
 }

@@ -130,5 +130,22 @@ public class Validator {
         return hasError;
     }
 
+    public boolean assertDayOfMonth(TextInputControl... inputs){
+        if(assertInteger(inputs)) return true;
+
+        boolean hasError = false;
+
+        for(TextInputControl input : inputs){
+            int number = Validator.getInt(input);
+            if(number < 1 || number > 31){
+                form.alert(input);
+                hasError = true;
+            }
+        }
+        if(hasError) form.setAlertMessage(FormAlertType.ERROR,"Please enter a valid day (1–31)");
+
+        return hasError;
+    }
+
     public Validator(Form form) {this.form = form;}
 }
