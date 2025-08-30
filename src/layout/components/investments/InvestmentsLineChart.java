@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class InvestmentsLineChart extends TemplateLineChart<InvestmentsRecord> {
     public InvestmentsLineChart(List<InvestmentsRecord> data) {
-        super(data, 1, true, "Date", "Total (JOD)", "#FF8F00", "#FED54E");
+        super(data, 1, true, "Date", "Total (JOD)", "#4ED0E1", "#B2EAF2");
     }
 
     public InvestmentsLineChart(List<InvestmentsRecord> data,
