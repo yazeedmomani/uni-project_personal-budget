@@ -27,4 +27,7 @@ public class InvestmentsView extends TemplateSavingsView<InvestmentsRecord, Inve
     protected InvestmentsTable createTable(){
         return new InvestmentsTable(data);
     }
+
+    @Override
+    protected String getTableTitle() {return "Investments Transactions";}
 }

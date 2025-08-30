@@ -27,4 +27,7 @@ public class SavingsView extends TemplateSavingsView<SavingsRecord, SavingsDAO, 
     protected SavingsTable createTable(){
         return new SavingsTable(data);
     }
+
+    @Override
+    protected String getTableTitle() {return "Savings Transactions";}
 }
