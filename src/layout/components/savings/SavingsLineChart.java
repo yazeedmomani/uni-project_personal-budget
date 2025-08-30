@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class SavingsLineChart extends TemplateLineChart<SavingsRecord> {
     public SavingsLineChart(List<SavingsRecord> data) {
-        super(data, 1, true, "Date", "Total (JOD)", "#FFC007", "#FED54E");
+        super(data, 1, true, "Date", "Total (JOD)", "#FFB300", "#FED54E");
     }
 
     public SavingsLineChart(List<SavingsRecord> data,
