@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import layout.menus.LeftMenu;
 import layout.menus.TopMenu;
+import layout.views.DashboardView;
 import layout.views.Login;
 import layout.views.Settings;
 import layout.views.debts_payables.DebtsPayablesEdit;
@@ -99,6 +100,7 @@ public class LayoutController {
             return;
         }
 
+        DashboardView dashboardView = new DashboardView();
         IncomeEdit incomeEdit = new IncomeEdit();
         IncomeView incomeView = new IncomeView();
         DebtsReceivablesEdit debtsReceivablesEdit = new DebtsReceivablesEdit();
@@ -114,7 +116,7 @@ public class LayoutController {
 
         switch (currentView){
             case LayoutView.DASHBAORD:
-                setDashboardWindow(incomeView.getRoot());
+                setDashboardWindow(dashboardView.getRoot());
                 break;
 
             case LayoutView.INCOME:

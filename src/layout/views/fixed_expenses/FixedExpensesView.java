@@ -25,7 +25,7 @@ public class FixedExpensesView extends TemplateView<SubscriptionsRecord, Subscri
 
     @Override
     protected void initializeDashboardCards() {
-        String totalMonthlyBill = getTotalMonthlyBill();
+        String totalMonthlyBill = getTotalMonthlyBills();
 
         summary = new Summary(totalMonthlyBill);
         barChart = new FixedExpensesBarChart(data);
@@ -42,7 +42,7 @@ public class FixedExpensesView extends TemplateView<SubscriptionsRecord, Subscri
         dashboard.add(tableCard, 0, 2, 2, 1);
     }
 
-    private String getTotalMonthlyBill() {
+    private String getTotalMonthlyBills() {
         double sum = data == null ? 0.0 : data.stream()
                 .mapToDouble(SubscriptionsRecord::getAmount)
                 .sum();

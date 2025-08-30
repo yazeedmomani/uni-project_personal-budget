@@ -14,6 +14,10 @@ public class DebtsBarChart extends TemplateBarChart<DebtsRecord> {
         super(data, 6,"Party", "Amount (JOD)", color, 175, false);
     }
 
+    public DebtsBarChart(List<DebtsRecord> data, String color, int barGap) {
+        super(data, 6,"Party", "Amount (JOD)", color, barGap, false);
+    }
+
     @Override
     protected List<XYChart.Series<String, Number>> buildSeries() {
         Map<String, Double> sums = data.stream()

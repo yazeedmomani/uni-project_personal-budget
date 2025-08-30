@@ -13,16 +13,6 @@ public class App {
 
         LayoutController.init();
 
-        // TODO remove this piece
-        try{
-            User user = Database.getUser("admin", "123456");
-            login(user);
-        }
-        catch(Exception e){
-            System.out.println("Error: " + e.getMessage());
-        }
-        // TODO *****************
-
         primaryStage.setMaximized(true);
     }
 
