@@ -41,7 +41,7 @@ public class InvestmentsLineChart extends TemplateLineChart<InvestmentsRecord> {
                     .orElse(nowYm);
         } else {
             if (lm < 1) lm = 1; // safety clamp
-            startYm = nowYm.minusMonths(lm - 1);
+            startYm = nowYm.minusMonths(lm);
         }
 
         LocalDate startDate = startYm.atDay(1);
