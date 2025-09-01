@@ -72,38 +72,22 @@ public abstract class TemplateSavingsView<Record extends TemplateSavingsRecord, 
                 return "No Data";
             }
 
-            // 1) Pick a reference month: use the real current month if there is data for it;
-            //    otherwise fall back to the latest month that actually exists in the data.
-            YearMonth calendarCurrent = YearMonth.from(LocalDate.now());
-            boolean hasCalendarCurrent = data.stream()
-                    .filter(r -> r != null && r.getDate() != null)
-                    .anyMatch(r -> YearMonth.from(r.getDate()).equals(calendarCurrent));
-
-            YearMonth refMonth = hasCalendarCurrent
-                    ? calendarCurrent
-                    : data.stream()
-                        .filter(r -> r != null && r.getDate() != null)
-                        .max(Comparator.comparing(Record::getDate))
-                        .map(r -> YearMonth.from(r.getDate()))
-                        .orElse(calendarCurrent);
-
-            YearMonth prevMonth = refMonth.minusMonths(1);
+            YearMonth current = YearMonth.from(LocalDate.now());
+            YearMonth last = YearMonth.from(LocalDate.now()).minusMonths(1);
+            double lastBalance = dao.getLastBalance();
 
             // 2) Get the last balance (by last id) within the reference month and previous month
             double lastBalanceThisMonth = data.stream()
-                    .filter(r -> r != null && r.getDate() != null && YearMonth.from(r.getDate()).equals(refMonth))
+                    .filter(r -> r != null && r.getDate() != null && YearMonth.from(r.getDate()).equals(current))
                     .max(Comparator.comparingInt(Record::getId))
                     .map(Record::getBalance)
-                    .orElse(0.0);
+                    .orElse(lastBalance);
 
             double lastBalancePrevMonth = data.stream()
-                    .filter(r -> r != null && r.getDate() != null && YearMonth.from(r.getDate()).equals(prevMonth))
+                    .filter(r -> r != null && r.getDate() != null && YearMonth.from(r.getDate()).equals(last))
                     .max(Comparator.comparingInt(Record::getId))
                     .map(Record::getBalance)
                     .orElse(0.0);
-
-            System.out.println("refMonth=" + refMonth + " prevMonth=" + prevMonth);
-            System.out.println("this= " + lastBalanceThisMonth + " prev= " + lastBalancePrevMonth);
 
             double growth = lastBalanceThisMonth - lastBalancePrevMonth;
             return formatJOD(growth);
