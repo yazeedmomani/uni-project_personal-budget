@@ -40,3 +40,62 @@ ___
 * **Data Preparation**: Python, NumPy, Pandas for preparing and cleaning web-generated mock data.
 * **Design Patterns**: Abstract classes for reusability, enums for different states such as modes/views.
 ___
+## Screenshots
+### Login Page
+![Login](screenshots/login_page.png)
+![Login Error](screenshots/login_page_error.png)
+### Dashboards
+![Dashboard](screenshots/dashboards_dashboard.png)
+![Income](screenshots/dashboards_income.png)
+![Savings](screenshots/dashboards_savings.png)
+### Forms
+![Form Default](screenshots/form_default.png)
+![Form Update](screenshots/form_update.png)
+![Form Error 01](screenshots/form_error_01.png)
+![Form Error 02](screenshots/form_error_02.png)
+![Form Success](screenshots/form_successful.png)
+___
+## How to Run
+### Requirements
+* Git
+* Java 17+
+* JavaFX SDK installed and configured in your IDE
+* IntelliJ IDEA (recommended)
+
+SQLite is already embedded in the project, so no setup is required.
+### Setup
+`git clone https://github.com/yazeedmomani/uni-project_personal-budget.git`
+1.	Open the project in IntelliJ IDEA.
+2.	Make sure JavaFX SDK is configured.
+3.	Run Main.java to start the application.
+
+**Note**: If you’re new to JavaFX setup, check the [official guide](https://openjfx.io/openjfx-docs/) for instructions on configuring it in IntelliJ.
+### Login
+There are two users. Login with one of them:
+1. **Yazeed**
+   * username: admin
+   * password: 123456
+2. **Bara**
+   * username: bara
+   * password: bara123
+___
+## What I Learned
+* **Importance of Templating**: Writing abstract classes for recurring code has saved me an incredible amount of time when creating views, debugging, or changing something.
+* **Importance of Writing Clean Code**: Taking the time to write clean code and organize files using component-based architecture was definitely worth it. Many times I forgot what I wrote and having organized code helped a lot.
+* **Importance of Separating Logic**: Separating logic such as validation into their own classes has helped a lot when it comes to reusability and preventing future bugs. Especially in validation where you have to consider different scenarios for every input.
+* **Importance of Code Abstraction**: Code pieces like ones that create charts and tables were difficult to mess with and make changes to. Separating them to their own classes with parameterized constructors has helped a lot in creating different charts. I did the same with creating forms and dashboards.
+* **Importance of Testers**: Creating tester classes has saved me a lot of time. Especially after making changes to the database, running testers would usually hit error. I always realized the errors early before it became costly.
+* **Importance of Documenting in Data Preparation**: I ran through multiple bugs and typos in the data seed which forced me to change the data and go through the data preparation process again. Documenting my steps saved me a lot of time and trouble.
+* **Practiced Python and Pandas**: Preparing the data seed has allowed me to practice and better understand Python and especially Pandas.
+___
+## Future Improvement Ideas
+* **Next Bill Card**: Add a card in the Monthly Bills section showing next bill/s and the cost in JOD.
+* **Annual Bills**: Make Monthly Bills section support annual bills and other recurring bills.
+* **Google Calendar Integration**: This is probably a hard one, but I'd like to integrate monthly bills with Google Calendar.
+* **Monthly Report**: Generate monthly report and send it by email.
+* **Make It Downloadable**: Package it to .exe and .dmg to make it downloadable on Mac and Windows.
+___
+## License
+
+This project is for educational and personal portfolio use only.  
+Unauthorized copying, modification, or commercial use of this project’s code and files is not permitted without explicit permission from the author.  
